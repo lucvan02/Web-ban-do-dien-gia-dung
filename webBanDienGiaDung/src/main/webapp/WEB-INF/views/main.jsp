@@ -59,9 +59,12 @@
 						</button>
 					</div>
 
-					<button id="voucher" name="voucher">
-						<i class="ti-gift"></i><span> Khuyến mãi</span>
-
+					<button id="voucher" name="voucher" >
+						<i  class="ti-gift"></i><span> Khuyến mãi</span>
+						</button>
+						<button id="history" name="history">
+							<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
+						</button>
 						<button id="cart" name="cart">
 							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
 						</button>
@@ -73,9 +76,7 @@
 
 						</c:if>
 						<c:if test="${not empty sessionScope.USER}">
-							<button id="history" name="history">
-								<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
-							</button>
+
 							<button id="info" name="info">
 								<i class="ti-user"></i> <span> ${USER.hoTen}</span>
 							</button>
@@ -90,12 +91,12 @@
 
 			<div id="header-bottom">
 				<ul id="category">
-					<li><a href="${pageContext.servletContext.contextPath}/loai/tulanh.htm">Tủ Lạnh</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loai/maylanh.htm">Máy lạnh</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loai/maygiat.htm">Máy Giặt</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loai/tudong.htm">Tủ Đông</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loai/quat.htm">Quạt</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loai/noicom.htm">Nồi Cơm Điện</a></li>
+					<li><a href="loaisanpham/TULANH.htm">Tủ Lạnh</a></li>
+					<li><a href="loaisanpham/MAYLANH.htm">Máy lạnh</a></li>
+					<li><a href="loaisanpham/MAYGIAT.htm">Máy Giặt</a></li>
+					<li><a href="loaisanpham/TUDONG.htm">Tủ Đông</a></li>
+					<li><a href="loaisanpham/QUAT.htm">Quạt</a></li>
+					<li><a href="loaisanpham/NOICOM.htm">Nồi Cơm Điện</a></li>
 				</ul>
 			</div>
 		</div>
@@ -358,9 +359,7 @@
 		<hr />
 		<div id="copy-right">© 2023 PTIT.HCM</div>
 	</div>
-	<button onclick="topFunction()" id="back-top">
-		<i class="ti-angle-double-up"></i>
-	</button>
+<button onclick="topFunction()" id="back-top"><i class="ti-angle-double-up"></i></button>
 
 
 

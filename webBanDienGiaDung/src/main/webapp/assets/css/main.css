@@ -381,12 +381,9 @@ body {
 } 
  
 #footer {
-	
 	background-color: var(--header-color);
 	color: white;
 	margin-top: 50px;
-
-	
 }
 
 #footer-body {
