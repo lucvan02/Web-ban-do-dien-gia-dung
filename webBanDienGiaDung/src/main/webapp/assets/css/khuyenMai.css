@@ -139,7 +139,7 @@ body {
 	color: #FDEC3C;
 }
 
-#header-top #history {
+/* #header-top #history {
 	
 }
 
@@ -149,7 +149,7 @@ body {
 
 #header-top #login {
 	
-}
+} */
 
 #header-bottom {
 	margin-top: 5px;
@@ -434,22 +434,26 @@ body {
 	cursor: pointer;
 }
 
+/* TRANG KHUYEN MAI */
 
 
 
-
-
-/*TRANG KHUYEN MAI*/
-
-
-/*thanh tim kiem*/
  
-
+/*  Thanh tim kiem */
 .sale-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   
+}
+
+
+#mess{
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	 padding-bottom: 10px;
+   	color: red;
 }
 
 .containerr {
@@ -570,6 +574,7 @@ input.search-submit {
 table {
   border-collapse: collapse;
   width: 100%;
+  white-space: nowrap;
 }
 
 thead {
@@ -585,6 +590,7 @@ td {
   border-bottom: 1px solid #ddd;
   border: 1px solid #000000;  
   border-collapse: collapse;  
+  white-space: nowrap;
 }
 
 th {
@@ -648,11 +654,4 @@ tbody td:last-child {
  
   border-radius: 5px;
   cursor: pointer;
-}
-#mess{
-	display: flex;
-  	justify-content: center;
-  	align-items: center;
-  	 padding-bottom: 10px;
-   	color: red;
 }

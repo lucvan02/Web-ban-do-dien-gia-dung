@@ -100,7 +100,7 @@ h3,h4{
 .commenter-image {
   height: 70px;
   width: 70px;
-  background-image: url("../img/avata.png");
+  background-image: url("https://static.thenounproject.com/png/4571465-200.png" );
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
@@ -145,7 +145,4 @@ h3,h4{
 
 .koDanhGia{
 	color:red;
-}
-.inDam{
-	font-weight: bold;
 }

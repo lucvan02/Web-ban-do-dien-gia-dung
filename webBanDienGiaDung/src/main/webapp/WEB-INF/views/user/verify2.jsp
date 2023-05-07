@@ -43,7 +43,7 @@
 <div class="form-title">
 <img src="assets/img/login/verify-img.jpg" alt="">
 <span>Hãy nhập mã xác nhận được gửi đến email:</span>
-<span id="span-email">${email}</span>
+<span id="span-email">${USERFORGOT.email}</span>
 </div>
 
 <div class="form-input">

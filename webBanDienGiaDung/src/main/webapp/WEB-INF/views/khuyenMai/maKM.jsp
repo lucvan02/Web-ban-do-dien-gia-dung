@@ -85,43 +85,43 @@
 
 					<button id="voucher" name="voucher">
 						<i class="ti-gift"></i><span> Khuyến mãi</span>
+					</button>
+					<button id="history" name="history">
+						<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
+					</button>
+					<button id="cart" name="cart">
+						<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
+					</button>
+					<c:if test="${empty sessionScope.USER}">
 
-						<button id="cart" name="cart">
-							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
+						<button id="login" name="login">
+							<i class="ti-user"></i> <span> Đăng nhập</span>
 						</button>
-						<c:if test="${empty sessionScope.USER}">
 
-							<button id="login" name="login">
-								<i class="ti-user"></i> <span> Đăng nhập</span>
-							</button>
+					</c:if>
+					<c:if test="${not empty sessionScope.USER}">
 
-						</c:if>
-						<c:if test="${not empty sessionScope.USER}">
-							<button id="history" name="history">
-								<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
-							</button>
+						<button id="info" name="info">
+							<i class="ti-user"></i> <span> ${USER.hoTen}</span> <input
+								class="form-control hide" name="maNd" value="${ USER.maNd}" />
+						</button>
+						<div class="logout">
+							<a href="user/logout.htm">Đăng Xuất</a>
+						</div>
 
-							<button id="info" name="info">
-								<i class="ti-user"></i> <span> ${USER.hoTen}</span> <input
-									class="form-control hide" name="maNd" value="${ USER.maNd}" />
-							</button>
-							<div class="logout">
-								<a href="user/logout.htm">Đăng Xuất</a>
-							</div>
-
-						</c:if>
+					</c:if>
 				</div>
 			</form>
 
 
 			<div id="header-bottom">
 				<ul id="category">
-					<li><a href="#">Tủ Lạnh</a></li>
-					<li><a href="#">Máy lạnh</a></li>
-					<li><a href="#">Máy Giặt</a></li>
-					<li><a href="#">Tủ Đông</a></li>
-					<li><a href="#">Quạt</a></li>
-					<li><a href="#">Nồi Cơm Điện</a></li>
+					<li><a href="loaisanpham/TULANH.htm">Tủ Lạnh</a></li>
+					<li><a href="loaisanpham/MAYLANH.htm">Máy lạnh</a></li>
+					<li><a href="loaisanpham/MAYGIAT.htm">Máy Giặt</a></li>
+					<li><a href="loaisanpham/TUDONG.htm">Tủ Đông</a></li>
+					<li><a href="loaisanpham/QUAT.htm">Quạt</a></li>
+					<li><a href="loaisanpham/NOICOM.htm">Nồi Cơm Điện</a></li>
 				</ul>
 			</div>
 		</div>
@@ -130,7 +130,58 @@
 
 
 
-	
+	<div id="introduce">
+
+		<div class="list-intro width-page ">
+			<div class="item-intro">
+				<img src="assets/img/intro-item/intro1.png"> <span>Sản
+					phẩm cao cấp</span>
+			</div>
+			<div class="item-intro">
+				<img src="assets/img/intro-item/intro2.png"> <span>Máy
+					lạnh bảo hành 2 năm</span>
+
+			</div>
+			<div class="item-intro">
+				<img src="assets/img/intro-item/intro3.png"> <span>Nồi
+					cơm điện giảm đến 40%</span>
+
+
+			</div>
+
+			<div class="item-intro">
+				<img src="assets/img/intro-item/intro4.gif"> <span>Máy
+					cũ giá sốc</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- CONTENT -->
+
+	<!-- SLIDER -->
+	<div id="slider">
+		<!-- link -->
+		<div class="width-page">
+			<div id="carouselExampleSlidesOnly"
+				class="carousel slide slider-banner" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="assets/img/pic1.png" class="d-block w-100" alt="..." />
+					</div>
+					<div class="carousel-item">
+						<img src="assets/img/pic2.png" class="d-block w-100" alt="..." />
+					</div>
+					<div class="carousel-item">
+						<img src="assets/img/pic3.png" class="d-block w-100" alt="..." />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
 
 
 
@@ -181,8 +232,7 @@
 									<td class="end-date">${ctkm.khuyenMai.ngayKetThuc}</td>
 									<td>${ctkm.khuyenMai.soLuong}</td>
 									<td>
-										<!-- <button class="copy-button" >Lấy mã</button> --> <script
-											src="<c:url value='assets/js/khuyenmain.js'/>"></script>
+
 										<button class="copy-button" id="${ctkm.khuyenMai.maKM}">Lấy
 											mã</button>
 
@@ -253,6 +303,6 @@
 	<script src="<c:url value='assets/js/khuyenMai.js'/>"></script>
 
 
-	</script>
+
 </body>
 </html>
