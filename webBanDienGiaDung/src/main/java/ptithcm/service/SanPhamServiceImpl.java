@@ -7,7 +7,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ptithcm.Entity.HinhAnhEntity;
 import ptithcm.Entity.SanPhamEntity;
+import ptithcm.dao.HinhAnhDAO;
 import ptithcm.dao.SanPhamDAO;
 
 @Service
@@ -15,7 +17,8 @@ import ptithcm.dao.SanPhamDAO;
 public class SanPhamServiceImpl implements SanPhamService {
 	@Autowired
 	SanPhamDAO sanPhamDAO;
-	
+	@Autowired
+	HinhAnhDAO hinhAnhDAO;
 
 	public void setSanPhamDAO(SanPhamDAO sanPhamDAO) {
 		this.sanPhamDAO = sanPhamDAO;
@@ -28,19 +31,22 @@ public class SanPhamServiceImpl implements SanPhamService {
 
 	@Override
 	public List<SanPhamEntity> laySanPhamTheoLoai(String loai) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void xoaSanPham(String maSp) {
-		sanPhamDAO.xoaSanPham(maSp);
-		
+		return sanPhamDAO.laySanPhamTheoLoai(loai);
 	}
 
 	@Override
 	public List<SanPhamEntity> laySanPhamCungLoai(String maSp) {
 		return sanPhamDAO.laySanPhamCungLoai(maSp);
+	}
+	
+	@Override
+	public List<SanPhamEntity> laySanPhamNgauNhien() {
+		return sanPhamDAO.laySanPhamNgauNhien();
+	}
+	
+	@Override
+	public List<SanPhamEntity> laySanPhamMoi() {
+		return sanPhamDAO.laySanPhamMoi();
 	}
 
 	@Override
@@ -49,8 +55,51 @@ public class SanPhamServiceImpl implements SanPhamService {
 	}
 
 	@Override
+	public List<SanPhamEntity> layAllSanPham() {
+		return sanPhamDAO.layAllSanPham();
+	}
+
+	@Override
+	public List<SanPhamEntity> layAllSanPhamDaNgungBan() {
+		return sanPhamDAO.layAllSanPhamDaNgungBan();
+	}
+
+	@Override
+	public void themSanPham(SanPhamEntity sanPham) {
+		sanPhamDAO.themSanPham(sanPham);
+	}
+	
+	@Override
 	public void updateSanPham(SanPhamEntity sanPham) {
 	    sanPhamDAO.updateSanPham(sanPham);
+		
+	}
+
+	@Override
+	public void xoaSanPham(SanPhamEntity sanPham) {
+		sanPhamDAO.xoaSanPham(sanPham);
+	}
+
+	@Override
+	public void themHinhAnhSanPham(HinhAnhEntity hinhAnh) {
+		hinhAnhDAO.themHinhAnhSanPham(hinhAnh);
+		
+	}
+	
+	public void themHinhAnhSanPham(List<HinhAnhEntity> hinhAnhs) {
+		hinhAnhDAO.themHinhAnhSanPham(hinhAnhs);
+	}
+
+
+	@Override
+	public void suaHinhAnhSanPham(HinhAnhEntity hinhAnh) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void xoaHinhAnhSanPham(HinhAnhEntity hinhAnh) {
+		// TODO Auto-generated method stub
 		
 	}
 	

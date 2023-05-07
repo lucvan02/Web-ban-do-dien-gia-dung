@@ -17,6 +17,8 @@ public class ThuongHieuEntity{
 	private String maTh;
 	@Column(name = "TENTHUONGHIEU")
 	private String tenThuongHieu;
+	@Column(name = "TRANGTHAI")
+	private Boolean trangThai;
 	@OneToMany(mappedBy = "thuongHieu", fetch = FetchType.LAZY )
 	private Collection<SanPhamEntity> sanPhams;
 	public String getMaTh() {

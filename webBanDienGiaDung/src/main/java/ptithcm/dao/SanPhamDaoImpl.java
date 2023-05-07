@@ -2,15 +2,19 @@ package ptithcm.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ptithcm.Entity.LoaiSanPhamEntity;
 import ptithcm.Entity.SanPhamEntity;
 
+@Transactional
 @Repository
 public class SanPhamDaoImpl implements SanPhamDAO {
 	
@@ -25,17 +29,15 @@ public class SanPhamDaoImpl implements SanPhamDAO {
 
 	@Override
 	public List<SanPhamEntity> laySanPhamTheoLoai(String loai) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM SanPhamEntity sp WHERE sp.loaiSanPham.maLoai = :loai and trangThai=True ";
+		Query query = session.createQuery(hql).setParameter("loai", loai);
+		query.setMaxResults(6);
+		List<SanPhamEntity> list = query.list();
+		return list;
 	}
 
 	@Override
-	public void xoaSanPham(String maSp) {
-		SanPhamEntity sanPham = (SanPhamEntity)sessionFactory.getCurrentSession().get(SanPhamEntity.class, maSp);
-		sessionFactory.getCurrentSession().delete(sanPham);
-		
-	}
-
 	public List<SanPhamEntity> laySanPhamCungLoai(String maSp) {
 	    Session session = sessionFactory.getCurrentSession();
 	    SanPhamEntity sp = (SanPhamEntity) session.get(SanPhamEntity.class, maSp);
@@ -47,6 +49,26 @@ public class SanPhamDaoImpl implements SanPhamDAO {
 	    query.setMaxResults(3);
 	    List<SanPhamEntity> sanPhamCungLoai = query.list();
 	    return sanPhamCungLoai;
+	}
+	
+	@Override
+	public List<SanPhamEntity> laySanPhamNgauNhien() {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM SanPhamEntity where trangThai=True ORDER BY NEWID()";
+		Query query = session.createQuery(hql);
+		query.setMaxResults(6);
+		List<SanPhamEntity> listNgauNhien = query.list();
+		return listNgauNhien;
+	}
+
+	@Override
+	public List<SanPhamEntity> laySanPhamMoi() {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM SanPhamEntity where trangThai=True ORDER BY NGAYTHEM DESC";		//String hql = "FROM SanPhamEntity ORDER BY id DESC";
+	    Query query = session.createQuery(hql);
+	    query.setMaxResults(6);
+	    List<SanPhamEntity> danhSachSanPham = query.list();
+	    return danhSachSanPham;
 	}
 
 	@Override
@@ -69,10 +91,50 @@ public class SanPhamDaoImpl implements SanPhamDAO {
 	}
 
 	@Override
-	public void updateSanPham(SanPhamEntity sanPham) {
-		sessionFactory.getCurrentSession().update(sanPham);
-		
+	public List<SanPhamEntity> layAllSanPham() {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM SanPhamEntity where trangThai=True ORDER BY NGAYTHEM DESC";
+	    Query query = session.createQuery(hql);
+	    List<SanPhamEntity> danhSachSanPham = query.list();
+	    return danhSachSanPham;
 	}
+
+	@Override
+	public List<SanPhamEntity> layAllSanPhamDaNgungBan() {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM SanPhamEntity where trangThai=False ORDER BY NGAYTHEM DESC";
+	    Query query = session.createQuery(hql);
+	    List<SanPhamEntity> danhSachSanPham = query.list();
+	    return danhSachSanPham;
+	}
+
+	@Override
+	public void themSanPham(SanPhamEntity sanPham) {
+		Session session = sessionFactory.openSession();
+		Transaction t = session.beginTransaction();
+		try {
+			session.save(sanPham);
+			t.commit();
+		
+		} catch (Exception ex) {
+			t.rollback();
+			System.out.print("loi");
+
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void updateSanPham(SanPhamEntity sanPham) {
+		sessionFactory.getCurrentSession().update(sanPham);	
+	}
+
+	@Override
+	public void xoaSanPham(SanPhamEntity sanPham) {
+		sessionFactory.getCurrentSession().delete(sanPham);		
+	}
+
 
 
 }
