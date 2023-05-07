@@ -3,6 +3,7 @@ package ptithcm.Entity;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,6 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "SANPHAM")
@@ -36,6 +41,18 @@ public class SanPhamEntity {
 	private float soSaoTB;
 	@Column(name = "TRANGTHAI")
 	private boolean trangThai;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@Column(name = "NGAYTHEM") 
+	private Date ngayThem;
+	public Date getNgayThem() {
+		return ngayThem;
+	}
+
+	public void setNgayThem(Date ngayThem) {
+		this.ngayThem = ngayThem;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "MALOAI")
 	private LoaiSanPhamEntity loaiSanPham;
