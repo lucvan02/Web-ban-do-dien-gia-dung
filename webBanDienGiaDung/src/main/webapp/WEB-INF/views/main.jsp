@@ -59,9 +59,12 @@
 						</button>
 					</div>
 
-					<button id="voucher" name="voucher">
-						<i class="ti-gift"></i><span> Khuyến mãi</span>
-
+					<button id="voucher" name="voucher" >
+						<i  class="ti-gift"></i><span> Khuyến mãi</span>
+						</button>
+						<button id="history" name="history">
+							<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
+						</button>
 						<button id="cart" name="cart">
 							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
 						</button>
@@ -73,9 +76,7 @@
 
 						</c:if>
 						<c:if test="${not empty sessionScope.USER}">
-							<button id="history" name="history">
-								<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
-							</button>
+
 							<button id="info" name="info">
 								<i class="ti-user"></i> <span> ${USER.hoTen}</span>
 							</button>
@@ -90,12 +91,12 @@
 
 			<div id="header-bottom">
 				<ul id="category">
-					<li><a href="#">Tủ Lạnh</a></li>
-					<li><a href="#">Máy lạnh</a></li>
-					<li><a href="#">Máy Giặt</a></li>
-					<li><a href="#">Tủ Đông</a></li>
-					<li><a href="#">Quạt</a></li>
-					<li><a href="#">Nồi Cơm Điện</a></li>
+					<li><a href="loaisanpham/TULANH.htm">Tủ Lạnh</a></li>
+					<li><a href="loaisanpham/MAYLANH.htm">Máy lạnh</a></li>
+					<li><a href="loaisanpham/MAYGIAT.htm">Máy Giặt</a></li>
+					<li><a href="loaisanpham/TUDONG.htm">Tủ Đông</a></li>
+					<li><a href="loaisanpham/QUAT.htm">Quạt</a></li>
+					<li><a href="loaisanpham/NOICOM.htm">Nồi Cơm Điện</a></li>
 				</ul>
 			</div>
 		</div>
@@ -203,7 +204,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="" class="xemTatCa">Xem tất cả tủ lạnh</a>
+						<a href="loaisanpham/TULANH.htm" class="xemTatCa">Xem tất cả tủ lạnh</a>
 					</div>
 					<div id="group-mayLanh" class="display-none">
 
@@ -221,7 +222,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="" class="xemTatCa">Xem tất cả máy lạnh</a>
+						<a href="loaisanpham/MAYLANH.htm" class="xemTatCa">Xem tất cả máy lạnh</a>
 					</div>
 					<div id="group-mayGiat" class="display-none">
 
@@ -239,7 +240,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="" class="xemTatCa">Xem tất cả máy giặt</a>
+						<a href="loaisanpham/MAYGIAT.htm" class="xemTatCa">Xem tất cả máy giặt</a>
 					</div>
 					<div id="group-tuDong" class="display-none">
 
@@ -257,7 +258,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="" class="xemTatCa">Xem tất cả tủ đông</a>
+						<a href="loaisanpham/TUDONG.htm" class="xemTatCa">Xem tất cả tủ đông</a>
 					</div>
 					<div id="group-quat" class="display-none">
 
@@ -275,7 +276,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="" class="xemTatCa">Xem tất cả quạt</a>
+						<a href="loaisanpham/MAYQUAT.htm" class="xemTatCa">Xem tất cả quạt</a>
 					</div>
 					<div id="group-noiCom" class="display-none">
 
@@ -293,7 +294,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="" class="xemTatCa">Xem tất cả nồi cơm</a>
+						<a href="loaisanpham/NOICOM.htm" class="xemTatCa">Xem tất cả nồi cơm</a>
 					</div>
 
 				</div>
@@ -335,9 +336,7 @@
 		<hr />
 		<div id="copy-right">© 2023 PTIT.HCM</div>
 	</div>
-	<button onclick="topFunction()" id="back-top">
-		<i class="ti-angle-double-up"></i>
-	</button>
+<button onclick="topFunction()" id="back-top"><i class="ti-angle-double-up"></i></button>
 
 
 
