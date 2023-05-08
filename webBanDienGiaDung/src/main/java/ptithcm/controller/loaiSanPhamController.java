@@ -36,7 +36,7 @@ public class loaiSanPhamController {
 	public String main(@PathVariable("loaiSp") String loaiSp, ModelMap model,HttpServletRequest request) { 
 	     List<ThuongHieuEntity> thuongHieulist = thuongHieuService.layThuongHieu();
 	     model.addAttribute("thuongHieuList", thuongHieulist); 
-		List<SanPhamEntity> categoryList = sanPhamService.laySanPhamTheoLoai(loaiSp);
+		List<SanPhamEntity> categoryList = sanPhamService.layAllSanPhamTheoLoai(loaiSp);
 		 model.addAttribute("categoryList", categoryList); 		
 		return "sanPham/loaiSanPham";
 	}
