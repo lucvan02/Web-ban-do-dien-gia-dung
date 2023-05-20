@@ -95,8 +95,14 @@ public class SanPhamServiceImpl implements SanPhamService {
 		
 	}
 	
+	@Override
 	public void themHinhAnhSanPham(List<HinhAnhEntity> hinhAnhs) {
 		hinhAnhDAO.themHinhAnhSanPham(hinhAnhs);
+	}
+	
+	@Override
+	public void suaHinhAnhSanPham(List<HinhAnhEntity> hinhAnhs) {
+		hinhAnhDAO.suaHinhAnhSanPham(hinhAnhs);
 	}
 
 

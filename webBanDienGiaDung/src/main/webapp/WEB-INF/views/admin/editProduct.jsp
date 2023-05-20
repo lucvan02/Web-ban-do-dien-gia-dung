@@ -30,64 +30,7 @@
 
 <body id="reportsPage">
     <div class="" id="home">
-        <nav class="navbar navbar-expand-xl">
-            <div class="container h-100">
-                <a class="navbar-brand" href="admin/index.htm">
-                    <h1 class="tm-site-title mb-0">TGDM</h1>
-                </a>
-                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars tm-nav-icon"></i>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto h-100">
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin/order.htm">
-                                <i class="fas fa-tachometer-alt"></i>
-                                Đơn hàng
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link active" href="admin/product.htm">
-                                <i class="fas fa-shopping-cart"></i>
-                                Sản phẩm
-                            </a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-file-alt"></i>
-                                Khuyến mãi
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin/account.htm">
-                                <i class="far fa-user"></i>
-                                Tài khoản
-                            </a>
-                        </li>
-                        
-                    </ul>
-                    <ul class="navbar-nav">
-                    	<li>
-                    	<a class="nav-link d-block" href="admin/me.htm">
-                    		<b><span class="text-warning">${USER.hoTen}</span></b>
-                    	</a>                        	
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-block" href="user/logout.htm">
-                                 <b>Đăng xuất</b>
-                            </a>
-                        </li>                        
-                    </ul>
-                </div>
-            </div>
-
-        </nav>
+        <%@ include file="include/menu.jsp" %> 
     
     <div class="container tm-mt-big tm-mb-big">
       <div class="row">
@@ -226,13 +169,8 @@
     </div>
     </div>
     </div>
-    <footer class="tm-footer row tm-mt-small">
-        <div class="col-12 font-weight-light">
-          <p class="text-center text-white mb-0 px-4 small">
-            &copy; <b>2023</b> PTITHCM 
-        </p>
-        </div>
-    </footer> 
+    <%@ include file="include/footer.jsp" %>
+
 
     <script src="<c:url value='js/jquery-3.3.1.min.js'/>"></script>
     <!-- https://jquery.com/download/ -->

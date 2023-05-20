@@ -142,7 +142,7 @@
               <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <div>
-                  <c:forEach var="th" items="${thuongHieuList}" >
+                  <c:forEach var="th" items="${thuongHieuList}">
                  
                     <!-- Checked checkbox -->
                     <div class="form-check">
@@ -230,11 +230,11 @@
         <div>
         <h2  id="no-product-mess">${message }</h2>
         </div>
-        <c:forEach var="sanPham" items="${categoryList}" begin ="0" end ="5" >   
+        <c:forEach var="sanPham" items="${categoryList}"  >   
         
              
             <div class="col-lg-4 col-md-6 col-sm-8 d-flex sp"  >
-            <div class="card border-3 mb-4 mx-auto pr">
+            <div class="card border-3 mb-4 mx-auto shadow-lg pr">
             <div class="item">
             <a class="item" href="sanpham/${sanPham.maSP}.htm"> 
             <img
@@ -259,7 +259,7 @@
           </div> 
           
           
-		 <c:if test ="${categoryList.size()>6}"> 
+		 <c:if test ="${categoryList.size()==6}"> 
 		 <form action="loaisanpham/${loaiSp}.htm" method="post">  
 		   <button  class="btn btn-light btn-sm btn-view-all-pro" name="btn-view-all">Xem toàn bộ sản phẩm</button>
 		    </form>

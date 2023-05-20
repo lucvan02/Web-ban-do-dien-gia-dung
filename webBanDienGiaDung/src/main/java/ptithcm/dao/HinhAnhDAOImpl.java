@@ -53,7 +53,24 @@ public class HinhAnhDAOImpl implements HinhAnhDAO{
 	        session.close();
 	    }
 	}
+	
+	public void suaHinhAnhSanPham(List<HinhAnhEntity> hinhAnhs) {
+	    Session session = sessionFactory.openSession();
+	    Transaction t = session.beginTransaction();
+	    try {
+	        for (HinhAnhEntity hinhAnh : hinhAnhs) {
+	            session.update(hinhAnh);
+	        }
+	        t.commit();
+	    } catch (Exception ex) {
+	        t.rollback();
+	        System.out.print("loi");
 
+	    } finally {
+	        session.close();
+	    }
+	}
+	
 
 	@Override
 	public void suaHinhAnhSanPham(HinhAnhEntity hinhAnh) {

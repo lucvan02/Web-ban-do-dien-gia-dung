@@ -179,7 +179,7 @@ public class quanLiSanPhamController {
 	    model.addAttribute("sanPham", sanPham);
 	    model.addAttribute("listThuongHieu", listThuongHieu);
 	    model.addAttribute("listLoai", listLoai);
-	    model.addAttribute("product", new SanPhamEntity());
+	    model.addAttribute("product", sanPham);
 	    return "admin/editProduct";
 	}
 
@@ -228,7 +228,7 @@ public class quanLiSanPhamController {
 
 	    try {
 	        sanPhamService.updateSanPham(product);
-	        sanPhamService.themHinhAnhSanPham(hinhAnhKhacs);
+	        sanPhamService.suaHinhAnhSanPham(hinhAnhKhacs);
 	        model.addAttribute("successMessage", "Cập nhật sản phẩm thành công.");
 	    } catch (Exception e) {
 	        model.addAttribute("errorMessage", "Có lỗi xảy ra khi cập nhật sản phẩm. " + e.getMessage());
