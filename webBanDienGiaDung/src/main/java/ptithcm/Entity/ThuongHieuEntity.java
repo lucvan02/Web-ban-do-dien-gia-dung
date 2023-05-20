@@ -33,6 +33,12 @@ public class ThuongHieuEntity{
 	public void setTenThuongHieu(String tenThuongHieu) {
 		this.tenThuongHieu = tenThuongHieu;
 	}
+	public Boolean getTrangThai() {
+		return trangThai;
+	}
+	public void setTrangThai(Boolean trangThai) {
+		this.trangThai = trangThai;
+	}
 	public Collection<SanPhamEntity> getSanPhams() {
 		return sanPhams;
 	}

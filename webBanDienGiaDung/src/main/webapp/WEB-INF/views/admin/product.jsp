@@ -31,64 +31,8 @@
 
 <body id="reportsPage">
     <div class="" id="home">
-        <nav class="navbar navbar-expand-xl">
-            <div class="container h-100">
-                <a class="navbar-brand" href="admin/index.htm">
-                    <h1 class="tm-site-title mb-0">TGDM</h1>
-                </a>
-                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars tm-nav-icon"></i>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto h-100">
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin/order.htm">
-                                <i class="fas fa-tachometer-alt"></i>
-                                Đơn hàng
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link active" href="admin/product.htm">
-                                <i class="fas fa-shopping-cart"></i>
-                                Sản phẩm
-                            </a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin/sale.htm">
-                                <i class="fas fa-file-alt"></i>
-                                Khuyến mãi
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin/account.htm">
-                                <i class="far fa-user"></i>
-                                Tài khoản
-                            </a>
-                        </li>                       
-                    </ul>
-                    
-                    <ul class="navbar-nav">
-                    	<li>
-                    	<a class="nav-link d-block" href="admin/me.htm">
-                    		<b><span class="text-warning">${USER.hoTen}</span></b>
-                    	</a>                        	
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-block" href="user/logout.htm">
-                                 <b>Đăng xuất</b>
-                            </a>
-                        </li>                        
-                    </ul>
-                </div>
-            </div>
-
-        </nav>
+        <%@ include file="include/menu.jsp" %> 
+        <%@ include file="include/footer.jsp" %>
     
     
     <div class="container mt-5">
@@ -157,7 +101,7 @@
                       </a> -->
                       <form method="post">
 					    <input type="hidden" name="maSPXoa" value="${sanPham.maSP}" />
-					    <button name="deleteSP" class="btn-primary" title="Xóa sản phẩm này" type="submit"><i class="far fa-trash-alt tm-product-delete-icon"></i></button>
+					    <button name="deleteSP" class="btn-danger" title="Xóa sản phẩm này" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')"><i class="far fa-trash-alt tm-product-delete-icon"></i></button>
 					 </form>
                     </td>
                     
@@ -192,7 +136,7 @@
                     <td class="tm-product-name">${th.tenThuongHieu}</td>
                     
                     <td>
-                      <a href="#" class="tm-product-delete-link">
+                      <a href="admin/brands/edit/${th.maTh}.htm" class="tm-product-delete-link">
                     	 <i class="fas fa-pencil-alt tm-product-edit-icon"></i>
                       </a>
                     </td>
@@ -211,9 +155,12 @@
               </table>
             </div>
             <!-- table container -->
-            <button class="btn btn-primary btn-block text-uppercase mb-3">
+            <!-- <button class="btn btn-primary btn-block text-uppercase mb-3">
               Thêm thương hiệu khác
-            </button>
+            </button> -->
+            <a
+              href="admin/brands/add.htm"
+              class="btn btn-primary btn-block text-uppercase mb-3">Thêm thương hiệu</a>
           </div>
         </div>
       </div>
@@ -276,7 +223,7 @@
                     <td>
                       <form method="post">
 					    <input type="hidden" name="maSPXoa" value="${sanPham.maSP}" />
-					    <button name="deleteSP" class="btn-primary" title="Xóa sản phẩm này" type="submit"><i class="far fa-trash-alt tm-product-delete-icon"></i></button>
+					    <button name="deleteSP" class="btn-danger" title="Xóa sản phẩm này" type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')"><i class="far fa-trash-alt tm-product-delete-icon"></i></button>
 					 </form>
                     </td>
                     
@@ -291,7 +238,7 @@
           </div>
         </div>
         
-        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
+        <%-- <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
             <h2 class="tm-block-title">Các thương hiệu ngừng bán</h2>
             <div class="tm-product-table-container">
@@ -329,18 +276,11 @@
             </div>
 
           </div>
-        </div>
+        </div> --%>
         
        </div>
       </div>
-    
-    <footer class="tm-footer row tm-mt-small">
-      <div class="col-12 font-weight-light">
-        <p class="text-center text-white mb-0 px-4 small">
-          &copy; <b>2023</b> PTITHCM 
-        </p>
-      </div>
-    </footer>
+   </div>
     
 
     <script src="<c:url value='js/jquery-3.3.1.min.js'/>"></script>

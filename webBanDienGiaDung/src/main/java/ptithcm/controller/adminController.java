@@ -25,6 +25,7 @@ import ptithcm.service.ThuongHieuService;
 
 @Transactional
 @Controller
+@RequestMapping("/admin/")
 public class adminController {
 	
 	@Autowired
@@ -39,20 +40,20 @@ public class adminController {
 	@Autowired
 	private ChiTietKMService chiTietKMService;
 	
-	@RequestMapping("admin/index")
+	@RequestMapping("index")
 	public String index(HttpServletRequest request) {
 		HttpSession session0 = request.getSession();
 		NguoiDungEntity user = (NguoiDungEntity) session0.getAttribute("USER");
 		return "admin/index";
 	}
 	
-	@RequestMapping("admin/order")
+	@RequestMapping("order")
 	public String order() {
 		return "admin/order";
 	}
 	
 	
-	@RequestMapping("admin/sale")
+	@RequestMapping("sale")
 	public String sale(ModelMap model) {		
 		List<KhuyenMaiEntity> khuyenMaiList = khuyenMaiService.khuyenMailist();
 		model.addAttribute("khuyenMaiList", khuyenMaiList);
@@ -62,14 +63,14 @@ public class adminController {
 	}
 	
 	
-	@RequestMapping("admin/account")
+	@RequestMapping("account")
 	public String account(HttpServletRequest request) {
 		HttpSession session0 = request.getSession();
 		NguoiDungEntity user = (NguoiDungEntity) session0.getAttribute("USER");
 		return "admin/account";
 	}
 	
-	@RequestMapping("admin/me")
+	@RequestMapping("me")
 		public String me(HttpServletRequest request) {
 		HttpSession session0 = request.getSession();
 		NguoiDungEntity user = (NguoiDungEntity) session0.getAttribute("USER");

@@ -30,4 +30,19 @@ public class ThuongHieuServiceImpl implements ThuongHieuService{
 	public ThuongHieuEntity layThuongHieuTheoMa(String maTh) {
 		return thuongHieuDao.layThuongHieuTheoMa(maTh);
 	}
+
+	@Override
+	public void themThuongHieu(ThuongHieuEntity thuongHieu) {
+		thuongHieuDao.themThuongHieu(thuongHieu);
+	}
+
+	@Override
+	public void updateThuongHieu(ThuongHieuEntity thuongHieu) {
+		thuongHieuDao.updateThuongHieu(thuongHieu);
+	}
+
+	@Override
+	public void xoaThuongHieu(ThuongHieuEntity thuongHieu) {
+		thuongHieuDao.xoaThuongHieu(thuongHieu);
+	}
 }

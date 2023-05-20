@@ -31,64 +31,8 @@
 
 <body id="reportsPage">
     <div class="" id="home">
-        <nav class="navbar navbar-expand-xl">
-            <div class="container h-100">
-                <a class="navbar-brand" href="admin/index.htm">
-                    <h1 class="tm-site-title mb-0">TGDM</h1>
-                </a>
-                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars tm-nav-icon"></i>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto h-100">
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin/order.htm">
-                                <i class="fas fa-tachometer-alt"></i>
-                                Đơn hàng
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin/product.htm">
-                                <i class="fas fa-shopping-cart"></i>
-                                Sản phẩm
-                            </a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link active" href="admin/sale.htm">
-                                <i class="fas fa-file-alt"></i>
-                                Khuyến mãi
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin/account.htm">
-                                <i class="far fa-user"></i>
-                                Tài khoản
-                            </a>
-                        </li>
-                        
-                    </ul>
-                    <ul class="navbar-nav">
-                    	<li>
-                    	<a class="nav-link d-block" href="admin/me.htm">
-                    		<b><span class="text-warning">${USER.hoTen}</span></b>
-                    	</a>                        	
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-block" href="user/logout.htm">
-                                 <b>Đăng xuất</b>
-                            </a>
-                        </li>                        
-                    </ul>
-                </div>
-            </div>
-
-        </nav>
+        <%@ include file="include/menu.jsp" %> 
+        <%@ include file="include/footer.jsp" %>
         
         
     <div style="margin-left:25%; white-space: nowrap;" class="container mt-5">
@@ -138,114 +82,14 @@
               </td>
             </tr>
           
-          </c:forEach>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <!-- 
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">KMS01</td>
-                    <td>50000đ</td>
-                    <td>BA190PPVN</td>
-                    <td>2023-04-03</td>
-                    <td>2023-06-03</td>
-                     <td>65</td>
-                      
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">KMS01</td>
-                    <td>50000đ</td>
-                    <td>BA190PPVN</td>
-                    <td>2023-04-03</td>
-                    <td>2023-06-03</td>
-                     <td>65</td>
-                      
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">KMS01</td>
-                    <td>50000đ</td>
-                    <td>BA190PPVN</td>
-                    <td>2023-04-03</td>
-                    <td>2023-06-03</td>
-                     <td>65</td>
-                      
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">KMS01</td>
-                    <td>50000đ</td>
-                    <td>BA190PPVN</td>
-                    <td>2023-04-03</td>
-                    <td>2023-06-03</td>
-                     <td>65</td>
-                      
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">KMS01</td>
-                    <td>50000đ</td>
-                    <td>BA190PPVN</td>
-                    <td>2023-04-03</td>
-                    <td>2023-06-03</td>
-                     <td>65</td>
-                      
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">KMS01</td>
-                    <td>50000đ</td>
-                    <td>BA190PPVN</td>
-                    <td>2023-04-03</td>
-                    <td>2023-06-03</td>
-                     <td>65</td>
-                      
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr> -->
+          </c:forEach>                
                     
                 </tbody>
               </table>
             </div>
             <!-- table container -->
             <a
-              href="add-product.html"
+              href="#"
               class="btn btn-primary btn-block text-uppercase mb-3">Thêm khuyến mãi</a>
             <button class="btn btn-primary btn-block text-uppercase">
               Xóa khuyến mãi
@@ -254,15 +98,9 @@
         </div>
         
       </div>
+      </div>
     </div>
     
-    <footer class="tm-footer row tm-mt-small">
-        <div class="col-12 font-weight-light">
-          <p class="text-center text-white mb-0 px-4 small">
-            &copy; <b>2023</b> PTITHCM 
-        </p>
-        </div>
-    </footer> 
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->

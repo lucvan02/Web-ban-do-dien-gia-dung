@@ -66,11 +66,5 @@ public class mainController {
 		return "main";
 	}
 	
-	
-	
-	
-	
-	
-	
 
 }
