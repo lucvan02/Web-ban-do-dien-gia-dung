@@ -32,7 +32,6 @@
 <body id="reportsPage">
     <div class="" id="home">
         <%@ include file="include/menu.jsp" %> 
-        <%@ include file="include/footer.jsp" %>
         
         
     <div style="margin-left:25%; white-space: nowrap;" class="container mt-5">

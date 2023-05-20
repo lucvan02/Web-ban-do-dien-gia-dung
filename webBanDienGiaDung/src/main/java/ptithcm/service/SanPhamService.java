@@ -15,6 +15,9 @@ public interface SanPhamService {
 	public List<SanPhamEntity> laySanPhamNgauNhien();
 	public List<SanPhamEntity> laySanPhamMoi();
 	public List<SanPhamEntity> locSanPhamTheoThuongHieuVaGia(String loai, List<String> brandsList, int minPrice, int maxPrice);
+	
+	public boolean kiemTraSanPhamCoNamTrongGioHang(String maSP);
+	
 	public float tinhSoSaoTB(SanPhamEntity sanPham);
 	public void themSanPham(SanPhamEntity sanPham);
 	public void updateSanPham(SanPhamEntity sanPham);

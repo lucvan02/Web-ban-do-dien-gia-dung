@@ -123,7 +123,7 @@ html, body {
   <div class="error">ERROR<br></div>
   <div class="number">500</div>
   <div class="message">
-      <span class="textData" data-to-animate='[" Looks like you messed it al" , " We are sorr" , " Clearly something is broken! We will fix it soon."]'>Ooops!! </span>
+      <span class="textData" data-to-animate='[" Có vẻ xảy ra lỗi" , " Chúng tôi sẽ nhanh chóng khắc phục" , " Mời bạn quay lại!"]'>Ooops!! </span>
   </div>
   <div class="smiley">
     <span id="leftArm">¯\_</span>

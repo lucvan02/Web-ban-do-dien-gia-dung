@@ -31,8 +31,7 @@
 
 <body id="reportsPage">
     <div class="" id="home">
-        <%@ include file="include/menu.jsp" %> 
-        <%@ include file="include/footer.jsp" %>
+        <%@ include file="include/menu.jsp" %>
     
     
     <div class="container mt-5">
@@ -116,6 +115,14 @@
               href="admin/product/add.htm"
               class="btn btn-primary btn-block text-uppercase mb-3">Thêm sản phẩm</a>
           </div>
+          
+          <c:if test="${not empty errorMessageXoaSP}">
+			  <script type="text/javascript">
+			    alert("${errorMessageXoaSP}");
+			    window.location.href = "${pageContext.request.contextPath}/admin/product.htm";
+			  </script>
+		  </c:if>
+		
         </div>
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
@@ -142,14 +149,20 @@
                     </td>
                     
                     <td>
-                      <a class="tm-product-delete-link">
+                      <!-- <a class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
+                      </a> -->
+                      <form method="post">
+					    <input type="hidden" name="maTHXoa" value="${th.maTh}" />
+					    <button name="deleteTH" class="btn-danger" title="Xóa thương hiệu này" type="submit" 
+						    onclick="return confirm('Bạn có chắc chắn muốn xóa thương hiệu này?')">
+						    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+					    </button>
+					 </form>		
                     </td>
-
+                          
                   </tr>
-                  </c:forEach>
-                  
+                  </c:forEach>                 
                   
                 </tbody>
               </table>
@@ -162,6 +175,14 @@
               href="admin/brands/add.htm"
               class="btn btn-primary btn-block text-uppercase mb-3">Thêm thương hiệu</a>
           </div>
+
+		 <c:if test="${not empty errorMessageTH}">
+		  <script type="text/javascript">
+		    alert("${errorMessageTH}");
+		    window.location.href = "${pageContext.request.contextPath}/admin/product.htm";
+		  </script>
+		</c:if>
+		 
         </div>
       </div>
     </div>

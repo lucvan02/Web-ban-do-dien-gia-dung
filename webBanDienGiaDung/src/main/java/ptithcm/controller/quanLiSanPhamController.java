@@ -77,11 +77,36 @@ public class quanLiSanPhamController {
 	}
 	
 	@RequestMapping(value="admin/product", params="deleteSP", method = RequestMethod.POST)
-	public String deleteSanPham(HttpServletRequest request) {
+	public String deleteSanPham(HttpServletRequest request, ModelMap model) {
 		String maSp = request.getParameter("maSPXoa");
 		SanPhamEntity sanPham = sanPhamService.laySanPham(maSp);
 		sanPhamService.xoaSanPham(sanPham);
+		
+		boolean coGioHangLienKet = sanPhamService.kiemTraSanPhamCoNamTrongGioHang(maSp);
+		
+		if (coGioHangLienKet) {
+	        model.addAttribute("errorMessageXoaSP", "Không thể xóa sản phẩm vì đang nằm trong giỏ hàng!");
+	        return "admin/product";
+	    } else 
+	    	sanPhamService.xoaSanPham(sanPham);
+		
 		return "redirect:/admin/product.htm";
+	}
+	
+	@RequestMapping(value = "admin/product", params = "deleteTH", method = RequestMethod.POST)
+	public String deleteThuongHieu(HttpServletRequest request, ModelMap model) {
+	    String maTH = request.getParameter("maTHXoa");
+	    ThuongHieuEntity thuongHieu = thuongHieuService.layThuongHieuTheoMa(maTH);
+	    
+	    boolean coSanPhamLienKet = thuongHieuService.kiemTraSanPhamTheoThuongHieu(maTH);
+	    
+	    if (coSanPhamLienKet) {
+	        model.addAttribute("errorMessageTH", "Không thể xóa thương hiệu vì có sản phẩm đang liên kết!");
+	        return "admin/product";
+	    } else 
+	        thuongHieuService.xoaThuongHieu(thuongHieu);
+	    
+	    return "redirect:/admin/product.htm";
 	}
 	
 	

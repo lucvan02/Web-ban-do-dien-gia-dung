@@ -57,7 +57,7 @@
 	    
 	    </h3>
 	    
-	    <p>Mời bạn quay lại trang chủ để truy cập.!</p>
+	    <p>Mời bạn quay lại hoặc trở về trang chủ để truy cập.!</p>
 	    
 	    <a href="${pageContext.servletContext.contextPath}/" class="link_404">Về trang chủ</a>
 	  </div>

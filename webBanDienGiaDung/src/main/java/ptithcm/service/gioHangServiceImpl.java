@@ -28,6 +28,11 @@ public class gioHangServiceImpl implements gioHangService{
 	public GioHangEntity layGioHangTheoMaNdVaSanPham(int maNd, String maSp) {
 		return gioHangDao.layGioHangTheoMaNdVaSanPham(maNd, maSp);
 	}
+	
+	@Override
+	public List<GioHangEntity> layAllGioHang(){
+		return gioHangDao.layAllGioHang();
+	}
 
 	@Override
 	public void addGioHang(GioHangEntity giohang) {
