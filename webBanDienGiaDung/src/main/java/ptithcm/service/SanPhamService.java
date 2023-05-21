@@ -23,9 +23,8 @@ public interface SanPhamService {
 	public void updateSanPham(SanPhamEntity sanPham);
 	public void xoaSanPham(SanPhamEntity sanPham);
 	
-	public void themHinhAnhSanPham(HinhAnhEntity hinhAnh);
+//	public void themHinhAnhSanPham(HinhAnhEntity hinhAnh);
 	public void themHinhAnhSanPham(List<HinhAnhEntity> hinhAnhs);
 	public void suaHinhAnhSanPham(List<HinhAnhEntity> hinhAnhs);
-	public void suaHinhAnhSanPham(HinhAnhEntity hinhAnh);
-	public void xoaHinhAnhSanPham(HinhAnhEntity hinhAnh);
+	public void xoaHinhAnhSanPham(List<HinhAnhEntity> hinhAnhs);
 }

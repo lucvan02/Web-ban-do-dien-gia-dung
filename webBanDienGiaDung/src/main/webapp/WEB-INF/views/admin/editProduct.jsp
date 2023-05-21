@@ -176,7 +176,6 @@
     </div>
     </div>
     </div>
-    <%@ include file="include/footer.jsp" %>
 
 
     <script src="<c:url value='js/jquery-3.3.1.min.js'/>"></script>

@@ -105,11 +105,11 @@ public class SanPhamServiceImpl implements SanPhamService {
 		sanPhamDAO.xoaSanPham(sanPham);
 	}
 
-	@Override
-	public void themHinhAnhSanPham(HinhAnhEntity hinhAnh) {
-		hinhAnhDAO.themHinhAnhSanPham(hinhAnh);
-		
-	}
+//	@Override
+//	public void themHinhAnhSanPham(HinhAnhEntity hinhAnh) {
+//		hinhAnhDAO.themHinhAnhSanPham(hinhAnh);
+//		
+//	}
 	
 	@Override
 	public void themHinhAnhSanPham(List<HinhAnhEntity> hinhAnhs) {
@@ -121,17 +121,10 @@ public class SanPhamServiceImpl implements SanPhamService {
 		hinhAnhDAO.suaHinhAnhSanPham(hinhAnhs);
 	}
 
-
 	@Override
-	public void suaHinhAnhSanPham(HinhAnhEntity hinhAnh) {
-		// TODO Auto-generated method stub
-		
+	public void xoaHinhAnhSanPham(List<HinhAnhEntity> hinhAnhs) {
+		hinhAnhDAO.xoaHinhAnhSanPham(hinhAnhs);
 	}
 
-	@Override
-	public void xoaHinhAnhSanPham(HinhAnhEntity hinhAnh) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }

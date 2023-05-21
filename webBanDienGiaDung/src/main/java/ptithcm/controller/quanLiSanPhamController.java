@@ -115,13 +115,8 @@ public class quanLiSanPhamController {
 	    List<HinhAnhEntity> hinhAnhKhacs = new ArrayList<>();
 	    int count = 0;
 	    for (MultipartFile file : images) {
-	    	if (count >= 4) { // Giới hạn tối đa 4 hình ảnh
-	    		model.addAttribute("maximgsMessage", "Tối đa 4 hình");
-	    		break;
-//	    		return "/admin/addProduct";
-	        }
 	    	
-	        String fileName = now + file.getOriginalFilename();
+	        String fileName = now + "-" + file.getOriginalFilename();
 //	        String filePath = context.getRealPath("/assets/img/sanPham/" + fileName);
 	        String otherImagefilePath = filePath + fileName;
 	        File dest = new File(otherImagefilePath);
@@ -131,7 +126,6 @@ public class quanLiSanPhamController {
 	        hinhAnhKhac.setLink("assets/img/sanPham/"+fileName);
 	        hinhAnhKhac.setSanPham(product);
 	        hinhAnhKhacs.add(hinhAnhKhac);
-	        count++;
 //	        sanPhamService.themHinhAnhSanPham(hinhAnhKhac);
 	    }
 	    model.addAttribute("count", count);
@@ -184,7 +178,7 @@ public class quanLiSanPhamController {
 	                           @RequestParam("images") MultipartFile[] images,
 	                           @RequestParam("thongSo") MultipartFile thongSo,
 	                           ModelMap model) throws IOException {
-		SanPhamEntity sanPham = sanPhamService.laySanPham(masp);
+		SanPhamEntity sp= sanPhamService.laySanPham(masp);
 		
 	    //Lấy ngày tháng cộng vào tên file để khỏi bị trùng file
 	    Date today = new Date();
@@ -192,25 +186,42 @@ public class quanLiSanPhamController {
 	    String now = formatter.format(today);
 	    
 	    if (!avatar.isEmpty()) {
+	        
+	        
+	        // Xóa hình đại diện cũ
+	        String hinhAnhDaiDien = sp.getHinhAnhDaiDien();
+	        if (hinhAnhDaiDien != null) {
+	            xoaTepTinHinhAnh(hinhAnhDaiDien);
+	        }
+	        
 	        String avatarFileName = now + "-" + avatar.getOriginalFilename();
 	        String avatarFilePath = filePath + avatarFileName;
 	        File avatarFile = new File(avatarFilePath);
 	        avatar.transferTo(avatarFile);
 	        product.setHinhAnhDaiDien("assets/img/sanPham/" + avatarFileName); 
-	        
-	        // Xóa hình đại diện cũ
-	        String hinhAnhDaiDien = sanPham.getHinhAnhDaiDien();
-	        if (hinhAnhDaiDien != null) {
-	            xoaTepTinHinhAnh(hinhAnhDaiDien);
-	        }	 
-	    }   
+	    }  else {
+	        // Giữ nguyên ảnh đại diện cũ
+	        product.setHinhAnhDaiDien(sp.getHinhAnhDaiDien());
+	    } 
 		
 		// Kiểm tra xem có thay đổi hình ảnh khác hay không
 		if (images.length > 0 && !images[0].isEmpty()) {			 
+	        
+	        
+	        // Xóa các hình ảnh khác cũ
+	        List<HinhAnhEntity> danhSachHinhAnh = sp.getHinhAnhs();
+	        if (danhSachHinhAnh != null && !danhSachHinhAnh.isEmpty()) {
+	            for (HinhAnhEntity hinhAnh : danhSachHinhAnh) {
+	                String tenTep = hinhAnh.getLink();
+	                xoaTepTinHinhAnh(tenTep);	                
+	            }
+	            sanPhamService.xoaHinhAnhSanPham(danhSachHinhAnh); //xóa trong csdl
+	        }
+	        
 	        List<HinhAnhEntity> hinhAnhKhacs = new ArrayList<>();
 	        for (MultipartFile file : images) {
 			    String fileName = now + file.getOriginalFilename();
-			    String otherImgfilePath = filePath +"-" + fileName;
+			    String otherImgfilePath = filePath + fileName;
 			    File dest = new File(otherImgfilePath);
 			    file.transferTo(dest);
 		
@@ -220,34 +231,32 @@ public class quanLiSanPhamController {
 			    hinhAnhKhacs.add(hinhAnhKhac);
 	        }
 	        product.setHinhAnhs(hinhAnhKhacs);
-	        sanPhamService.suaHinhAnhSanPham(hinhAnhKhacs);
-	        
-	        // Xóa các hình ảnh khác cũ
-	        List<HinhAnhEntity> danhSachHinhAnh = sanPham.getHinhAnhs();
-	        if (danhSachHinhAnh != null && !danhSachHinhAnh.isEmpty()) {
-	            for (HinhAnhEntity hinhAnh : danhSachHinhAnh) {
-	                String tenTep = hinhAnh.getLink();
-	                xoaTepTinHinhAnh(tenTep);
-	            }
-	        }
+	        sanPhamService.updateSanPham(product);
+	        sanPhamService.themHinhAnhSanPham(hinhAnhKhacs);
 		}
 	    
 		
 	    if (!thongSo.isEmpty()) {  
+	        
+	        
+	        // Xóa hình tskt cũ
+	        String anhThongSoKT = sp.getThongSoKt();
+	        if (anhThongSoKT != null) {
+	            xoaTepTinHinhAnh(anhThongSoKT);
+	        }
+	        
 	        String thongSoFileName = now + "-" + thongSo.getOriginalFilename();
 	        String thongSoFilePath = filePath + thongSoFileName;
 	        File thongSoFile = new File(thongSoFilePath);
 	        thongSo.transferTo(thongSoFile);
 	        product.setThongSoKt("assets/img/sanPham/" + thongSoFileName);
-	        
-	        // Xóa hình tskt cũ
-	        String anhThongSoKT = sanPham.getThongSoKt();
-	        if (anhThongSoKT != null) {
-	            xoaTepTinHinhAnh(anhThongSoKT);
-	        }
+	    } else {
+	        // Giữ nguyên ảnh đại diện cũ
+	        product.setThongSoKt(sp.getThongSoKt());
 	    }
-
-	    product.setNgayThem(today);
+	    
+	    product.setNgayThem(sp.getNgayThem());
+	    product.setNgaySua(today);
 
 	    try {
 	        sanPhamService.updateSanPham(product);

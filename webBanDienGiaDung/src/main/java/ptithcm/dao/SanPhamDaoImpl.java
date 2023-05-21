@@ -149,7 +149,19 @@ public class SanPhamDaoImpl implements SanPhamDAO {
 	
 	@Override
 	public void updateSanPham(SanPhamEntity sanPham) {
-		sessionFactory.getCurrentSession().update(sanPham);	
+		Session session = sessionFactory.openSession();
+		Transaction t = session.beginTransaction();
+		try {
+			session.update(sanPham);
+			t.commit();
+		
+		} catch (Exception ex) {
+			t.rollback();
+			System.out.print("loi");
+
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
