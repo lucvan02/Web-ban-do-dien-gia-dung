@@ -45,13 +45,8 @@ public class SanPhamEntity {
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	@Column(name = "NGAYTHEM") 
 	private Date ngayThem;
-	public Date getNgayThem() {
-		return ngayThem;
-	}
-
-	public void setNgayThem(Date ngayThem) {
-		this.ngayThem = ngayThem;
-	}
+	@Column(name = "NGAYSUA") 
+	private Date ngaySua;
 
 	@ManyToOne
 	@JoinColumn(name = "MALOAI")
@@ -202,6 +197,22 @@ public class SanPhamEntity {
 
 	public void setThuongHieu(ThuongHieuEntity thuongHieu) {
 		this.thuongHieu = thuongHieu;
+	}
+	
+	public Date getNgaySua() {
+		return ngaySua;
+	}
+
+	public void setNgaySua(Date ngaySua) {
+		this.ngaySua = ngaySua;
+	}
+
+	public Date getNgayThem() {
+		return ngayThem;
+	}
+
+	public void setNgayThem(Date ngayThem) {
+		this.ngayThem = ngayThem;
 	}
 
 }

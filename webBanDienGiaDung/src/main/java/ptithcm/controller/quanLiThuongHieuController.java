@@ -1,8 +1,10 @@
 package ptithcm.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,22 +14,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import ptithcm.Entity.NguoiDungEntity;
+import ptithcm.Entity.SanPhamEntity;
 import ptithcm.Entity.ThuongHieuEntity;
+import ptithcm.service.SanPhamService;
 import ptithcm.service.ThuongHieuService;
 
 @Controller
-@RequestMapping("/admin/brands")
 public class quanLiThuongHieuController {
 	
 	@Autowired
 	ThuongHieuService thuongHieuService;
+	@Autowired
+	SanPhamService sanPhamService;
 	
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/brands/add", method = RequestMethod.GET)
 	public String viewAddBrand(@ModelAttribute("brandForm") ThuongHieuEntity brand, ModelMap model){
 		return "admin/addBrand";
 	}
 	
-	@RequestMapping(value = "/add", params = "add", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/brands/add", params = "add", method = RequestMethod.POST)
 	public String addBrand(@ModelAttribute("brandForm") ThuongHieuEntity brand, ModelMap model) throws IOException {
 		
 		try {
@@ -42,7 +48,7 @@ public class quanLiThuongHieuController {
 	}
 	
 	
-	@RequestMapping(value = "/edit/{math}", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/brands//edit/{math}", method = RequestMethod.GET)
 	public String viewEditBrand(@PathVariable("math") String math, ModelMap model, HttpServletRequest request) {
 		 ThuongHieuEntity thuongHieu = thuongHieuService.layThuongHieuTheoMa(math);
 		 model.addAttribute("thuongHieu", thuongHieu);
@@ -63,7 +69,7 @@ public class quanLiThuongHieuController {
 //		return "admin/editBrand";
 //	}
 	
-	@RequestMapping(value = "/edit/{math}", params = "update", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/brands/edit/{math}", params = "update", method = RequestMethod.POST)
 	public String editBrand(@PathVariable("math") String math, ModelMap model, HttpServletRequest request) throws IOException {
 		
 		String mathuongHieu=request.getParameter("mathuonghieu");

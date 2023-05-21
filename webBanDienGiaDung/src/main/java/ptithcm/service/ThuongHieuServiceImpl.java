@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ptithcm.Entity.SanPhamEntity;
 import ptithcm.Entity.ThuongHieuEntity;
 import ptithcm.dao.ThuongHieuDao;
 
@@ -15,6 +16,8 @@ import ptithcm.dao.ThuongHieuDao;
 public class ThuongHieuServiceImpl implements ThuongHieuService{
 	@Autowired
 	ThuongHieuDao thuongHieuDao;
+	@Autowired
+	SanPhamService sanPhamService;
 
 	@Override
 	public List<ThuongHieuEntity> layThuongHieu() {
@@ -29,6 +32,19 @@ public class ThuongHieuServiceImpl implements ThuongHieuService{
 	@Override
 	public ThuongHieuEntity layThuongHieuTheoMa(String maTh) {
 		return thuongHieuDao.layThuongHieuTheoMa(maTh);
+	}
+	
+	@Override
+	public boolean kiemTraSanPhamTheoThuongHieu(String maTH) {
+	    List<SanPhamEntity> danhSachSanPham = sanPhamService.layAllSanPham();
+	    
+	    for (SanPhamEntity sanPham : danhSachSanPham) {
+	        if (sanPham.getMaThuongHieu().getMaTh().equals(maTH)) {
+	            return true; // Có sản phẩm liên kết
+	        }
+	    }
+	    
+	    return false; // Không có sản phẩm liên kết
 	}
 
 	@Override

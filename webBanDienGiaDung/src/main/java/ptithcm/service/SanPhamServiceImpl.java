@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ptithcm.Entity.GioHangEntity;
 import ptithcm.Entity.HinhAnhEntity;
 import ptithcm.Entity.SanPhamEntity;
 import ptithcm.dao.HinhAnhDAO;
@@ -19,6 +20,8 @@ public class SanPhamServiceImpl implements SanPhamService {
 	SanPhamDAO sanPhamDAO;
 	@Autowired
 	HinhAnhDAO hinhAnhDAO;
+	@Autowired
+	gioHangService giohagService;
 
 	public void setSanPhamDAO(SanPhamDAO sanPhamDAO) {
 		this.sanPhamDAO = sanPhamDAO;
@@ -56,6 +59,19 @@ public class SanPhamServiceImpl implements SanPhamService {
 	
 	public List<SanPhamEntity> locSanPhamTheoThuongHieuVaGia(String loai, List<String> brandsList, int minPrice, int maxPrice){
 		return sanPhamDAO.locSanPhamTheoThuongHieuVaGia(loai, brandsList, minPrice, maxPrice);
+	}
+	
+	@Override
+	public boolean kiemTraSanPhamCoNamTrongGioHang(String maSP) {
+		List<GioHangEntity> danhSachGioHang = giohagService.layAllGioHang();
+	    
+	    for (GioHangEntity gioHang : danhSachGioHang) {
+	        if (gioHang.getSanPham().getMaSP().equals(maSP)) {
+	            return true; // có nằm trong giỏ hàng
+	        }
+	    }
+	    
+	    return false; // Không có nằm trong giỏ hàng
 	}
 
 	@Override
