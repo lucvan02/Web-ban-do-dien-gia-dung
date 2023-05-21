@@ -38,6 +38,12 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
+              		<c:if test="${not empty successMessage}">
+					    <div class="alert alert-success">${successMessage}</div>
+					</c:if>
+					<c:if test="${not empty errorMessage}">
+					    <div class="alert alert-danger">${errorMessage}</div>
+					</c:if>
                 <h2 class="tm-block-title d-inline-block">Thêm sản phẩm mới</h2>
               </div>
             </div>
@@ -57,53 +63,16 @@
     				    <label for="name">Trạng thái</label>
     				    <f:input id="tt" path="trangThai" value="True" type="text" class="form-control validate" />
     				</div>
-    				<%-- <div class="form-group mb-3">
-    				    <label for="name">Số sao trung bình</label>
-    				    <f:input id="saotb" path="soSaoTB" type="number" class="form-control validate" required="true" />
-    				</div> --%>
-    				<div class="form-group mb-3">
+    				
+    				<div class="form-group mb-3" >
     				    <label for="description">Mô tả</label>
-    				    <f:textarea path="moTa" class="form-control validate" rows="3"></f:textarea>
+    				    <f:textarea path="moTa" id="moTa" class="form-control validate" rows="3"></f:textarea>
     				</div>
-    				<div class="form-group mb-3">
-    				    <label for="category">Loại sản phẩm</label>
-    				    <f:select class="custom-select tm-select-accounts" id="category" path="loaiSanPham.maLoai">
-    				        <c:forEach items="${listLoai}" var="l">
-    							<option value="${l.maLoai}">${l.tenLoai}</option>
-  					  		</c:forEach>
-    				    </f:select>
-    				    <label for="th" class="pt-4 mb-0">Thương hiệu</label>
-    				    <f:select class="custom-select tm-select-accounts mt-3" id="thuongHieu" path="thuongHieu.maTh">
-    				        <c:forEach items="${listThuongHieu}" var="th">
-    							<option value="${th.maTh}">${th.tenThuongHieu}</option>
-  					  		</c:forEach>
-    				    </f:select>   				    
-    				    
-    				</div>
-    				<div class="row">
-    				    <div class="form-group mb-3 col-xs-12 col-sm-6">
-    				        <label for="expire_date">Giá</label>
-    				        <f:input id="expire_date" path="donGia" type="number" min="0" class="form-control validate" data-large-mode="true" />
-    				    </div>
-    				    <div class="form-group mb-3 col-xs-12 col-sm-6">
-    				        <label for="stock">Số lượng</label>
-    				        <f:input id="stock" path="soLuong" type="number"  value="1" min="1" class="form-control validate" required="true" />
-    				    </div>
-    				</div>    				
-				
-					<c:if test="${not empty successMessage}">
-					    <div class="alert alert-success">${successMessage}</div>
-					</c:if>
-					<c:if test="${not empty errorMessage}">
-					    <div class="alert alert-danger">${errorMessage}</div>
-					</c:if>
-                
-                       
-                            
-                          
+    				 
             </div>
             
-            <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+            <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">            		
+					
 			  		<!-- <i class="fas fa-cloud-upload-alt tm-upload-icon"></i> -->
 			  		<div class="tm-product-img-dummy mx-auto">
 					    <i onclick="document.getElementById('avatar').click();"></i>
@@ -120,6 +89,7 @@
 			  		<div class="form-group mb-3">
 			      		<label for="images">Hình ảnh khác(tối đa 4 hình)</label>
 			      		<input type="file" name="images" id="images" class="form-control-file" multiple>
+			      		<div id="images-error" style="color: red; display: none;">Hãy chọn thêm hình khác của sản phẩm.</div>
 			  		</div>
 			  		
 			  		<%-- <c:if test="${count >= 4}">
@@ -149,9 +119,43 @@
 			  		<div class="form-group mb-3">
 			      		<label for="images">Ảnh thông số kĩ thuật</label>
 			      		<input type="file" name="thongSo" id="thongSo" class="form-control-file">
+			      		<div id="thongSo-error" style="color: red; display: none;">Hãy chọn thêm file thông số sản phẩm.</div>
 			  		</div> 
 			  		                
               </div>
+           
+	           <div class="col-12">
+	    			<div class="row">
+	    				<div class="form-group mb-3 col-xs-12 col-sm-6">
+	    				    <label for="category">Loại sản phẩm</label>
+	    				    <f:select class="custom-select tm-select-accounts" id="category" path="loaiSanPham.maLoai">
+	    				        <c:forEach items="${listLoai}" var="l">
+	    							<option value="${l.maLoai}">${l.tenLoai}</option>
+	  					  		</c:forEach>
+	    				    </f:select>
+	    				</div>
+	    				
+	    				<div class="form-group mb-3 col-xs-12 col-sm-6">   				    
+	    				    <label for="th">Thương hiệu</label>
+	    				    <f:select class="custom-select tm-select-accounts" id="thuongHieu" path="thuongHieu.maTh">
+	    				        <c:forEach items="${listThuongHieu}" var="th">
+	    							<option value="${th.maTh}">${th.tenThuongHieu}</option>
+	  					  		</c:forEach>
+	    				    </f:select>   				    
+	    				</div>
+	    			</div>
+    				
+    				<div class="row">
+    				    <div class="form-group mb-3 col-xs-12 col-sm-6">
+    				        <label for="expire_date">Giá</label>
+    				        <f:input id="expire_date" path="donGia" type="number" min="0" class="form-control validate" data-large-mode="true" />
+    				    </div>
+    				    <div class="form-group mb-3 col-xs-12 col-sm-6">
+    				        <label for="stock">Số lượng</label>
+    				        <f:input id="stock" path="soLuong" type="number"  value="1" min="1" class="form-control validate" required="true" />
+    				    </div>
+    				</div>    				
+				</div>
                                                 
           <div class="col-12">
                 <button type="submit" class="btn btn-primary btn-block text-uppercase" name="add">Thêm sản phẩm</button>
@@ -173,6 +177,11 @@
     <script src="<c:url value='js/bootstrap.min.js'/>"></script>
     <!-- https://getbootstrap.com/ -->
     
+    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+    <script>
+    	CKEDITOR.replace('moTa');
+	</script>
+    
     <script>
 	  function previewAvatar(event) {
 	    var reader = new FileReader();
@@ -185,14 +194,27 @@
 	  }
 	  
 	  function validateForm() {
-	        var avatar = document.getElementById("avatar");
-	        if (avatar.value == "") {
-	            // Nếu chưa chọn hình đại diện, hiển thị thông báo lỗi
-	            document.getElementById("avatar-error").style.display = "block";
-	            return false;
-	        }
-	        return true;
-	    }
+		    var avatar = document.getElementById("avatar");
+		    var images = document.getElementById("images");
+		    var thongSo = document.getElementById("thongSo");
+		    
+		    if (avatar.value == "") {
+		        // Nếu chưa chọn hình đại diện, hiển thị thông báo lỗi
+		        document.getElementById("avatar-error").style.display = "block";
+		        return false;
+		    }
+		    
+		    if (images.value == "") {
+		        document.getElementById("images-error").style.display = "block";
+		        return false;
+		    }
+		    
+		    if (thongSo.value == "") {
+		        document.getElementById("thongSo-error").style.display = "block";
+		        return false;
+		    }
+		    return true;
+		}
 	    
 	    // Gán hàm validateForm cho sự kiện onSubmit của form
 	    document.getElementsByTagName("form")[0].onsubmit = validateForm;

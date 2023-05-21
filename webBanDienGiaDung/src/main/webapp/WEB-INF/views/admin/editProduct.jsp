@@ -61,10 +61,17 @@
     				    <label for="name">Số sao trung bình</label>
     				    <f:input id="saotb" path="soSaoTB" type="number" class="form-control validate" required="true" />
     				</div> --%>
-    				<div class="form-group mb-3">
+    				
+    				<%-- <div class="form-group mb-3" id="moTa">
     				    <label for="description">Mô tả</label>
     				    <f:input path="moTa" class="form-control validate" value="${sanPham.moTa}" rows="3"></f:input>
+    				</div> --%>
+    				
+    				<div class="form-group mb-3">
+    				    <label for="description">Mô tả</label>
+    				    <f:textarea path="moTa" id="moTa" class="form-control validate" rows="3"></f:textarea>
     				</div>
+    				
     				<div class="form-group my-3">
     				    <label for="category" class="pt-4 mb-0">Loại sản phẩm: ${sanPham.loaiSanPham.tenLoai}</label>
     				    <f:select class="custom-select tm-select-accounts" id="category" path="loaiSanPham.maLoai">
@@ -179,7 +186,10 @@
     <script src="<c:url value='js/bootstrap.min.js'/>"></script>
     <!-- https://getbootstrap.com/ -->
     
-    
+    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+    <script>
+    	CKEDITOR.replace('moTa');
+	</script>
   </body>
 </html>
 
