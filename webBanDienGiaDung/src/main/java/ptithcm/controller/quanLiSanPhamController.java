@@ -256,7 +256,6 @@ public class quanLiSanPhamController {
 	    }
 	    
 	    product.setNgayThem(sp.getNgayThem());
-	    product.setNgaySua(today);
 
 	    try {
 	        sanPhamService.updateSanPham(product);

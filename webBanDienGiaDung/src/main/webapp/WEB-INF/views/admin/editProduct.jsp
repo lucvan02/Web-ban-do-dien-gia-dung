@@ -162,7 +162,22 @@
 			  	<div class="form-group mb-3">
 			      		<label for="images">Đổi ảnh thông số kĩ thuật</label>
 			      		<input type="file" name="thongSo" id="thongSo" class="form-control-file">
-			  	</div>                
+			  	</div>    
+			  	
+				<div class="form-group mt-2">
+			    <label for="dateAdd">Ngày thêm</label>
+			    <input
+			        id="dateAdd"
+			        name="dateAdd"
+			        type="date"
+			        class="form-control validate"
+			        value="${sanPham.ngayThem}"
+			        readonly
+			    />
+
+			</div>
+				
+				          
               </div>
                                                 
           <div class="col-12">
