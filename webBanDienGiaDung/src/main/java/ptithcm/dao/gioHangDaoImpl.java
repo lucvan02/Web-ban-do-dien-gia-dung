@@ -43,15 +43,6 @@ public class gioHangDaoImpl implements gioHangDao{
 		GioHangEntity gh = (GioHangEntity) query.uniqueResult();
 		return gh;
 	}
-	
-	@Override
-	public List<GioHangEntity> layAllGioHang(){
-		Session session = factory.getCurrentSession();
-		String hql = "FROM GioHangEntity";
-	    Query query = session.createQuery(hql);
-	    List<GioHangEntity> listGioHang = query.list();
-	    return listGioHang;
-	}
 
 	@Override
 	public void addGioHang(GioHangEntity gioHang) {

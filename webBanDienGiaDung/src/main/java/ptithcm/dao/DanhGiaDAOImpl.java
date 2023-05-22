@@ -17,7 +17,7 @@ public class DanhGiaDAOImpl implements DanhGiaDao {
 	@Override
 	public List<DanhGiaEntity> layDanhGiaSanPham(String maSp) {
 	    Session session = sessionFactory.getCurrentSession();
-	    String hql = "FROM DanhGiaEntity WHERE sanPham.maSP = :maSp";
+	    String hql = "FROM DanhGiaEntity WHERE sanPham.maSP = :maSp order by ngay DESC";
 	    Query query = session.createQuery(hql);
 	    query.setParameter("maSp", maSp);
 	    List<DanhGiaEntity> danhGiaList = query.list();

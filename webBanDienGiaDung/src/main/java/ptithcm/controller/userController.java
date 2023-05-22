@@ -128,13 +128,9 @@ public class userController {
 		if (loi == Boolean.FALSE)
 			return "user/login";
 
-		
+		Hibernate.initialize(check.getGioHangs());
 		HttpSession session0 = request.getSession();
 		session0.setAttribute("USER", check);
-		
-		if (check.isQuyen()) { // Kiểm tra quyền người dùng là admin
-			return "redirect:/admin/index.htm"; // Trả về trang quản trị admin
-		}
 		
 		String maSp= (String) session0.getAttribute("SANPHAM");
 		if(maSp!=null)
@@ -509,6 +505,7 @@ public class userController {
 		HttpSession session0 = request.getSession();
 		session0.removeAttribute("USER");
 		session0.removeAttribute("SANPHAM");
+		session0.removeAttribute("NEWINFO");
 		 return "redirect:/";
 
 	}

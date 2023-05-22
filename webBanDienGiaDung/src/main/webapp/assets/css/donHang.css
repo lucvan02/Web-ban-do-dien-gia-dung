@@ -32,17 +32,16 @@ h2{
 }
 .user-info{
 	display: grid;
-	grid-template-columns: 40% 1fr 40%;
-	column-gap: 20px;
+	grid-template-columns: 60% 1fr;
+	column-gap: 10px;
+	row-gap:20px;
 	margin-top: 10px;
+	margin-bottom: 20px;
 }
 .user-info>span{
 	max-width: 100%;
 }
-.tenUser{
-	font-weight: bold;
-	margin-left: 20px;
-}
+
 
 
 select.form-control:not([size]):not([multiple]) {
@@ -298,4 +297,80 @@ th{
 	text-align: center;
 	background-color: var(--header-color) !important;
 	color:white;
+}
+.dropdown-btn{
+	    float: right;
+    background-color: deepskyblue;
+    font-weight: bold;
+}
+.dropdown-btn:hover{
+	background-color: white;
+	color: deepskyblue;
+}
+.dropdown-btn:focus{
+	background-color: white;
+	color: deepskyblue;
+}
+
+.new-info{
+	padding: 10px;
+	width: 50%;
+}
+.new-info>li{
+	display: flex;
+	flex-direction: column;
+}
+.new-info>li>input{
+	outline: none;
+	border-radius: 5px;
+	border: 1px solid rgb(0,0,0,0.4);
+	padding: 5px;
+}
+#btn-newInfo{
+	    width: fit-content;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: deepskyblue;
+    font-weight: bold;
+}
+#btn-newInfo:hover{
+	opacity: 0.6;
+}
+.new-info a{
+	text-decoration: none;
+	color: white;
+}
+.text{
+	font-weight: bold;
+	color: deepskyblue;
+}
+.loi{
+	    font-size: 10px;
+    color: red;
+    font-style: italic;
+    text-align: center;
+}
+#btn-datHang{
+	border: none;
+    padding: 10px;
+    width: auto;
+    border-radius: 10px;
+    background-color: #27ae60;
+    color: white;
+    font-weight: bold;
+}
+#btn-datHang:hover{
+	opacity: 0.7;
+}
+
+.disable{
+	    pointer-events: none;
+	    color: black !important;
+	    background-color: gray !important;
 }

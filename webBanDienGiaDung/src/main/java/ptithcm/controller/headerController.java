@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javassist.expr.NewArray;
 import ptithcm.Entity.ChiTietKMEntity;
+import ptithcm.Entity.DonHangEntity;
 import ptithcm.Entity.GioHangEntity;
 import ptithcm.Entity.KhuyenMaiEntity;
 import ptithcm.Entity.NguoiDungEntity;
 import ptithcm.Entity.SanPhamEntity;
 import ptithcm.service.ChiTietKMService;
+import ptithcm.service.DonHangService;
 import ptithcm.service.KhuyenMaiService;
 
 @Transactional
@@ -36,79 +38,28 @@ public class headerController {
 	private ChiTietKMService chiTietKMService;
 	
 
-	
 	@RequestMapping(params = "voucher")
-	public String ToiTrangKM(ModelMap model) {
-		
-
-		Session session = factory.getCurrentSession();
-
-		List<KhuyenMaiEntity> khuyenMaiList = khuyenMaiService.khuyenMailist();
-		model.addAttribute("khuyenMaiList", khuyenMaiList);
-		List<ChiTietKMEntity> ctkmList = chiTietKMService.ctkmList();
-		model.addAttribute("ctkmList", ctkmList);
+	public String ToiTrangKM() {
 
 		
-		return "khuyenMai/khuyenMai";
-}
+
+		return "redirect:/KhuyenMai.htm";
+	}
+
+	@RequestMapping(params = "history")
+	public String lishSu() {
 	
-/*
- * @RequestMapping(params = "history") public String lishSu(HttpServletRequest
- * request ,ModelMap model) { HttpSession session=request.getSession();
- * 
- * 
- * if(session.getAttribute("USER")==null) { model.addAttribute("user",new
- * NguoiDungEntity()); return "/user/login"; }
- * 
- * return "main"; }
- */
+		
+
+		return "redirect:/lichSuDonHang.htm";
+	}
+
 	@RequestMapping(params = "cart")
-	public String gioHang(HttpServletRequest request ,ModelMap model) {
-		
-		HttpSession session0=request.getSession();
-		
-		NguoiDungEntity user=(NguoiDungEntity) session0.getAttribute("USER");
-		
-		if(user==null)
-			{
-			model.addAttribute("user", new NguoiDungEntity());
-		
-			return "/user/login";
-			}
-		
-		Session session = factory.getCurrentSession();
-        String hql = "FROM GioHangEntity where nguoiDung.maNd=:maNd";
-       
-        Query query = session.createQuery(hql);
-        query.setParameter("maNd", user.getMaNd());
-        List<GioHangEntity> gioHangList = query.list();
-     
-        
-        model.addAttribute("gioHangList", gioHangList);
-        
-        
-   
-		
-		return "/gioHang/gioHang";
+	public String gioHang() {
+
+
+		return "redirect:/gioHang.htm";
 	}
+
 	
-	public NguoiDungEntity layNguoiDungTheoId(Integer maNd) {
-
-		Session session = factory.getCurrentSession();
-		String hql = "FROM NguoiDungEntity nd WHERE nd.maNd = :maNd ";
-		Query query = session.createQuery(hql).setParameter("maNd", maNd);
-		NguoiDungEntity user = (NguoiDungEntity) query.uniqueResult();
-		return user;
-
-	}
-
-	public List<SanPhamEntity> laySanPhamTheoLoai(String loai) {
-		Session session = factory.getCurrentSession();
-		String hql = "FROM SanPhamEntity sp WHERE sp.loaiSanPham.maLoai = :loai ";
-		Query query = session.createQuery(hql).setParameter("loai", loai);
-		query.setMaxResults(6);
-		List<SanPhamEntity> list = query.list();
-		return list;
-	}
-
 }
