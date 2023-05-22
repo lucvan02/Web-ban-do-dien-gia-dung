@@ -13,7 +13,6 @@ import ptithcm.Entity.GioHangEntity;
 public interface gioHangService{
 	public List<GioHangEntity> layGioHangCuaUser(int maNd);
 	public GioHangEntity layGioHangTheoMaNdVaSanPham(int maNd, String maSp);
-	public List<GioHangEntity> layAllGioHang();
 	public void addGioHang(GioHangEntity giohang);
 	public void updateGioHang(GioHangEntity giohang);
 	public void updateSoLuong(int soLuong,int maGh);

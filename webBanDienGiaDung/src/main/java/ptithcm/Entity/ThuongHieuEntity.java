@@ -17,8 +17,8 @@ public class ThuongHieuEntity{
 	private String maTh;
 	@Column(name = "TENTHUONGHIEU")
 	private String tenThuongHieu;
-	@Column(name = "TRANGTHAI")
-	private Boolean trangThai;
+	@Column(name="TRANGTHAI")
+	private boolean trangThai;
 	@OneToMany(mappedBy = "thuongHieu", fetch = FetchType.LAZY )
 	private Collection<SanPhamEntity> sanPhams;
 	public String getMaTh() {
@@ -30,14 +30,14 @@ public class ThuongHieuEntity{
 	public String getTenThuongHieu() {
 		return tenThuongHieu;
 	}
-	public void setTenThuongHieu(String tenThuongHieu) {
-		this.tenThuongHieu = tenThuongHieu;
-	}
-	public Boolean getTrangThai() {
+	public boolean isTrangThai() {
 		return trangThai;
 	}
-	public void setTrangThai(Boolean trangThai) {
+	public void setTrangThai(boolean trangThai) {
 		this.trangThai = trangThai;
+	}
+	public void setTenThuongHieu(String tenThuongHieu) {
+		this.tenThuongHieu = tenThuongHieu;
 	}
 	public Collection<SanPhamEntity> getSanPhams() {
 		return sanPhams;

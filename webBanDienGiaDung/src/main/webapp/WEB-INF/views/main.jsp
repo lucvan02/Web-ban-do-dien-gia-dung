@@ -82,31 +82,24 @@
 							<div class="logout">
 								<a href="user/logout.htm">Đăng Xuất</a>
 							</div>
+
 						</c:if>
 				</div>
-			</form>	
+			</form>
 
 
 			<div id="header-bottom">
 				<ul id="category">
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/tulanh.htm">Tủ Lạnh</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/maylanh.htm">Máy lạnh</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/maygiat.htm">Máy Giặt</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/tudong.htm">Tủ Đông</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/quat.htm">Quạt</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/noicom.htm">Nồi Cơm Điện</a></li>
+					<li><a href="#">Tủ Lạnh</a></li>
+					<li><a href="#">Máy lạnh</a></li>
+					<li><a href="#">Máy Giặt</a></li>
+					<li><a href="#">Tủ Đông</a></li>
+					<li><a href="#">Quạt</a></li>
+					<li><a href="#">Nồi Cơm Điện</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	
-	<h6 style="margin-left:80%;">
-		<c:if test="${USER.isQuyen()}">
-			<a href="admin/index.htm" >
-				Tới trang quản lý
-			</a>
-		</c:if>
-	</h6>
 
 	<!-- SLIDER -->
 	<div id="slider">
@@ -165,28 +158,6 @@
 			</div>
 			<div class="part-body">
 				<div class="list-item">
-					<c:forEach var="sanPham" items="${sanPhamNgauNhien}" begin="0" end="5">
-						<a class="item" href="sanpham/${sanPham.maSP}.htm"> <img
-							class="anhSanPham" src="${sanPham.hinhAnhDaiDien}" />
-
-							<div class="item-body">
-								<h6 class="tenSanPham">${sanPham.tenSanPham}</h6>
-								<span class="giaSanPham"><fmt:formatNumber
-										value="${sanPham.donGia}" pattern="#,##0" />đ</span>
-
-							</div>
-						</a>
-					</c:forEach>
-				</div>
-			</div>
-			
-			
-			<div class="content-part width-page">
-			<div class="part-tittle">
-				<span>SẢN PHẨM MỚI NHẤT</span>
-			</div>
-			<div class="part-body">
-				<div class="list-item">
 					<c:forEach var="sanPham" items="${sanPhamMoi}" begin="0" end="5">
 						<a class="item" href="sanpham/${sanPham.maSP}.htm"> <img
 							class="anhSanPham" src="${sanPham.hinhAnhDaiDien}" />
@@ -201,7 +172,6 @@
 					</c:forEach>
 				</div>
 			</div>
-			
 
 			<div class=" group-sanPham">
 
@@ -233,7 +203,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="${pageContext.servletContext.contextPath}/loaisanpham/tulanh.htm" class="xemTatCa">Xem tất cả tủ lạnh</a>
+						<a href="" class="xemTatCa">Xem tất cả tủ lạnh</a>
 					</div>
 					<div id="group-mayLanh" class="display-none">
 
@@ -251,7 +221,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="${pageContext.servletContext.contextPath}/loaisanpham/maylanh.htm" class="xemTatCa">Xem tất cả máy lạnh</a>
+						<a href="" class="xemTatCa">Xem tất cả máy lạnh</a>
 					</div>
 					<div id="group-mayGiat" class="display-none">
 
@@ -269,7 +239,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="${pageContext.servletContext.contextPath}/loaisanpham/maygiat.htm" class="xemTatCa">Xem tất cả máy giặt</a>
+						<a href="" class="xemTatCa">Xem tất cả máy giặt</a>
 					</div>
 					<div id="group-tuDong" class="display-none">
 
@@ -287,7 +257,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="${pageContext.servletContext.contextPath}/loaisanpham/tudong.htm" class="xemTatCa">Xem tất cả tủ đông</a>
+						<a href="" class="xemTatCa">Xem tất cả tủ đông</a>
 					</div>
 					<div id="group-quat" class="display-none">
 
@@ -305,7 +275,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="${pageContext.servletContext.contextPath}/loaisanpham/quat.htm" class="xemTatCa">Xem tất cả quạt</a>
+						<a href="" class="xemTatCa">Xem tất cả quạt</a>
 					</div>
 					<div id="group-noiCom" class="display-none">
 
@@ -323,7 +293,7 @@
 								</a>
 							</c:forEach>
 						</div>
-						<a href="${pageContext.servletContext.contextPath}/loaisanpham/noicom.htm" class="xemTatCa">Xem tất cả nồi cơm</a>
+						<a href="" class="xemTatCa">Xem tất cả nồi cơm</a>
 					</div>
 
 				</div>

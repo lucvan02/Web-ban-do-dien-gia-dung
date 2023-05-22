@@ -34,6 +34,33 @@ public class gioHangController {
 	@Autowired
 	gioHangService gioHangService;
 
+	
+	@RequestMapping("gioHang")
+	public String gioHang(HttpServletRequest request, ModelMap model) {
+
+		HttpSession session0 = request.getSession();
+
+		NguoiDungEntity user = (NguoiDungEntity) session0.getAttribute("USER");
+
+		if (user == null) {
+			model.addAttribute("user", new NguoiDungEntity());
+
+			return "/user/login";
+		}
+
+		Session session = factory.getCurrentSession();
+		String hql = "FROM GioHangEntity where nguoiDung.maNd=:maNd";
+
+		Query query = session.createQuery(hql);
+		query.setParameter("maNd", user.getMaNd());
+		List<GioHangEntity> gioHangList = query.list();
+
+		model.addAttribute("gioHangList", gioHangList);
+
+		return "/gioHang/gioHang";
+	}
+	
+	
 	@RequestMapping(value = "/gioHang/{maGh}", params = "update", method = RequestMethod.POST)
 	public String update(@PathVariable("maGh") int maGh, HttpServletRequest request, ModelMap model) {
 

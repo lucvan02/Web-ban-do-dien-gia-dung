@@ -44,9 +44,7 @@ public class DanhGiaEntity {
 	public float getSoSao() {
 		return soSao;
 	}
-	public void setSoSao(int soSao) {
-		this.soSao = soSao;
-	}
+	
 	public void setSoSao(float soSao) {
 		this.soSao = soSao;
 	}

@@ -17,10 +17,12 @@
 	type="image/x-icon">
 <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
+
+
 <link rel="stylesheet" href='<c:url value="/assets/css/main.css"/>' />
 <link rel="stylesheet" href='<c:url value="/assets/css/donHang.css"/>' />
 <link rel="stylesheet"
@@ -117,18 +119,89 @@
 				Chỉ Nhận Hàng
 			</span>
 
-			<div class="user-info">
-				<span class="tenUser">${USER.hoTen } </span> <span class="sdtUser">
-					${USER.sdt}</span> <span class="diaChiUser">${USER.diaChi} </span>
-			</div>
+			<c:if test="${empty sessionScope.NEWINFO}">
+				<div class="user-info">
+					<span class="tenUser"> <b>Họ Tên:</b> ${USER.hoTen }
+					</span> <span class="sdtUser"> <b>SĐT: </b> ${USER.sdt}
+					</span> <span class="diaChiUser"> <b>Địa Chỉ: </b> ${USER.diaChi}
+					</span>
+				</div>
 
+
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle dropdown-btn"
+						type="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Chọn địa chỉ khác</button>
+					<form action="donHang/newInfo.htm" method="post">
+						<ul class="dropdown-menu new-info">
+							<li><span class="text">Họ tên </span> <input id="input-ten"
+								type="text" name="ten" autocomplete="off" /> <span class="loi"
+								id="loi-ten"> ㅤ</span></li>
+							<li><span class="text">SDT </span> <input id="input-sdt"
+								type="text" name="sdt" autocomplete="off" /> <span class="loi"
+								id="loi-sdt">ㅤㅤ</span></li>
+							<li><span class="text">Địa chỉ </span> <input
+								id="input-diaChi" type="text" name="diaChi" autocomplete="off" />
+								<span class="loi" id="loi-diaChi">ㅤㅤ</span></li>
+							<li>
+								<button id="btn-newInfo" name="xacNhan">Xác Nhận</button>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</c:if>
+
+
+			<c:if test="${not empty sessionScope.NEWINFO}">
+				<div class="user-info">
+					<span class="tenUser"> <b>Họ Tên:</b> ${NEWINFO.hoTen }
+					</span> <span class="sdtUser"> <b>SĐT: </b> ${NEWINFO.sdt}
+					</span> <span class="diaChiUser"> <b>Địa Chỉ: </b>
+						${NEWINFO.diaChi}
+					</span>
+				</div>
+
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle dropdown-btn"
+						type="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Chọn địa chỉ khác</button>
+					<form action="donHang/newInfo.htm" method="post">
+						<ul class="dropdown-menu new-info">
+							<li><span class="text">Họ tên </span> <input id="input-ten"
+								type="text" name="ten" autocomplete="off" /> <span class="loi"
+								id="loi-ten"> ㅤ</span></li>
+							<li><span class="text">SDT </span> <input id="input-sdt"
+								type="text" name="sdt" autocomplete="off" /> <span class="loi"
+								id="loi-sdt">ㅤㅤ</span></li>
+							<li><span class="text">Địa chỉ </span> <input
+								id="input-diaChi" type="text" name="diaChi" autocomplete="off" />
+								<span class="loi" id="loi-diaChi">ㅤㅤ</span></li>
+							<li>
+								<button id="btn-newInfo" name="xacNhan">Xác Nhận</button>
+							</li>
+						</ul>
+					</form>
+				</div>
+				<button type="button" class="btn btn-danger">
+					<a href="diaChiMacDinh.htm"
+						style="text-decoration: none; color: white; font-weight: bold;">Quay
+						lại địa chỉ mặc định</a>
+				</button>
+
+			</c:if>
 		</div>
+
+
+
+
+
+
 
 
 		<!-- SẢN PHẨM -->
 
 
-
+	<c:set var="tongTien" value="0" />
 
 		<div class="sanPham table-responsive shopping-cart">
 			<table class="table">
@@ -143,65 +216,74 @@
 				</thead>
 
 				<tbody>
-						<%-- <c:forEach var="gioHang" items="${gioHangList}"> --%>
-						
-							<tr>
-								<td>
-									<div class="product-item">
-										<a class="product-thumb"><img
-											src="${gioHang.sanPham.hinhAnhDaiDien }" alt="Product"></a>
-										<div class="product-info">
-											<h4 class="product-title max-width">
-												<a href="sanpham/${gioHang.sanPham.maSP}.htm">${gioHang.sanPham.tenSanPham} hnnnnnnnnnnnnnjswjèoẻnkè j2kj2d uhèhè uheohèohjdw</a>
-												
-											</h4>
+					<c:forEach var="gioHang" items="${gioHangList}">
 
-										</div>
-									</div>
-								</td>
+						<tr>
+							<td>
+								<div class="product-item">
+									<a class="product-thumb"><img
+										src="${gioHang.sanPham.hinhAnhDaiDien }" alt="Product"></a>
+									<div class="product-info">
+										<h4 class="product-title max-width">
+											<span style="font-size: 18px; font-weight: bold;">${gioHang.sanPham.tenSanPham}</span>
 
-								<td class="text-center text-lg text-medium"><span
-									style="color: #ee4d2d;"><fmt:formatNumber
-											value="${gioHang.sanPham.donGia}" pattern="#,##0" />đ</span></td>
-								<td class="text-center">
-									<div class="count-input">
-
-										<%-- <input id="inputSoLuong" name="soLuong" type="number" min="1"
-											max="${gioHang.sanPham.soLuong}" value="${gioHang.soLuong}">
-										 --%>
+										</h4>
 
 									</div>
-								</td>
+								</div>
+							</td>
+
+							<td class="text-center text-lg text-medium"><span
+								style="color: #ee4d2d;"><fmt:formatNumber
+										value="${gioHang.sanPham.donGia}" pattern="#,##0" />đ</span></td>
+							<td class="text-center">
+								<div class="count-input">
+
+									<span style="font-weight: bold;">${gioHang.soLuong}</span>
 
 
 
-								<td class="text-center"><c:set var="soTien"
-										value="${gioHang.sanPham.donGia * gioHang.soLuong}" /> <span
-									style="color: #009432; font-weight: bold"> <fmt:formatNumber
-											value="${soTien}" pattern="#,##0" />đ
-								</span></td>
+								</div>
+							</td>
 
 
 
-								<c:set var="tongTien" value="${tongTien+soTien}" />
-								
-							</tr>
+							<td class="text-center"><c:set var="soTien"
+									value="${gioHang.sanPham.donGia * gioHang.soLuong}" /> <span
+								style="color: #009432; font-weight: bold"> <fmt:formatNumber
+										value="${soTien}" pattern="#,##0" />đ
+							</span></td>
 
-						
 
-					<%-- </c:forEach> --%>
 
-			
+							<c:set var="tongTien" value="${tongTien+soTien}" />
+
+						</tr>
+
+
+
+					</c:forEach>
+
+
 
 				</tbody>
 			</table>
-		</div>
-		<div class="shopping-cart-footer">
+			<div class="shopping-cart-footer">
 
-			<div class="column text-lg" style="font-weight: bold; color: red">
-				Tổng cộng: <span class="text-medium" style="color: black;"><fmt:formatNumber
-						value="${tongTien}" pattern="#,##0" />đ</span>
+				<div class="column text-lg" style="font-weight: bold; color: red">
+					Tổng cộng: <span class="text-medium" style="color: black;"><fmt:formatNumber
+							value="${tongTien}" pattern="#,##0" />đ</span>
+				</div>
+
 			</div>
+			<form action="donHang/datHang.htm" method="post">
+			<div class="shopping-cart-footer">
+			<div class="column">
+			<input style="display:none;" name="tongTien" value="${tongTien}">
+				<button id="btn-datHang" name="datHang" >Đặt Hàng</button>
+			</div>
+			</div>
+			</form>
 		</div>
 
 
@@ -215,15 +297,6 @@
 
 
 	</div>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -281,6 +354,6 @@
 		integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 		crossorigin="anonymous"></script>
 
-	
+	<script src="<c:url value='assets/js/donHang.js'/>"></script>
 </body>
 </html>

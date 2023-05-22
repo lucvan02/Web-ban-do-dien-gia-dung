@@ -175,9 +175,10 @@
 
 
 								<c:set var="tongTien" value="${tongTien+soTien}" />
+								
 								<td class="text-center"><button class="remove-from-cart"
 										id="btn-xoa" name="xoa" data-toggle="tooltip"
-										title="xoá sản phẩm" data-original-title="Remove item">
+										title="xoá sản phẩm" data-original-title="Remove item" onclick="return confirmAction(event)"> 
 										<i class="ti-trash"></i>
 									</button></td>
 							</tr>
@@ -199,10 +200,10 @@
 
 			<div class="column">
 				<c:if test="${gioHangList.size() > 0 && check==0}">
-					<a class="btn btn-success" href="donHang.htm">Đặt Hàng</a>
+					<a class="btn btn-success" href="donHang.htm">Mua Hàng</a>
 				</c:if>
-	<c:if test="${gioHangList.size() <= 0 || check!=0}">
-					<a class="btn btn-success disable" href="donHang.htm">Đặt Hàng</a>
+				<c:if test="${gioHangList.size() <= 0 || check!=0}">
+					<a class="btn btn-success disable" href="donHang.htm">Mua Hàng</a>
 				</c:if>
 			</div>
 		</div>
@@ -278,5 +279,18 @@
 		crossorigin="anonymous"></script>
 
 	<script src="<c:url value='assets/js/main.js'/>"></script>
+	
+	
+	<script>
+  function confirmAction(event) {
+    var result = confirm("Xoá mặt hàng này khỏi giỏ hàng ?");
+    if (result) {
+      return true;  // Tiếp tục chuyển hướng theo liên kết
+    } else {
+      event.preventDefault();  // Ngăn chặn chuyển hướng mặc định
+      return false;
+    }
+  }
+</script>
 </body>
 </html>

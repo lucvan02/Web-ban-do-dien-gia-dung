@@ -117,7 +117,7 @@
 					<div class="col-md-6">
 						<img class="card-img-top mb-5 mb-md-0"
 							src="${sanPham.hinhAnhDaiDien}" alt="Ảnh đại diện sản phẩm"
-							id="product-image" style="width: 378px; height: 252px; display: block; margin: 0 auto;"/>
+							id="product-image" />
 						<div class="d-flex justify-content-between">
 							<button id="prev-button" class="btn btn-secondary">&lt;</button>
 							<button id="next-button" class="btn btn-secondary">&gt;</button>
@@ -127,7 +127,7 @@
 							<c:forEach items="${sanPham.hinhAnhs}" var="hinhAnh">
 								<div class="col-md-3 mb-3">
 									<img src="${hinhAnh.link}" alt="Ảnh sản phẩm"
-										class="img-fluid product-thumbnail" style="width: 85px; height: 75px;" />
+										class="img-fluid product-thumbnail" />
 								</div>
 							</c:forEach>
 						</div>
@@ -242,6 +242,7 @@
 			</div>
 
 			<br>
+			<div class="containerDanhGia">
 			<c:forEach items="${danhGiaList}" var="danhGia">
 				<div class="product-comment mb-4">
 					<div class="info-user">
@@ -286,6 +287,7 @@
 					<div id="cmt" class="commenter-comment bgc-bright p-2-2">${danhGia.noiDung}</div>
 				</div>
 			</c:forEach>
+			</div>
 		</div>
 
 
@@ -300,7 +302,7 @@
 							<div class="card h-100">
 								<!--  Product image -->
 								<a href="sanpham/${sp.maSP}.htm"> <img class="card-img-top"
-									src="${sp.hinhAnhDaiDien}" alt="..." style="width: 259px; height: 172px; display: block; margin: 0 auto;"/>
+									src="${sp.hinhAnhDaiDien}" alt="..." />
 								</a>
 								<!-- Product details-->
 								<div class="card-body">

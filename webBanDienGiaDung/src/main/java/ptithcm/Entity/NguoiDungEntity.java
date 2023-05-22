@@ -16,117 +16,153 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="NGUOIDUNG")
-public class NguoiDungEntity{
+@Table(name = "NGUOIDUNG")
+public class NguoiDungEntity {
 	@Id
-	@Column(name="MAND")
+	@Column(name = "MAND")
 	@GeneratedValue
 	private Integer maNd;
-	@Column(name="USERNAME")
+	@Column(name = "USERNAME")
 	private String userName;
-	@Column(name="PASSWORD")
+	@Column(name = "PASSWORD")
 	private String passWord;
-	@Column(name="HOTEN")
+	@Column(name = "HOTEN")
 	private String hoTen;
-	@Column(name="GIOITINH")
+	@Column(name = "GIOITINH")
 	private boolean gioiTinh;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
-	@Column(name="NGAYSINH")
-	private Date ngaySinh; 
-	@Column(name="SDT")
+	@Column(name = "NGAYSINH")
+	private Date ngaySinh;
+	@Column(name = "SDT")
 	private String sdt;
-	@Column(name="EMAIL")
+	@Column(name = "EMAIL")
 	private String email;
-	@Column(name="DIACHI")
+	@Column(name = "DIACHI")
 	private String diaChi;
-	@Column(name="QUYEN")
+	@Column(name = "QUYEN")
 	private boolean quyen;
-	@Column(name="TRANGTHAI")
+	@Column(name = "TRANGTHAI")
 	private boolean trangThai;
-	@OneToMany(mappedBy = "nguoiDung",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "nguoiDung", fetch = FetchType.LAZY)
 	private List<GioHangEntity> gioHangs;
 	@OneToMany(mappedBy = "nguoiDung", fetch = FetchType.LAZY)
-    private List<DanhGiaEntity> danhGiaList;
+	private List<DanhGiaEntity> danhGiaList;
+	@OneToMany(mappedBy = "nguoiDung", fetch = FetchType.LAZY)
+	private List<DonHangEntity> donHangs;
+
+	public List<DonHangEntity> getDonHangs() {
+		return donHangs;
+	}
+
+	public void setDonHangs(List<DonHangEntity> donHangs) {
+		this.donHangs = donHangs;
+	}
 
 	
+
 	public Integer getMaNd() {
 		return maNd;
 	}
+
 	public void setMaNd(Integer maNd) {
 		this.maNd = maNd;
 	}
+
 	public List<GioHangEntity> getGioHangs() {
 		return gioHangs;
 	}
+
 	public void setGioHangs(List<GioHangEntity> gioHangs) {
 		this.gioHangs = gioHangs;
 	}
+
 	public List<DanhGiaEntity> getDanhGiaList() {
 		return danhGiaList;
 	}
+
 	public void setDanhGiaList(List<DanhGiaEntity> danhGiaList) {
 		this.danhGiaList = danhGiaList;
 	}
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getPassWord() {
 		return passWord;
 	}
+
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
 	}
+
 	public String getHoTen() {
 		return hoTen;
 	}
+
 	public void setHoTen(String hoTen) {
 		this.hoTen = hoTen;
 	}
+
 	public boolean isGioiTinh() {
 		return gioiTinh;
 	}
+
 	public void setGioiTinh(boolean gioiTinh) {
 		this.gioiTinh = gioiTinh;
 	}
+
 	public Date getNgaySinh() {
 		return ngaySinh;
 	}
+
 	public void setNgaySinh(Date ngaySinh) {
 		this.ngaySinh = ngaySinh;
 	}
+
 	public String getSdt() {
 		return sdt;
 	}
+
 	public void setSdt(String sdt) {
 		this.sdt = sdt;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getDiaChi() {
 		return diaChi;
 	}
+
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
 	}
+
 	public boolean isQuyen() {
 		return quyen;
 	}
+
 	public void setQuyen(boolean quyen) {
 		this.quyen = quyen;
 	}
+
 	public boolean isTrangThai() {
 		return trangThai;
 	}
+
 	public void setTrangThai(boolean trangThai) {
 		this.trangThai = trangThai;
 	}
-	
+
 }

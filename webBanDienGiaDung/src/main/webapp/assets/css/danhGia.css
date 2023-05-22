@@ -1,0 +1,65 @@
+.container{
+background-color: white;	
+}
+h2{    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    color: deepskyblue;}
+
+.form{
+	margin-top: 10px;
+}
+
+.sanPham{
+	    display: flex;
+    flex-direction: row;
+    background-color: white;
+    column-gap: 20px;
+}
+
+.sanPham .anhSanPham{
+	width: 20%;
+}
+.sanPham .tenSanPham{
+	        font-size: 20px;
+    font-weight: bold;
+    color: cadetblue;
+    padding-top: 35px;
+    text-decoration: none;
+}
+.tenSanPham:hover{
+	opacity: 0.6;
+}
+.danhGia{
+	    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+	
+}
+.soSao{
+	width: fit-content;
+    text-align: left;
+    margin-left: auto;
+    padding: 5px;
+	outline: none;
+}
+.noiDung{
+	padding: 10px;
+    outline: none;
+}
+.luu{
+	    padding: 5px;
+    background-color: deepskyblue;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+.luu:hover{
+	opacity: 0.7;
+}
+.thongBao{
+	    display: block;
+    width: 100%;
+    text-align: center;
+    color: red;
+}
