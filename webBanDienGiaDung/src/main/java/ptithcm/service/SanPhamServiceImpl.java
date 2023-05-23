@@ -33,6 +33,11 @@ public class SanPhamServiceImpl implements SanPhamService {
 	}
 
 	@Override
+	public List<SanPhamEntity> LaySanPhamMotTrang(String loai, int page, int pageSize){
+		return sanPhamDAO.LaySanPhamMotTrang(loai, page, pageSize);
+	}
+	
+	@Override
 	public List<SanPhamEntity> laySanPhamTheoLoai(String loai) {
 		return sanPhamDAO.laySanPhamTheoLoai(loai);
 	}
@@ -57,8 +62,14 @@ public class SanPhamServiceImpl implements SanPhamService {
 		return sanPhamDAO.laySanPhamMoi();
 	}
 	
+	@Override
 	public List<SanPhamEntity> locSanPhamTheoThuongHieuVaGia(String loai, List<String> brandsList, int minPrice, int maxPrice){
 		return sanPhamDAO.locSanPhamTheoThuongHieuVaGia(loai, brandsList, minPrice, maxPrice);
+	}
+	
+	@Override
+	public List<SanPhamEntity> laySanPhamBoLocTheoTrang(String loai, List<String> brandsList, int minPrice, int maxPrice, int page, int pageSize){
+		return sanPhamDAO.laySanPhamBoLocTheoTrang(loai, brandsList, minPrice, maxPrice, page, pageSize);
 	}
 	
 	@Override

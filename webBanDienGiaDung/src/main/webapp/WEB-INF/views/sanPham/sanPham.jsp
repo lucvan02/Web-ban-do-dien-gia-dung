@@ -96,12 +96,12 @@
 
 			<div id="header-bottom">
 				<ul id="category">
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/tulanh.htm">Tủ Lạnh</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/maylanh.htm">Máy lạnh</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/maygiat.htm">Máy Giặt</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/tudong.htm">Tủ Đông</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/quat.htm">Quạt</a></li>
-					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/noicom.htm">Nồi Cơm Điện</a></li>
+					<li><a href="loaisanpham/TULANH.htm">Tủ Lạnh</a></li>
+					<li><a href="loaisanpham/MAYLANH.htm">Máy lạnh</a></li>
+					<li><a href="loaisanpham/MAYGIAT.htm">Máy Giặt</a></li>
+					<li><a href="loaisanpham/TUDONG.htm">Tủ Đông</a></li>
+					<li><a href="loaisanpham/QUAT.htm">Quạt</a></li>
+					<li><a href="loaisanpham/NOICOM.htm">Nồi Cơm Điện</a></li>
 				</ul>
 			</div>
 		</div>
