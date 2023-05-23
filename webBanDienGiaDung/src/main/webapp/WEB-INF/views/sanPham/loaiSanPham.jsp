@@ -61,7 +61,9 @@
 
 					<button id="voucher" name="voucher">
 						<i class="ti-gift"></i><span> Khuyến mãi</span>
-
+						<button id="history" name="history">
+							<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
+						</button>
 						<button id="cart" name="cart">
 							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
 						</button>
@@ -73,18 +75,18 @@
 
 						</c:if>
 						<c:if test="${not empty sessionScope.USER}">
-							<button id="history" name="history">
-								<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
-							</button>
+
 							<button id="info" name="info">
 								<i class="ti-user"></i> <span> ${USER.hoTen}</span>
 							</button>
 							<div class="logout">
 								<a href="user/logout.htm">Đăng Xuất</a>
 							</div>
+
 						</c:if>
 				</div>
-			</form>	
+			</form>
+
 
 			<div id="header-bottom">
 				<ul id="category">
@@ -140,7 +142,7 @@
               <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <div>
-                  <c:forEach var="th" items="${thuongHieuList}">
+                  <c:forEach var="th" items="${thuongHieuList}" >
                  
                     <!-- Checked checkbox -->
                     <div class="form-check">
@@ -228,11 +230,11 @@
         <div>
         <h2  id="no-product-mess">${message }</h2>
         </div>
-        <c:forEach var="sanPham" items="${categoryList}"  >   
+        <c:forEach var="sanPham" items="${listSPTrenTrang}" >   
         
              
             <div class="col-lg-4 col-md-6 col-sm-8 d-flex sp"  >
-            <div class="card border-3 mb-4 mx-auto shadow-lg pr">
+            <div class="card border-3 mb-4 mx-auto pr">
             <div class="item">
             <a class="item" href="sanpham/${sanPham.maSP}.htm"> 
             <img
@@ -257,11 +259,18 @@
           </div> 
           
           
-		 <c:if test ="${categoryList.size()==6}"> 
+		<%--  <c:if test ="${categoryList.size()>6}"> 
 		 <form action="loaisanpham/${loaiSp}.htm" method="post">  
 		   <button  class="btn btn-light btn-sm btn-view-all-pro" name="btn-view-all">Xem toàn bộ sản phẩm</button>
 		    </form>
-       </c:if> 
+       </c:if>  --%>
+       
+       
+        
+	
+       
+       
+       
         </div>
 
         </div>
@@ -270,34 +279,46 @@
         
         
 
-
-<%-- 
-		 
-        <!-- Pagination -->
-       <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3"> -->
-           <ul class="pagination">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul> -->
-
-        <a href="loaisanpham/${loaiSp}.htm">Xem thêm</a>
-			
-         </nav> 
+	 <!-- Pagination -->
+        <div class="pagination-wrapper">
+       <nav aria-label="Page navigation example" > 
        
-        <!-- Pagination --> --%>
+       
+       <ul class="pagination">
+			    			<li class="page-item ${currentPage == 0 ? 'disabled' : ''}">
+					        <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="/webBanDienGiaDung/loaisanpham/${loaiSp}.htm?page=${currentPage - 1}">Trước</a>
+					    </li>
+					    <c:if test="${currentPage > 1}">
+					        <li class="page-item">
+					            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="/webBanDienGiaDung/loaisanpham/${loaiSp}.htm?page=0">1</a>
+					        </li>
+					        <li class="page-item disabled">
+					            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark">...</a>
+					        </li>
+					    </c:if>
+					    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+					        <li class="page-item ${currentPage == i ? 'active' : ''}">
+					            <a class="${currentPage == i ? 'page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0' : 'page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark'}" href="/webBanDienGiaDung/loaisanpham/${loaiSp}.htm?page=${i}">${i + 1}</a>
+					        </li>
+					    </c:forEach>
+					    <c:if test="${currentPage < totalPages - 2}">
+					        <li class="page-item disabled">
+					            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark">...</a>
+					        </li>
+					        <li class="page-item">
+					            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="/webBanDienGiaDung/loaisanpham/${loaiSp}.htm?page=${totalPages - 1}">${totalPages}</a>
+					        </li>
+					    </c:if>
+					    <li class="page-item ${currentPage == totalPages - 1 ? 'disabled' : ''}">
+					        <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="/webBanDienGiaDung/loaisanpham/${loaiSp}.htm?page=${currentPage + 1}">Sau</a>
+					    </li>
+					</ul>      
+        </nav> 
+   </div>
+        <!-- Pagination -->
+
+
+		
      
 
 
@@ -331,7 +352,8 @@
 	</div>
 <button onclick="topFunction()" id="back-top"><i class="ti-angle-double-up"></i></button>
 
-
+					
+ 					
 
 
 	<script

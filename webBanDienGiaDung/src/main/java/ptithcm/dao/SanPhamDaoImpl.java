@@ -28,6 +28,18 @@ public class SanPhamDaoImpl implements SanPhamDAO {
 	}
 
 	@Override
+	public List<SanPhamEntity> LaySanPhamMotTrang(String loai, int page, int pageSize) {
+
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM SanPhamEntity sp WHERE sp.loaiSanPham.maLoai = :loai and trangThai=True ";
+		Query query = session.createQuery(hql).setParameter("loai", loai);
+
+		int offset = page * pageSize;
+		List<SanPhamEntity> list = query.setFirstResult(offset).setMaxResults(pageSize).list();
+		return list;
+	}
+	
+	@Override
 	public List<SanPhamEntity> laySanPhamTheoLoai(String loai) {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "FROM SanPhamEntity sp WHERE sp.loaiSanPham.maLoai = :loai and trangThai=True ";
@@ -71,6 +83,7 @@ public class SanPhamDaoImpl implements SanPhamDAO {
 	    return danhSachSanPham;
 	}
 	
+	@Override
 	public List<SanPhamEntity> locSanPhamTheoThuongHieuVaGia(String loai, List<String> brandsList, int minPrice, int maxPrice){
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "FROM SanPhamEntity sp WHERE sp.loaiSanPham.maLoai = :loai and trangThai=True ";
@@ -93,6 +106,31 @@ public class SanPhamDaoImpl implements SanPhamDAO {
 	
 	}
 
+	@Override
+	public List<SanPhamEntity> laySanPhamBoLocTheoTrang(String loai, List<String> brandsList, int minPrice, int maxPrice, int page, int pageSize){
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM SanPhamEntity sp WHERE sp.loaiSanPham.maLoai = :loai and trangThai=True ";
+	    if (brandsList != null && !brandsList.isEmpty()) {
+	        hql += "AND sp.thuongHieu.tenThuongHieu IN :brandsList ";
+	    }
+	    if (minPrice >= 0 && maxPrice >=0) {
+	        hql += "AND sp.donGia >= :minPrice AND sp.donGia <= :maxPrice ";
+	    }
+	    
+	    Query query = session.createQuery(hql).setParameter("loai", loai);
+	    if (brandsList != null && !brandsList.isEmpty()) {
+	        query.setParameterList("brandsList", brandsList);
+	    }
+	    if (minPrice >=0 && maxPrice >=0) {
+	        query.setParameter("minPrice", minPrice).setParameter("maxPrice", maxPrice);
+	    }
+	      
+	    int offset = page * pageSize;
+		List<SanPhamEntity> list = query.setFirstResult(offset).setMaxResults(pageSize).list();
+		return list;
+	
+	}
+	
 	@Override
 	public float tinhSoSaoTB(SanPhamEntity sanPham) {
 		Session session = sessionFactory.getCurrentSession();

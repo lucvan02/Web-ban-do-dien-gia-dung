@@ -94,12 +94,12 @@
 
 			<div id="header-bottom">
 				<ul id="category">
-					<li><a href="loaisanpham/TULANH.htm">Tủ Lạnh</a></li>
-					<li><a href="loaisanpham/MAYLANH.htm">Máy lạnh</a></li>
-					<li><a href="loaisanpham/MAYGIAT.htm">Máy Giặt</a></li>
-					<li><a href="loaisanpham/TUDONG.htm">Tủ Đông</a></li>
-					<li><a href="loaisanpham/QUAT.htm">Quạt</a></li>
-					<li><a href="loaisanpham/NOICOM.htm">Nồi Cơm Điện</a></li>
+					<li><a href="#">Tủ Lạnh</a></li>
+					<li><a href="#">Máy lạnh</a></li>
+					<li><a href="#">Máy Giặt</a></li>
+					<li><a href="#">Tủ Đông</a></li>
+					<li><a href="#">Quạt</a></li>
+					<li><a href="#">Nồi Cơm Điện</a></li>
 				</ul>
 			</div>
 		</div>

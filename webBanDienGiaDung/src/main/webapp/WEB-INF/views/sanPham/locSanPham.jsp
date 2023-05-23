@@ -243,7 +243,7 @@
         
              
             <div class="col-lg-4 col-md-6 col-sm-8 d-flex sp"  >
-            <div class="card border-3 mb-4 mx-auto shadow-lg pr">
+            <div class="card border-3 mb-4 mx-auto pr">
             <div class="item">
             <a class="item" href="sanpham/${sanPham.maSP}.htm"> 
             <img
