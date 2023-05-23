@@ -96,12 +96,12 @@
 
 			<div id="header-bottom">
 				<ul id="category">
-					<li><a href="#">Tủ Lạnh</a></li>
-					<li><a href="#">Máy lạnh</a></li>
-					<li><a href="#">Máy Giặt</a></li>
-					<li><a href="#">Tủ Đông</a></li>
-					<li><a href="#">Quạt</a></li>
-					<li><a href="#">Nồi Cơm Điện</a></li>
+					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/tulanh.htm">Tủ Lạnh</a></li>
+					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/maylanh.htm">Máy lạnh</a></li>
+					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/maygiat.htm">Máy Giặt</a></li>
+					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/tudong.htm">Tủ Đông</a></li>
+					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/quat.htm">Quạt</a></li>
+					<li><a href="${pageContext.servletContext.contextPath}/loaisanpham/noicom.htm">Nồi Cơm Điện</a></li>
 				</ul>
 			</div>
 		</div>
@@ -117,7 +117,7 @@
 					<div class="col-md-6">
 						<img class="card-img-top mb-5 mb-md-0"
 							src="${sanPham.hinhAnhDaiDien}" alt="Ảnh đại diện sản phẩm"
-							id="product-image" />
+							id="product-image" style="width: 378px; height: 252px; display: block; margin: 0 auto;"/>
 						<div class="d-flex justify-content-between">
 							<button id="prev-button" class="btn btn-secondary">&lt;</button>
 							<button id="next-button" class="btn btn-secondary">&gt;</button>
@@ -127,7 +127,7 @@
 							<c:forEach items="${sanPham.hinhAnhs}" var="hinhAnh">
 								<div class="col-md-3 mb-3">
 									<img src="${hinhAnh.link}" alt="Ảnh sản phẩm"
-										class="img-fluid product-thumbnail" />
+										class="img-fluid product-thumbnail" style="width: 85px; height: 75px;" />
 								</div>
 							</c:forEach>
 						</div>
@@ -242,7 +242,6 @@
 			</div>
 
 			<br>
-			<div class="containerDanhGia">
 			<c:forEach items="${danhGiaList}" var="danhGia">
 				<div class="product-comment mb-4">
 					<div class="info-user">
@@ -287,7 +286,6 @@
 					<div id="cmt" class="commenter-comment bgc-bright p-2-2">${danhGia.noiDung}</div>
 				</div>
 			</c:forEach>
-			</div>
 		</div>
 
 
@@ -302,7 +300,7 @@
 							<div class="card h-100">
 								<!--  Product image -->
 								<a href="sanpham/${sp.maSP}.htm"> <img class="card-img-top"
-									src="${sp.hinhAnhDaiDien}" alt="..." />
+									src="${sp.hinhAnhDaiDien}" alt="..." style="width: 259px; height: 172px; display: block; margin: 0 auto;"/>
 								</a>
 								<!-- Product details-->
 								<div class="card-body">

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ptithcm.Entity.DanhGiaEntity;
 import ptithcm.Entity.SanPhamEntity;
-import ptithcm.dao.SanPhamDAO;
 import ptithcm.service.DanhGiaService;
 import ptithcm.service.SanPhamService;
 
@@ -28,8 +27,6 @@ public class sanPhamController {
 	SanPhamService sanPhamService;
 	@Autowired
 	DanhGiaService danhGiaService;
-	@Autowired
-	SanPhamDAO sanPhamDAO;
 	
 	@RequestMapping("/{maSp}")
 	public String sanPham(@PathVariable("maSp") String maSp, ModelMap model,HttpServletRequest request) {
@@ -40,7 +37,7 @@ public class sanPhamController {
 		int count = listDanhGia.size();
 		float soSaoTB = sanPhamService.tinhSoSaoTB(sanPham);
 	    sanPham.setSoSaoTB(soSaoTB);
-	    sanPhamDAO.updateSanPham(sanPham);
+	    sanPhamService.updateSanPham(sanPham);
 		
 		model.addAttribute("sanPham", sanPham);
 		model.addAttribute("sanPhamCungLoai", sanPhamCungLoai);
@@ -49,7 +46,5 @@ public class sanPhamController {
 		
 		return "/sanPham/sanPham";
 	}
-	
-
-	
+		
 }

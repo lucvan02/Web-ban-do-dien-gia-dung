@@ -77,8 +77,8 @@ svg {
 	              <use xlink:href="#tornillo" y="60"></use>
 	            </g>
 	          </svg>
-	<h1>You are not allowed to enter here</h1>
-	<h2>Go <a target="_blank" href="${pageContext.servletContext.contextPath}">Home!</a></h2>
+	<h1>Bạn không có quyền vào trang này!!!</h1>
+	<h2><a target="_blank" href="${pageContext.servletContext.contextPath}">Về trang chủ</a></h2>
 	
 	<script>
 		var root = document.documentElement;

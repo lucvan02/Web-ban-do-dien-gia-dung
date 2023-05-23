@@ -47,10 +47,10 @@ public class adminController {
 		return "admin/index";
 	}
 	
-	@RequestMapping("order")
-	public String order() {
-		return "admin/order";
-	}
+//	@RequestMapping("order")
+//	public String order() {
+//		return "admin/order";
+//	}
 	
 	
 	@RequestMapping("sale")

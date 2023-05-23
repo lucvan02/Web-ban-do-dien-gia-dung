@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 
 <!DOCTYPE html>
 <html>
@@ -23,12 +24,17 @@
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
 	-->
+	<style>
+    .fas.fa-eye:hover {
+        transform: scale(1.2);
+    }
+</style>
 </head>
 
 <body id="reportsPage">
     <div class="" id="home">
         <%@ include file="include/menu.jsp" %> 
-        <%@ include file="include/footer.jsp" %>
+        <%-- <%@ include file="include/footer.jsp" %> --%>
         
         <div class="container">
             <!-- row -->
@@ -36,157 +42,193 @@
                 
                 <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">Danh sách đơn hàng</h2>
+                        <h4 class="text-info"><i class="fas fa-clock"></i> Đơn hàng chờ xác nhận</h4>
+                        
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ORDER NO.</th>
-                                    <th scope="col">STATUS</th>
-                                    <th scope="col">OPERATORS</th>
-                                    <th scope="col">LOCATION</th>
-                                    <th scope="col">DISTANCE</th>
-                                    <th scope="col">START DATE</th>
-                                    <th scope="col">EST DELIVERY DUE</th>
+                                    <th scope="col">Mã đơn.</th>
+                                    <!-- <th scope="col">Trạng thái</th> -->
+                                    <th scope="col">Người nhận</th>
+                                    <!-- <th scope="col">Địa chỉ</th> -->
+                                    <th scope="col">Ngày đặt</th>
+                                    <th scope="col">Tổng tiền</th>
+                                    <th scope="col">Xem chi tiết</th>
+                                    <th scope="col">Xác nhận duyệt</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            <c:forEach items="${listDonHang}" var="dh">
+                              <c:if test="${dh.trangThai==1}">
                                 <tr>
-                                    <th scope="row"><b>#122349</b></th>
+                                
+                                    <th scope="row"><b>#${dh.maDh}</b></th>
+
+                                    <td><b>${dh.hoTen}</b></td>
+                                    <%-- <td><b>${dh.diaChi}</b></td> --%>
+                                    <td>${dh.ngayTao}</td>
+                                    <td> <span style="color: #eff309e8;"><fmt:formatNumber
+										value="${dh.tongTien}" pattern="#,##0" />đ</span>
+									</td>
                                     <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
+                                    	<a href="chiTietDonHang/${dh.maDh}.htm">
+				                    	 <i class="fas fa-eye" title="Xem chi tiết đơn hàng"  style="color: #0043ff; font-size: 25px; transition: transform 0.3s;"></i>
+				                      </a>   
                                     </td>
-                                    <td><b>Oliver Trag</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>485 km</b></td>
-                                    <td>16:00, 12 NOV 2018</td>
-                                    <td>08:00, 18 NOV 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122348</b></th>
+                                    
                                     <td>
-                                        <div class="tm-status-circle pending">
-                                        </div>Pending
-                                    </td>
-                                    <td><b>Jacob Miller</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>360 km</b></td>
-                                    <td>11:00, 10 NOV 2018</td>
-                                    <td>04:00, 14 NOV 2018</td>
+										<f:form method="post">
+										  <input type="hidden" name="maDonHangDuyet" value="${dh.maDh}">
+										  <input type="hidden" name="trangThaiDon" value="${dh.trangThai}">
+										  <button class="btn-primary" title="Chuyển sang đang giao" type="submit"
+										  name="changeStatus">Duyệt</button>
+										</f:form>					
+				                    </td>
+                                    
                                 </tr>
-                                <tr>
-                                    <th scope="row"><b>#122347</b></th>
-                                    <td>
-                                        <div class="tm-status-circle cancelled">
-                                        </div>Cancelled
-                                    </td>
-                                    <td><b>George Wilson</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>340 km</b></td>
-                                    <td>12:00, 22 NOV 2018</td>
-                                    <td>06:00, 28 NOV 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122346</b></th>
-                                    <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
-                                    </td>
-                                    <td><b>William Aung</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>218 km</b></td>
-                                    <td>15:00, 10 NOV 2018</td>
-                                    <td>09:00, 14 NOV 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122345</b></th>
-                                    <td>
-                                        <div class="tm-status-circle pending">
-                                        </div>Pending
-                                    </td>
-                                    <td><b>Harry Ryan</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>280 km</b></td>
-                                    <td>15:00, 11 NOV 2018</td>
-                                    <td>09:00, 17 NOV 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122344</b></th>
-                                    <td>
-                                        <div class="tm-status-circle pending">
-                                        </div>Pending
-                                    </td>
-                                    <td><b>Michael Jones</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>218 km</b></td>
-                                    <td>18:00, 12 OCT 2018</td>
-                                    <td>06:00, 18 OCT 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122343</b></th>
-                                    <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
-                                    </td>
-                                    <td><b>Timmy Davis</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>218 km</b></td>
-                                    <td>12:00, 10 OCT 2018</td>
-                                    <td>08:00, 18 OCT 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122342</b></th>
-                                    <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
-                                    </td>
-                                    <td><b>Oscar Phyo</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>420 km</b></td>
-                                    <td>15:30, 06 OCT 2018</td>
-                                    <td>09:30, 16 OCT 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122341</b></th>
-                                    <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
-                                    </td>
-                                    <td><b>Charlie Brown</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>300 km</b></td>
-                                    <td>11:00, 10 OCT 2018</td>
-                                    <td>03:00, 14 OCT 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122340</b></th>
-                                    <td>
-                                        <div class="tm-status-circle cancelled">
-                                        </div>Cancelled
-                                    </td>
-                                    <td><b>Wilson Cookies</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>218 km</b></td>
-                                    <td>17:30, 12 OCT 2018</td>
-                                    <td>08:30, 22 OCT 2018</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><b>#122339</b></th>
-                                    <td>
-                                        <div class="tm-status-circle moving">
-                                        </div>Moving
-                                    </td>
-                                    <td><b>Richard Clamon</b></td>
-                                    <td><b>London, UK</b></td>
-                                    <td><b>150 km</b></td>
-                                    <td>15:00, 12 OCT 2018</td>
-                                    <td>09:20, 26 OCT 2018</td>
-                                </tr>
+                               </c:if>
+                            </c:forEach>
+
+
                             </tbody>
                         </table>
                     </div>
                 </div>
+                
+                <div class="col-12 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                        <h4 class="text-warning"><i class="fas fa-truck"></i> Đơn hàng đang được giao</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Mã đơn.</th>
+                                    <!-- <th scope="col">Trạng thái</th> -->
+                                    <th scope="col">Người nhận</th>
+                                    <!-- <th scope="col">Địa chỉ</th> -->
+                                    <th scope="col">Ngày đặt</th>
+                                    <th scope="col">Tổng tiền</th>
+                                    <th scope="col">Xem chi tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${listDonHang}" var="dh">
+                              <c:if test="${dh.trangThai == 2}">
+                                <tr>
+                                
+                                    <th scope="row"><b>#${dh.maDh}</b></th>
+
+                                    <td><b>${dh.hoTen}</b></td>
+                                    <%-- <td><b>${dh.diaChi}</b></td> --%>
+                                    <td>${dh.ngayTao}</td>
+                                    <td> <span style="color: #eff309e8;"><fmt:formatNumber
+										value="${dh.tongTien}" pattern="#,##0" />đ</span>
+									</td>
+                                    <td>
+                                    	<a href="chiTietDonHang/${dh.maDh}.htm">
+				                    	 <i class="fas fa-eye" title="Xem chi tiết đơn hàng"  style="color: yellow; font-size: 25px; transition: transform 0.3s;"></i>
+				                      </a>   
+                                    </td>
+                                </tr>
+                               </c:if>
+                            </c:forEach>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
             </div>
+            
+            
+            <div class="row tm-content-row">              
+                
+                <div class="col-12 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                        <h4 class="text-success"><i class="fas fa-check-circle"></i> Đơn hàng đã giao thành công</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Mã đơn.</th>
+                                    <!-- <th scope="col">Trạng thái</th> -->
+                                    <th scope="col">Người nhận</th>
+                                    <!-- <th scope="col">Địa chỉ</th> -->
+                                    <th scope="col">Ngày đặt</th>
+                                    <th scope="col">Tổng tiền</th>
+                                    <th scope="col">Xem chi tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${listDonHang}" var="dh">
+                              <c:if test="${dh.trangThai ==3}">
+                                <tr>
+                                
+                                    <th scope="row"><b>#${dh.maDh}</b></th>
+                                    <td><b>${dh.hoTen}</b></td>
+                                    <%-- <td><b>${dh.diaChi}</b></td> --%>
+                                    <td>${dh.ngayTao}</td>
+                                    <td> <span style="color: #eff309e8;"><fmt:formatNumber
+										value="${dh.tongTien}" pattern="#,##0" />đ</span>
+									</td>
+                                    <td>
+                                    	<a href="chiTietDonHang/${dh.maDh}.htm">
+				                    	 <i class="fas fa-eye" title="Xem chi tiết đơn hàng"  style="color: green; font-size: 25px; transition: transform 0.3s;"></i>
+				                      </a>   
+                                    </td>
+                                </tr>
+                               </c:if>
+                            </c:forEach>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="col-12 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                        <h4 class="text-danger"><i class="fas fa-times-circle"></i>  Đơn hàng đã bị hủy</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Mã đơn.</th>
+                                    <!-- <th scope="col">Trạng thái</th> -->
+                                    <th scope="col">Người nhận</th>
+                                    <!-- <th scope="col">Địa chỉ</th> -->
+                                    <th scope="col">Ngày đặt</th>
+                                    <th scope="col">Tổng tiền</th>
+                                    <th scope="col">Xem chi tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${listDonHang}" var="dh">
+                              <c:if test="${dh.trangThai == 0}">
+                                <tr>
+                                
+                                    <th scope="row"><b>#${dh.maDh}</b></th>
+                                    <td><b>${dh.hoTen}</b></td>
+                                    <%-- <td><b>${dh.diaChi}</b></td> --%>
+                                    <td>${dh.ngayTao}</td>
+                                    <td> <span style="color: #eff309e8;"><fmt:formatNumber
+										value="${dh.tongTien}" pattern="#,##0" />đ</span>
+									</td>
+                                    <td>
+                                    	<a href="chiTietDonHang/${dh.maDh}.htm">
+				                    	 <i class="fas fa-eye" title="Xem chi tiết đơn hàng"  style="color: red; font-size: 25px; transition: transform 0.3s;"></i>
+				                      </a>   
+                                    </td>
+                                </tr>
+                               </c:if>
+                            </c:forEach>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+            
         </div>
     </div>
 
