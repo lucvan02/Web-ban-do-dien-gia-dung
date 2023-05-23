@@ -6,7 +6,6 @@ import ptithcm.Entity.SanPhamEntity;
 
 public interface SanPhamDAO {
 	public SanPhamEntity laySanPham(String maSp);
-	public List<SanPhamEntity> LaySanPhamMotTrang(String loai, int page, int pageSize);
 	public List<SanPhamEntity> layAllSanPham();
 	public List<SanPhamEntity> layAllSanPhamDaNgungBan();
 	public List<SanPhamEntity> laySanPhamTheoLoai(String loai);
@@ -15,7 +14,6 @@ public interface SanPhamDAO {
 	public List<SanPhamEntity> laySanPhamNgauNhien();
 	public List<SanPhamEntity> laySanPhamMoi();
 	public List<SanPhamEntity> locSanPhamTheoThuongHieuVaGia(String loai, List<String> brandsList, int minPrice, int maxPrice);
-	public List<SanPhamEntity> laySanPhamBoLocTheoTrang(String loai, List<String> brandsList, int minPrice, int maxPrice, int page, int pageSize);
 	public float tinhSoSaoTB(SanPhamEntity sanPham);
 	public void themSanPham(SanPhamEntity sanPham);
 	public void updateSanPham(SanPhamEntity sanPham);
