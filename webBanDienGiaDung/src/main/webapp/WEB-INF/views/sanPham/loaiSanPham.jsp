@@ -61,9 +61,7 @@
 
 					<button id="voucher" name="voucher">
 						<i class="ti-gift"></i><span> Khuyến mãi</span>
-						<button id="history" name="history">
-							<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
-						</button>
+
 						<button id="cart" name="cart">
 							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
 						</button>
@@ -75,18 +73,18 @@
 
 						</c:if>
 						<c:if test="${not empty sessionScope.USER}">
-
+							<button id="history" name="history">
+								<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
+							</button>
 							<button id="info" name="info">
 								<i class="ti-user"></i> <span> ${USER.hoTen}</span>
 							</button>
 							<div class="logout">
 								<a href="user/logout.htm">Đăng Xuất</a>
 							</div>
-
 						</c:if>
 				</div>
-			</form>
-
+			</form>	
 
 			<div id="header-bottom">
 				<ul id="category">
