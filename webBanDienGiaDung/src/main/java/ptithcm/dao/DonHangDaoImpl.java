@@ -82,4 +82,38 @@ public class DonHangDaoImpl implements DonHangDAO {
 		return donHang;
 	}
 
+	@Override
+	public List<DonHangEntity> layAllDonHang(){
+		Session session = factory.getCurrentSession();
+		String hql = "FROM DonHangEntity";
+	    Query query = session.createQuery(hql);
+	    List<DonHangEntity> listDonHang = query.list();
+	    return listDonHang;
+	}
+	
+	@Override
+	public List<DonHangEntity> layDonHangTheoTrangThai(int trangThai) {
+	    Session session = factory.getCurrentSession();
+	    String hql = "FROM DonHangEntity WHERE trangThai = :trangThai";
+	    Query query = session.createQuery(hql);
+	    query.setParameter("trangThai", trangThai);
+	    List<DonHangEntity> listDonHang = query.list();
+	    return listDonHang;
+	}
+
+	@Override
+	public int tinhTongDoanhThuTheoThang(int thang) {
+	    Session session = factory.getCurrentSession();
+	    String hql = "SELECT SUM(dh.tongTien) FROM DonHangEntity dh WHERE MONTH(dh.ngayTao) = :thang AND dh.trangThai = 3";
+	    Query query = session.createQuery(hql);
+	    query.setParameter("thang", thang);
+	    Integer totalRevenue = (Integer) query.uniqueResult();
+//	    return (totalRevenue != null) ? totalRevenue : 0;
+	    return totalRevenue;
+	}
+
+
+
+
+
 }

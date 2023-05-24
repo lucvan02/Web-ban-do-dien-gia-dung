@@ -34,7 +34,7 @@ public class quanLiDonHangController {
 		HttpSession session0 = request.getSession();
 		NguoiDungEntity user = (NguoiDungEntity) session0.getAttribute("USER");
 		
-		List<DonHangEntity> listDonHang = layAllDonHang();
+		List<DonHangEntity> listDonHang = donHangService.layAllDonHang();
 		model.addAttribute("listDonHang", listDonHang);
 		
 		return "admin/order";
@@ -55,14 +55,4 @@ public class quanLiDonHangController {
 	}
 
 	
-	
-	
-	
-	public List<DonHangEntity> layAllDonHang(){
-		Session session = factory.getCurrentSession();
-		String hql = "FROM DonHangEntity";
-	    Query query = session.createQuery(hql);
-	    List<DonHangEntity> listDonHang = query.list();
-	    return listDonHang;
-	}
 }

@@ -38,26 +38,38 @@
         <%-- <%@ include file="include/footer.jsp" %> --%>
         
         <div class="container">
-            <div class="row">
+        <h3 class="text-warning mt-3">Tổng doanh thu: <fmt:formatNumber value="${tongDoanhThu}" pattern="#,##0" />đ</h3>
+        
+        
+            <%-- <div class="row">
                 <div class="col">
                     <p class="text-white mt-5 mb-5">Chào mừng quay lại, <b>${USER.hoTen}</b></p>
                 </div>
-            </div>
+            </div> --%>
             <!-- row -->
+            
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block">
-                        <h2 class="tm-block-title">Thống kê doanh thu</h2>
+                        <h2 class="tm-block-title">Thống kê doanh thu trong năm</h2>
                         <canvas id="doanhThuChart" class="chart-container""></canvas>
                     </div>
                 </div>
                 
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block">
                         <h2 class="tm-block-title">Thống kê số đơn hàng</h2>
                         <canvas id="donHangChart" class="chart-container""></canvas>
                     </div>
-                </div>                
+                </div>          
+                
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block">
+                        <h2 class="tm-block-title">Tỉ lệ đơn thành công và bị hủy</h2>
+                        <canvas id="orderStatusChart" width="400" height="400"></canvas>
+
+                    </div>
+                </div>       
        
                 
             </div>
@@ -82,107 +94,145 @@
     
     <script>
     
-    // Định nghĩa hàm vẽ biểu đồ dòng
+    // Lấy giá trị tổng doanh thu theo tháng từ controller
+    var monthlyRevenues = ${monthlyRevenues};
+
+    // Định nghĩa hàm vẽ biểu đồ doanh thu
     function drawdoanhThuChart() {
-    var ctxLine = document.getElementById('doanhThuChart').getContext('2d');
-    var optionsLine = {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            x: {
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Thời gian'
-                }
+        var ctx = document.getElementById('doanhThuChart').getContext('2d');
+
+        var config = {
+            type: 'bar',
+            data: {
+                labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+                datasets: [{
+                    label: 'Doanh thu',
+                    data: monthlyRevenues,
+                    backgroundColor: 'rgb(54, 162, 235)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    borderWidth: 1
+                }]
             },
-            y: {
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Doanh thu'
-                },
-                ticks: {
-                    beginAtZero: true
-                }
-            }
-        }
-    };
-
-    configLine = {
-    	    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'], // Các nhãn trục x
-    	    datasets: [
-    	        {
-    	            label: 'Doanh thu',
-    	            data: [1000, 2000, 1500, 3000, 2500, 1200, 1800, 2200, 1900, 2800, 3200, 2700], // Dữ liệu doanh thu cho 12 tháng
-    	            backgroundColor: 'rgb(54, 162, 235)', // Màu nền cho các cột
-    	            borderColor: 'rgb(54, 162, 235)', // Màu viền cho các cột
-    	            borderWidth: 1 // Độ dày viền cho các cột
-    	        }
-    	    ]
-    	};
-
-
-    var barChart = new Chart(ctxLine, {
-        type: 'bar',
-        data: configLine,
-        options: optionsLine
-    });
-}
-
-drawdoanhThuChart();
-
-function drawdonHangChart() {
-    var ctx = document.getElementById('donHangChart').getContext('2d');
-  
-    var orderStatusData = [10, 5, 8, 3]; // Số lượng đơn hàng theo từng trạng thái
-  
-    var config = {
-        type: 'line',
-        data: {
-            labels: ['Chờ xác nhận', 'Đang giao', 'Thành công', 'Đã hủy'], // Các nhãn trục x (các trạng thái)
-            datasets: [{
-                label: 'Số đơn hàng',
-                data: orderStatusData, // Số đơn hàng theo từng trạng thái
-                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Màu nền cho dòng
-                borderColor: 'rgb(54, 162, 235)', // Màu viền cho dòng
-                borderWidth: 2, // Độ dày viền cho dòng
-                pointBackgroundColor: 'rgb(54, 162, 235)', // Màu nền cho điểm dữ liệu
-                pointRadius: 4, // Đường kính điểm dữ liệu
-                pointHoverRadius: 6 // Đường kính điểm dữ liệu khi di chuột qua
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    display: true,
-                    scaleLabel: {
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
                         display: true,
-                        labelString: 'Trạng thái'
-                    }
-                },
-                y: {
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Số đơn hàng'
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Tháng'
+                        }
                     },
-                    ticks: {
-                        beginAtZero: true
+                    y: {
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Doanh thu'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
                     }
                 }
             }
-        }
-    };
-  
-    var lineChart = new Chart(ctx, config);
-}
+        };
 
-drawdonHangChart();
+        var doanhThuChart = new Chart(ctx, config);
+    }
+
+    drawdoanhThuChart();
 
 
+	function drawdonHangChart() {
+	    var ctx = document.getElementById('donHangChart').getContext('2d');
+	    var orderStatusData = [10, 5, 8, 3]; // Số lượng đơn hàng theo từng trạng thái
+	  
+	    var pendingOrders = ${pendingOrders};
+	    var deliveringOrders = ${deliveringOrders};
+	    var completedOrders = ${completedOrders};
+	    var cancelledOrders = ${cancelledOrders};
+	
+	    var orderStatusData = [pendingOrders, deliveringOrders, completedOrders, cancelledOrders]; // Số lượng đơn hàng theo từng trạng thái
+	    var config = {
+	        type: 'line',
+	        data: {
+	            labels: ['Chờ xác nhận', 'Đang giao', 'Thành công', 'Đã hủy'], // Các nhãn trục x (các trạng thái)
+	            datasets: [{
+	                label: 'Số đơn hàng',
+	                data: orderStatusData, // Số đơn hàng theo từng trạng thái
+	                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Màu nền cho dòng
+	                borderColor: 'rgb(54, 162, 235)', // Màu viền cho dòng
+	                borderWidth: 2, // Độ dày viền cho dòng
+	                pointBackgroundColor: 'rgb(54, 162, 235)', // Màu nền cho điểm dữ liệu
+	                pointRadius: 4, // Đường kính điểm dữ liệu
+	                pointHoverRadius: 6 // Đường kính điểm dữ liệu khi di chuột qua
+	            }]
+	        },
+	        options: {
+	            responsive: true,
+	            maintainAspectRatio: false,
+	            scales: {
+	                x: {
+	                    display: true,
+	                    scaleLabel: {
+	                        display: true,
+	                        labelString: 'Trạng thái'
+	                    }
+	                },
+	                y: {
+	                    display: true,
+	                    scaleLabel: {
+	                        display: true,
+	                        labelString: 'Số đơn hàng'
+	                    },
+	                    ticks: {
+	                        beginAtZero: true
+	                    }
+	                }
+	            }
+	        }
+	    };
+	  
+	    var lineChart = new Chart(ctx, config);
+	}
+	
+	drawdonHangChart();
+	
+	function drawOrderStatusChart() {
+		  var ctx = document.getElementById('orderStatusChart').getContext('2d');
+		  
+		  var completedOrders = ${completedOrders};
+		  var cancelledOrders = ${cancelledOrders};
+		  
+		  var data = {
+		    labels: ['Thành công', 'Hủy'],
+		    datasets: [{
+		      data: [completedOrders, cancelledOrders],
+		      backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)']
+		    }]
+		  };
+		  
+		  var options = {
+				    responsive: true,
+				    maintainAspectRatio: false,
+				    plugins: {
+				      legend: {
+				        labels: {
+				          color: 'rgb(255, 255, 255)' // Màu chữ cho các nhãn
+				        }
+				      }
+				    }
+				  };
+		  
+		  var pieChart = new Chart(ctx, {
+		    type: 'pie',
+		    data: data,
+		    options: options
+		  });
+		}
+
+		drawOrderStatusChart();
 
 
 </script>

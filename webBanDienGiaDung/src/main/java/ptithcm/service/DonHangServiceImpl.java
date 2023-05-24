@@ -40,5 +40,21 @@ public class DonHangServiceImpl implements DonHangService{
 	public DonHangEntity timDonHangTheoMa(int maDh) {
 		return DonHang.timDonHangTheoMa(maDh);
 	}
+
+	@Override
+	public List<DonHangEntity> layAllDonHang() {
+		return DonHang.layAllDonHang();
+	}
+
+	@Override
+	public List<DonHangEntity> layDonHangTheoTrangThai(int trangThai) {
+		return DonHang.layDonHangTheoTrangThai(trangThai);
+	}
+
+	@Override
+	public int tinhTongDoanhThuTheoThang(int thang) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
