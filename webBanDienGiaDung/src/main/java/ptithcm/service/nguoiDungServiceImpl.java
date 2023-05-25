@@ -1,12 +1,11 @@
 package ptithcm.service;
 
-import java.util.Base64;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.mindrot.jbcrypt.BCrypt;
 import ptithcm.Entity.NguoiDungEntity;
 import ptithcm.dao.nguoiDungDao;
 
@@ -42,7 +41,14 @@ public class nguoiDungServiceImpl implements nguoiDungService{
 
 	@Override
 	public String maHoaMatKhau(String str) {
-		  byte[] encodedBytes = Base64.getEncoder().encode(str.getBytes());
-	        return new String(encodedBytes);	}
+	    String hashedPassword = BCrypt.hashpw(str, BCrypt.gensalt());
+	    return hashedPassword;
+	}
+	
+	@Override
+	public boolean kiemTraMatKhau(String password, String hashedPassword) {
+	    return BCrypt.checkpw(password, hashedPassword);
+	}
+
 	
 }
