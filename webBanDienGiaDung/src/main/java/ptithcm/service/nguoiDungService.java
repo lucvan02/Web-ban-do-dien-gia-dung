@@ -17,4 +17,5 @@ public interface nguoiDungService{
 	public NguoiDungEntity findUserById(Integer maNd);
 	public NguoiDungEntity findUserByNameAndEmail(String userName, String email);
 	public String maHoaMatKhau(String str) ;
+	public boolean kiemTraMatKhau(String password, String hashedPassword) ;
 }
