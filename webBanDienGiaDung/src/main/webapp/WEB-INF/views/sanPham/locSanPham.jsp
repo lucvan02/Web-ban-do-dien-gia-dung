@@ -144,13 +144,20 @@
 											<div>
 												<c:forEach var="th" items="${thuongHieuList}">
 													<!-- Checked checkbox -->
-													<div class="form-check">
-														<input class="form-check-input" type="checkbox"
-															value="${th.tenThuongHieu}" name="brands"
-															id="flexCheckChecked1" /> <label
-															class="form-check-label" for="flexCheckChecked1">${th.tenThuongHieu}</label>
-														<span class="badge badge-secondary float-end">120</span>
-													</div>
+                    <div class="form-check">
+                    <c:choose> 
+                    <c:when test="${selectedBrands.contains(th.tenThuongHieu)}" >
+                     <input class="form-check-input" type="checkbox" value="${th.tenThuongHieu}" name ="brands" id="flexCheckChecked1" checked />
+                    </c:when> 
+                  
+                    <c:otherwise>
+						 <input class="form-check-input" type="checkbox" value="${th.tenThuongHieu}" name ="brands" id="flexCheckChecked1"  />
+					</c:otherwise>
+					</c:choose>
+                     <%--  <input class="form-check-input" type="checkbox" value="${th.tenThuongHieu}" name ="brands" id="flexCheckChecked1"   />--%>
+                      <label class="form-check-label" for="flexCheckChecked1">${th.tenThuongHieu}</label>
+                      <span class="badge badge-secondary float-end">120</span>
+                    </div>
 												</c:forEach>
 											</div>
 										</div>
