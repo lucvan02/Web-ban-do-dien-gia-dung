@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Khuyến mãi</title>
+<title>Thế Giới Điện Máy</title>
 <!-- link -->
 <link rel="shortcut icon" href="assets/img/favicon.png"
 	type="image/x-icon">
@@ -21,11 +22,11 @@
 	rel="stylesheet"
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
-<link rel="stylesheet" href='<c:url value="/assets/css/khuyenMai.css"/>' />
+<link rel="stylesheet" href='<c:url value="/assets/css/search.css"/>' />
 <link rel="stylesheet"
 	href="<c:url value="/assets/font/themify-icons/themify-icons.css"/>" />
 
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -36,31 +37,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
 	rel="stylesheet" />
-
-
-
-
-<!-- them doan douoi day -->
-
-<link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-
-<link
-	href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap"
-	rel="stylesheet" />
-
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
-<script src="<c:url value='assets/js/khuyenmain.js'/>"></script>
-
-
-
-
-
-
 </head>
-
 <body>
 	<!-- HEADER -->
 	<div id="header">
@@ -85,7 +62,9 @@
 
 					<button id="voucher" name="voucher">
 						<i class="ti-gift"></i><span> Khuyến mãi</span>
-
+						<button id="history" name="history">
+							<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
+						</button>
 						<button id="cart" name="cart">
 							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
 						</button>
@@ -97,13 +76,9 @@
 
 						</c:if>
 						<c:if test="${not empty sessionScope.USER}">
-							<button id="history" name="history">
-								<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
-							</button>
 
 							<button id="info" name="info">
-								<i class="ti-user"></i> <span> ${USER.hoTen}</span> <input
-									class="form-control hide" name="maNd" value="${ USER.maNd}" />
+								<i class="ti-user"></i> <span> ${USER.hoTen}</span>
 							</button>
 							<div class="logout">
 								<a href="user/logout.htm">Đăng Xuất</a>
@@ -127,83 +102,86 @@
 		</div>
 	</div>
 
+<%-- 
 
+<div>
+        <h2  id="message">${message }</h2>
+</div>
+<hr>	 --%>
+			
+<%-- 
+		
 
+  <div class="container ">
+  
+  
+      <div class="col-lg-9"  >     
+        <div class="row">
+        
+        <c:forEach var="sanPham" items="${listSP}" >   
+        
+             
+            <div class="col-lg-4 col-md-6 col-sm-8 d-flex sp"  >
+            <div class="card border-3 mb-4 mx-auto pr">
+            <div class="item">
+            <a class="item" href="sanpham/${sanPham.maSP}.htm"> 
+            <img
+              class=" anhSanPham " src="${sanPham.hinhAnhDaiDien}" />
+              </a>
+             </div>
+                <div class="card-body d-flex flex-column">
+                <div class= "pb-0 text-center " >
+					<h6 class=" tenSanPham text-primary">${sanPham.tenSanPham}</h6>
+						<span class="giaSanPham" ><fmt:formatNumber value="${sanPham.donGia}" pattern="#,##0" />đ</span>							
+                </div>
+              </div>
+            </div>
+          </div>     
+          </c:forEach>
+          </div> 
+        </div>
 
-	
+     
+    </div>           
 
+        <button>Xem thêm</button> --%>
 
+<div>
+        <h2  id="message">${message }</h2>
+</div>
+<hr>			
 
-	<form id="Back" action="KhuyenMai.htm">
+  <div class="container ">
+      <div class="col-lg-9"  >     
+        <div class="row">
+        
+        <c:forEach var="sanPham" items="${listSP}" varStatus="loop">
+ 		<div class="col-lg-4 col-md-6 col-sm-8 d-flex sp ${loop.index >= 6 ? 'd-none' : ''}">
+            <div class="card border-3 mb-4 mx-auto pr">
+            <div class="item">
+            <a class="item" href="sanpham/${sanPham.maSP}.htm"> 
+            <img
+              class=" anhSanPham " src="${sanPham.hinhAnhDaiDien}" />
+              </a>
+             </div>
+                <div class="card-body d-flex flex-column">
+                <div class= "pb-0 text-center " >
+					<h6 class=" tenSanPham text-primary">${sanPham.tenSanPham}</h6>
+						<span class="giaSanPham" ><fmt:formatNumber value="${sanPham.donGia}" pattern="#,##0" />đ</span>							
+                </div>
+              </div>
+            </div>
+          </div>     
+          </c:forEach>
+          </div> 
+        </div>
 
-		<button id="btnBackKM" name="HomeKM">QUAY LẠI</button>
-	</form>
-
-
-
-
-
-	<div class="sale width-page">
-		<div class="coupon">
-			<div class="container">
-				<h2
-					style="display: flex; justify-content: center; font-weight: bold;">DANH
-					SÁCH KHUYẾN MÃI</h2>
-			</div>
-			<div class="container" style="background-color: white">
-				<table>
-					<thead>
-						<tr>
-							<th>Mã KM</th>
-							<th>Giá trị</th>
-							<th>Mã sản phẩm</th>
-							<th>Ngày bắt đầu</th>
-							<th>Ngày kết thúc</th>
-							<th>Còn lại</th>
-							<th></th>
-						</tr>
-					</thead>
-
-					<tbody>
-
-						<c:forEach var="ctkm" items="${ctkmList}">
-							<c:if
-								test="${ctkm.khuyenMai.soLuong > 0 &&ctkm.sanPham.maSP == maSP.toUpperCase()}">
-								<tr>
-
-									<td class="maKM">${ctkm.khuyenMai.maKM}</td>
-
-									<td><fmt:formatNumber value="${ctkm.khuyenMai.giaTri}"
-											pattern="#,##0" />đ</td>
-									<td>${ctkm.sanPham.maSP}</td>
-
-									<td>${ctkm.khuyenMai.ngayBatDau}</td>
-									<td class="end-date">${ctkm.khuyenMai.ngayKetThuc}</td>
-									<td>${ctkm.khuyenMai.soLuong}</td>
-									<td>
-										<!-- <button class="copy-button" >Lấy mã</button> --> <script
-											src="<c:url value='assets/js/khuyenmain.js'/>"></script>
-										<button class="copy-button" id="${ctkm.khuyenMai.maKM}">Lấy
-											mã</button>
-
-									</td>
-								</tr>
-							</c:if>
-						</c:forEach>
-					</tbody>
-
-
-				</table>
-			</div>
-		</div>
-	</div>
-
-
-
-
-
-
-
+     
+    </div>           
+		<c:if test="${listSP.size()>6}">
+		 <button id="loadMoreButton" class="btn btn-light btn-sm">Xem thêm</button>		
+		</c:if>
+       
 	<!-- FOOTER -->
 	<div id="footer">
 		<div id="footer-body" class="width-page">
@@ -219,7 +197,7 @@
 					style="color: yellow"> 0937696969</span></span> <a
 					href="https://mail.google.com/mail/?view=cm&to=4aesieunhan@gmail.com"
 					target="_blank" style="font-weight: bold; text-decoration: none">EMAIL:
-					<span style="color: yellow">4aesieunhan@gmail.com</span>
+					<span style="color: yellow">thegioidienmay@gmail.com</span>
 				</a> <span><span style="font-weight: bold">Địa Chỉ:</span> Đường
 					Man Thiện, P. Hiệp Phú, Q.9, TP.Hồ Chí Minh</span>
 			</div>
@@ -231,12 +209,9 @@
 		<hr />
 		<div id="copy-right">© 2023 PTIT.HCM</div>
 	</div>
+<button onclick="topFunction()" id="back-top"><i class="ti-angle-double-up"></i></button>
 
-
-	<button onclick="topFunction()" id="back-top">
-		<i class="ti-angle-double-up"></i>
-	</button>
-
+					
 
 
 
@@ -249,10 +224,8 @@
 		integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 		crossorigin="anonymous"></script>
 
-	<script src="<c:url value='assets/js/main.js'/>"></script>
-	<script src="<c:url value='assets/js/khuyenMai.js'/>"></script>
 
-
-	</script>
+	<script src="<c:url value='assets/js/search.js'/>"></script>
+		<script src="<c:url value='assets/js/main.js'/>"></script>
 </body>
 </html>

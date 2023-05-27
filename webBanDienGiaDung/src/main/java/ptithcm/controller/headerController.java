@@ -1,43 +1,41 @@
 package ptithcm.controller;
-
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javassist.expr.NewArray;
-import ptithcm.Entity.ChiTietKMEntity;
-import ptithcm.Entity.DonHangEntity;
-import ptithcm.Entity.GioHangEntity;
-import ptithcm.Entity.KhuyenMaiEntity;
-import ptithcm.Entity.NguoiDungEntity;
+import org.springframework.web.bind.annotation.RequestParam;
 import ptithcm.Entity.SanPhamEntity;
-import ptithcm.service.ChiTietKMService;
-import ptithcm.service.DonHangService;
-import ptithcm.service.KhuyenMaiService;
+import ptithcm.service.SanPhamService;
 
 @Transactional
 @Controller
 @RequestMapping("/user")
 public class headerController {
 	@Autowired
-	SessionFactory factory;
-	@Autowired
-	private KhuyenMaiService khuyenMaiService;
-	@Autowired
-	private ChiTietKMService chiTietKMService;
-	
+	private SanPhamService SanPhamService;
 
+
+	@RequestMapping(params = "btnSearch")
+	public String timSanPham(ModelMap model, @RequestParam(value = "key", required = false) String key,
+			HttpServletRequest request) {
+       List<SanPhamEntity>listSP=SanPhamService.laySanPhamTheoMa(key);
+       model.addAttribute("key", key);
+       model.addAttribute("listSP", listSP);
+       int so = listSP.size();
+       model.addAttribute("soLuong", so);
+       String mess =""; 
+       if (listSP.isEmpty()) mess = "Không tìm thấy sản phẩm";
+       else {
+    	    mess = "Tìm thấy "+so+" sản phẩm";
+    	   
+	}
+       model.addAttribute("message", mess);	
+        return "sanPham/timKiem";
+	}
+	
 	@RequestMapping(params = "voucher")
 	public String ToiTrangKM() {
 
@@ -61,5 +59,6 @@ public class headerController {
 		return "redirect:/gioHang.htm";
 	}
 
+	
 	
 }

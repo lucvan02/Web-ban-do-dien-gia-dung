@@ -237,9 +237,6 @@ body {
 	color:var(--header-color);
 }
 
-/* #content {
-	margin-top: 10px;
-} */
 
 .content-part {
 	position: relative;
@@ -441,63 +438,32 @@ body {
   color: #3b71ca !important;
 }
 
-
-
-.btnApp{
-	background-color: #ff2100ba;
-	color: white;
-	
-}
-.text-in-filter{
-	font-weight:bold;
-}
-.btn-view-all-pro{
-	 margin-top:20px;
-     margin-left:39%;
-     background-color: white;
-   
+.container{
+	margin-left:15%;
 }
 
-/* .view-more a{
-	display: block;
-    overflow: hidden;
-    position: relative;
-    line-height: 40px;
-    font-size: 14px;
-    color: #333;
-    text-align: center;
-    border-radius: 4px;
-   margin-left:55%;
-    width: 340px;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-}
-
-a {
-    text-decoration: none;
-    transition: .2s;
-    color: #288ad6;
-} */
 .anhsp{
 	height:190px;
 	width:100%;
 }
 
-#no-product-mess{
+#message{
 	color:red;
-	white-space: nowrap;
-    padding-left: 30%;
+	display: flex;
+	justify-content: center;
     
 }
 
 .pagination-wrapper {
   
- margin-left:55%;
+ margin-left:42%;
 }
 
+.hide {
+  display: none;
+}
 
 #loadMoreButton{
-    margin-top: -9px;
-    margin-left: 58%;
-    background-color: white;
+    margin-left:45%;
+    background-color: #fff;
 }

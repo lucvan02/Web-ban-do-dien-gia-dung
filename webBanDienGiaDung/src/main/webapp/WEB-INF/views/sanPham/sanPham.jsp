@@ -58,9 +58,9 @@
 					<!-- link -->
 					<a href=".htm"> <img src="assets/img/logo.jpg" alt="" id="logo" /></a>
 					<div id="seacrh-box">
-						<input type="text" name="" id="search" placeholder="Bạn tìm gì..." />
-						<button id="search-icon">
-							<i class="ti-search"></i>
+						<input type="text" name="key" id="search" placeholder="Bạn tìm gì..." />
+						<button id="search-icon" type="submit" name="btnSearch">
+							<i class="ti-search "></i>
 						</button>
 					</div>
 

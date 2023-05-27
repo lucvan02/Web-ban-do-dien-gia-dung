@@ -28,46 +28,31 @@ import ptithcm.service.KhuyenMaiService;
 public class KhuyenMaiController {
 
 	@Autowired
-	SessionFactory factory;
-
-	@Autowired
 	private KhuyenMaiService khuyenMaiService;
 	
 	@Autowired
 	private ChiTietKMService chiTietKMService;
 
 	@RequestMapping()
-
 	public String khuyenMai(ModelMap model) {
 
-		Session session = factory.getCurrentSession();
-
-		List<KhuyenMaiEntity> khuyenMaiList = khuyenMaiService.khuyenMailist();
-		model.addAttribute("khuyenMaiList", khuyenMaiList);
+		List<KhuyenMaiEntity> khuyenMaiList = khuyenMaiService.khuyenMailist();		
 		List<ChiTietKMEntity> ctkmList = chiTietKMService.ctkmList();
-		model.addAttribute("ctkmList", ctkmList);
-
-		
+		model.addAttribute("khuyenMaiList", khuyenMaiList);
+		model.addAttribute("ctkmList", ctkmList);		
 		return "khuyenMai/khuyenMai";
 	}
 	
 
-	
-
-
-
 	@RequestMapping(params = "btnSearch")
 	public String TimkhuyenMai(ModelMap model, @RequestParam(value = "MaSP", required = false) String maSP,
 			HttpServletRequest request) {
-   
-		Session session = factory.getCurrentSession();
-
+  
 		List<KhuyenMaiEntity> khuyenMaiList = khuyenMaiService.khuyenMailist();
-		model.addAttribute("khuyenMaiList", khuyenMaiList);
 		List<ChiTietKMEntity> ctkmList = chiTietKMService.ctkmList();
+		model.addAttribute("khuyenMaiList", khuyenMaiList);
 		model.addAttribute("ctkmList", ctkmList);
-        model.addAttribute("maSP", maSP);
-      
+        model.addAttribute("maSP", maSP);      
         if (maSP.isEmpty()||maSP ==null) {
         	 model.addAttribute("message", "Vui lòng nhập mã sản phẩm cần tìm");
         	return "khuyenMai/khuyenMai";

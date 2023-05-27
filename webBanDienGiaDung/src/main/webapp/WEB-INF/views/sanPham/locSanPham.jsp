@@ -25,7 +25,10 @@
 <link rel="stylesheet"
 	href="<c:url value="/assets/font/themify-icons/themify-icons.css"/>" />
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+	crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -53,37 +56,39 @@
 					<!-- link -->
 					<a href=".htm"> <img src="assets/img/logo.jpg" alt="" id="logo" /></a>
 					<div id="seacrh-box">
-						<input type="text" name="" id="search" placeholder="Bạn tìm gì..." />
-						<button id="search-icon">
-							<i class="ti-search"></i>
+						<input type="text" name="key" id="search"
+							placeholder="Bạn tìm gì..." />
+						<button id="search-icon" type="submit" name="btnSearch">
+							<i class="ti-search "></i>
 						</button>
 					</div>
 
 					<button id="voucher" name="voucher">
 						<i class="ti-gift"></i><span> Khuyến mãi</span>
-						<button id="history" name="history">
-							<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
+					</button>
+					<button id="history" name="history">
+						<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
+					</button>
+					<button id="cart" name="cart">
+						<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
+					</button>
+					<c:if test="${empty sessionScope.USER}">
+
+						<button id="login" name="login">
+							<i class="ti-user"></i> <span> Đăng nhập</span>
 						</button>
-						<button id="cart" name="cart">
-							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
+
+					</c:if>
+					<c:if test="${not empty sessionScope.USER}">
+
+						<button id="info" name="info">
+							<i class="ti-user"></i> <span> ${USER.hoTen}</span>
 						</button>
-						<c:if test="${empty sessionScope.USER}">
+						<div class="logout">
+							<a href="user/logout.htm">Đăng Xuất</a>
+						</div>
 
-							<button id="login" name="login">
-								<i class="ti-user"></i> <span> Đăng nhập</span>
-							</button>
-
-						</c:if>
-						<c:if test="${not empty sessionScope.USER}">
-
-							<button id="info" name="info">
-								<i class="ti-user"></i> <span> ${USER.hoTen}</span>
-							</button>
-							<div class="logout">
-								<a href="user/logout.htm">Đăng Xuất</a>
-							</div>
-
-						</c:if>
+					</c:if>
 				</div>
 			</form>
 
@@ -105,176 +110,161 @@
 
 
 	<!-- CONTENT -->
-<%-- 	
-<%
-    int count = 6;
-%> --%>
 
-		
-			
-			
-<section class="">
-  <div class="container " style="padding:50px 50px; ">
-  
-    <div class="row">
-      <!-- sidebar -->
-      <div class="col-lg-3 pt-1"  >
-      <form action="loaisanpham/${loaiSp}.htm" method="post">
-        
-        <!-- Collapsible wrapper -->
-        <div class="collapse card d-lg-block mb-5" id="navbarSupportedContent">
-          <div class="accordion" id="accordionPanelsStayOpenExample">
 
-            <div class="accordion-item ">
-              <h2 class="accordion-header" id="headingTwo">
-                <button
-                        class="accordion-button text-dark bg-light text-in-filter"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseTwo"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseTwo"
-                        data-bs-parent="#accordionExample"
-                        >
-                  Thương hiệu
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <div>
-                  <c:forEach var="th" items="${thuongHieuList}">
-                 
-                    <!-- Checked checkbox -->
-                    <div class="form-check">
-                    <c:choose> 
-                    <c:when test="${selectedBrands.contains(th.tenThuongHieu)}" >
-                     <input class="form-check-input" type="checkbox" value="${th.tenThuongHieu}" name ="brands" id="flexCheckChecked1" checked />
-                    </c:when> 
-                  
-                    <c:otherwise>
-						 <input class="form-check-input" type="checkbox" value="${th.tenThuongHieu}" name ="brands" id="flexCheckChecked1"  />
-					</c:otherwise>
-					</c:choose>
-                     <%--  <input class="form-check-input" type="checkbox" value="${th.tenThuongHieu}" name ="brands" id="flexCheckChecked1"   />--%>
-                      <label class="form-check-label" for="flexCheckChecked1">${th.tenThuongHieu}</label>
-                      <span class="badge badge-secondary float-end">120</span>
-                    </div>
-                    </c:forEach>                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header " id="headingThree">
-                <button
-                       
-                         
-                        class="accordion-button text-dark bg-light text-in-filter"
-                        type="button"
-                        data-bs-toggle="collapse" 
-                         data-bs-target="#collapseThree" 
-                         aria-expanded="false" 
-                         aria-controls="collapseThree" 
-                         data-bs-parent="#accordionExample"                         
-                         >
-                    
-                  Giá
-                </button>
-              </h2 >            
-                <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  
-                  <div class="row mb-3">
-                  <div>
-                  <div class="range">
-                    <input type="range" class="form-range" id="customRange1"  min="0" max="10000000"/>                  
-                  </div>
-                 
-                    <div class="col-8">
-                      <p class="mb-0">
-                        Min
-                      </p>
-                      <div class="form-outline">
-                        <input type="number" id="typeNumber" name ="minPrice" class="form-control"  value="${minPrice != 0 ? minPrice : ''}"/>                     
-                      </div>
-                    </div>
-                    </div>
-                    
-                    <div>
-                     <div class="range">
-                    <input type="range" class="form-range" id="customRange2"  min="0" max="100000000"/>                   
-                     </div>
-                    <div class="col-8">
-                      <p class="mb-0">
-                        Max
-                      </p>
-                      <div class="form-outline">
-                        <input type="number" id="typeNumber1" name ="maxPrice" class="form-control"   value="${maxPrice != 999999999 ? maxPrice : ''}"/>
-                        
-                      </div>
-                      </div>
-                    </div> 
-                   
-                  </div>
-                
-                </div>
-              </div>
-            </div>
-          
-            
-          
-           
-              <button name = "btnApply" type="submit" class="btn btn-danger w-100 border border-secondary btnApp">Áp dụng</button>
-          </div>
-        </div>
-        </form>
-      </div>
-      <!-- sidebar -->
-      <!-- content -->
-   
-     
-     
-      <div class="col-lg-9"  >  
-        <div class="row">
-        <div>
-        <h2  id="no-product-mess">${message }</h2>
-        </div>
-         <c:forEach var="sanPham" items="${categoryList}"  >   
-        
-             
-            <div class="col-lg-4 col-md-6 col-sm-8 d-flex sp"  >
-            <div class="card border-3 mb-4 mx-auto pr">
-            <div class="item">
-            <a class="item" href="sanpham/${sanPham.maSP}.htm"> 
-            <img
-              class="  anhSanPham " src="${sanPham.hinhAnhDaiDien}" />
-              </a>
-             </div>
-                <div class="card-body d-flex flex-column">
-                <div class= "pb-0 text-center " >
-					<h6 class=" tenSanPham text-primary">${sanPham.tenSanPham}</h6>
-						<span class="giaSanPham" ><fmt:formatNumber value="${sanPham.donGia}" pattern="#,##0" />đ</span>							
-                </div>
-                <%-- <div class=" text-center card-footer align-items-end pt-3  pb-0 mt-auto">
-                  <!-- <a href="#!" class=" btn btn-danger shadow-0 me-1" style="background-color:#dc3545;">Thêm vào giỏ</a> -->  
-                    <a href="sanpham/${sanPham.maSP}.htm" class="btn btn-primary rounded-pill px-3 py-2" style="background-color: #f54a4a; border-color: #f54a4a;">
-                Xem chi tiết
-              </a>      
-                </div> --%>
-              </div>
-            </div>
-          </div>     
-          </c:forEach>
-          </div> 
-          
-          
-	
-        </div>
+	<section class="">
+		<div class="container " style="padding: 50px 50px;">
 
-        </div>
-    </div>           
-</section>
-        
+			<div class="row">
+				<!-- sidebar -->
+				<div class="col-lg-3 pt-1">
+					<form action="loaisanpham/${loaiSp}.htm" method="post">
+
+						<!-- Collapsible wrapper -->
+						<div class="collapse card d-lg-block mb-5 "
+							id="navbarSupportedContent">
+							<div class="accordion" id="accordionPanelsStayOpenExample">
+
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="headingTwo">
+										<button
+											class="accordion-button text-dark bg-light text-in-filter"
+											type="button" data-bs-toggle="collapse"
+											data-bs-target="#panelsStayOpen-collapseTwo"
+											aria-expanded="false"
+											aria-controls="panelsStayOpen-collapseTwo"
+											data-bs-parent="#accordionExample">Thương hiệu</button>
+									</h2>
+									<div id="panelsStayOpen-collapseTwo"
+										class="accordion-collapse collapse show"
+										aria-labelledby="headingTwo"
+										data-bs-parent="#accordionExample">
+										<div class="accordion-body"
+											style="max-height: 308px; overflow-y: scroll;">
+											<div>
+												<c:forEach var="th" items="${thuongHieuList}">
+													<!-- Checked checkbox -->
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox"
+															value="${th.tenThuongHieu}" name="brands"
+															id="flexCheckChecked1" /> <label
+															class="form-check-label" for="flexCheckChecked1">${th.tenThuongHieu}</label>
+														<span class="badge badge-secondary float-end">120</span>
+													</div>
+												</c:forEach>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="accordion-item">
+									<h2 class="accordion-header " id="headingThree">
+										<button
+											class="accordion-button text-dark bg-light text-in-filter"
+											type="button" data-bs-toggle="collapse"
+											data-bs-target="#collapseThree" aria-expanded="false"
+											aria-controls="collapseThree"
+											data-bs-parent="#accordionExample">
+
+											Giá</button>
+									</h2>
+									<div id="collapseThree"
+										class="accordion-collapse collapse show"
+										aria-labelledby="headingThree"
+										data-bs-parent="#accordionExample">
+										<div class="accordion-body">
+
+											<div class="row mb-3">
+												<div>
+													<div class="range">
+														<input type="range" class="form-range" id="customRange1"
+															min="0" max="10000000" />
+													</div>
+
+													<div class="col-8">
+														<p class="mb-0">Min</p>
+														<div class="form-outline">
+															<input type="number" id="typeNumber" name="minPrice"
+																class="form-control"
+																value="${minPrice != 0 ? minPrice : ''}" />
+														</div>
+													</div>
+												</div>
+
+												<div>
+													<div class="range">
+														<input type="range" class="form-range" id="customRange2"
+															min="0" max="100000000" />
+													</div>
+													<div class="col-8">
+														<p class="mb-0">Max</p>
+														<div class="form-outline">
+															<input type="number" id="typeNumber1" name="maxPrice"
+																class="form-control"
+																value="${maxPrice != 999999999 ? maxPrice : ''}" />
+
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<button name="btnApply" type="submit"
+									class="btn btn-danger w-100 border border-secondary btnApp">Áp
+									dụng</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- sidebar -->
+				<!-- content -->
+
+
+
+				<div class="col-lg-9">
+					<div class="row">
+						<div>
+							<h2 id="no-product-mess">${message }</h2>
+						</div>
+						<c:forEach var="sanPham" items="${categoryList}" varStatus="loop">
+							<div
+								class="col-lg-4 col-md-6 col-sm-8 d-flex sp ${loop.index >= 3 ? 'd-none' : ''}">
+								<div class="card border-3 mb-4 mx-auto pr">
+									<div class="item">
+										<a class="item" href="sanpham/${sanPham.maSP}.htm"> <img
+											class="  anhSanPham " src="${sanPham.hinhAnhDaiDien}" />
+										</a>
+									</div>
+									<div class="card-body d-flex flex-column">
+										<div class="pb-0 text-center ">
+											<h6 class=" tenSanPham text-primary">${sanPham.tenSanPham}</h6>
+											<span class="giaSanPham"><fmt:formatNumber
+													value="${sanPham.donGia}" pattern="#,##0" />đ</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+
+
+
+				</div>
+
+			</div>
+			<c:if test="${categoryList.size()>6}">
+				<button id="loadMoreButton" class="btn btn-light btn-sm">Xem
+					thêm</button>
+			</c:if>
+
+		</div>
+	</section>
 
 	<!-- FOOTER -->
 	<div id="footer">
@@ -303,7 +293,9 @@
 		<hr />
 		<div id="copy-right">© 2023 PTIT.HCM</div>
 	</div>
-<button onclick="topFunction()" id="back-top"><i class="ti-angle-double-up"></i></button>
+	<button onclick="topFunction()" id="back-top">
+		<i class="ti-angle-double-up"></i>
+	</button>
 
 
 
@@ -319,5 +311,6 @@
 
 	<script src="<c:url value='assets/js/main.js'/>"></script>
 	<script src="<c:url value='assets/js/loaiSanPham.js'/>"></script>
+	<script src="<c:url value='assets/js/search.js'/>"></script>
 </body>
 </html>
