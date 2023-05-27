@@ -27,7 +27,7 @@ public class headerController {
        int so = listSP.size();
        model.addAttribute("soLuong", so);
        String mess =""; 
-       if (listSP.isEmpty()) mess = "Không tìm thấy sản phẩm";
+       if (listSP.isEmpty()) mess = "Không có sản phẩm này";
        else {
     	    mess = "Tìm thấy "+so+" sản phẩm";
     	   

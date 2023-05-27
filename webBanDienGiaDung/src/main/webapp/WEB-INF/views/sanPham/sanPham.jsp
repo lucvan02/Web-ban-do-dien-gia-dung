@@ -66,7 +66,7 @@
 
 					<button id="voucher" name="voucher">
 						<i class="ti-gift"></i><span> Khuyến mãi</span>
-
+					</button>
 						<button id="cart" name="cart">
 							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
 						</button>

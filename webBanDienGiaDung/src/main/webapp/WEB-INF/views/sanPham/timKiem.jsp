@@ -62,9 +62,7 @@
 
 					<button id="voucher" name="voucher">
 						<i class="ti-gift"></i><span> Khuyến mãi</span>
-						<button id="history" name="history">
-							<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
-						</button>
+					</button>
 						<button id="cart" name="cart">
 							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
 						</button>
@@ -76,6 +74,9 @@
 
 						</c:if>
 						<c:if test="${not empty sessionScope.USER}">
+							<button id="history" name="history">
+								<i class="ti-package"></i><span> Lịch sử đơn hàng</span>
+							</button>
 
 							<button id="info" name="info">
 								<i class="ti-user"></i> <span> ${USER.hoTen}</span>
@@ -87,6 +88,7 @@
 						</c:if>
 				</div>
 			</form>
+
 
 
 			<div id="header-bottom">
@@ -102,56 +104,24 @@
 		</div>
 	</div>
 
-<%-- 
+<!-- CONTENT -->
 
-<div>
+ <div>
         <h2  id="message">${message }</h2>
-</div>
-<hr>	 --%>
-			
-<%-- 
-		
+ </div>
+ <hr>			
 
-  <div class="container ">
-  
-  
-      <div class="col-lg-9"  >     
-        <div class="row">
-        
-        <c:forEach var="sanPham" items="${listSP}" >   
-        
-             
-            <div class="col-lg-4 col-md-6 col-sm-8 d-flex sp"  >
-            <div class="card border-3 mb-4 mx-auto pr">
-            <div class="item">
-            <a class="item" href="sanpham/${sanPham.maSP}.htm"> 
-            <img
-              class=" anhSanPham " src="${sanPham.hinhAnhDaiDien}" />
-              </a>
-             </div>
-                <div class="card-body d-flex flex-column">
-                <div class= "pb-0 text-center " >
-					<h6 class=" tenSanPham text-primary">${sanPham.tenSanPham}</h6>
-						<span class="giaSanPham" ><fmt:formatNumber value="${sanPham.donGia}" pattern="#,##0" />đ</span>							
-                </div>
-              </div>
-            </div>
-          </div>     
-          </c:forEach>
-          </div> 
-        </div>
 
-     
-    </div>           
+ <c:if test="${listSP.size()==0}">
+   <div class="d-flex justify-content-center align-items-center">
+	   <img src="assets/img/not-found.png"  width="300" height="320" alt="..." />
+   </div>
+ </c:if>
 
-        <button>Xem thêm</button> --%>
 
-<div>
-        <h2  id="message">${message }</h2>
-</div>
-<hr>			
-
-  <div class="container ">
+ <section>
+ <div class="container " style="padding-left:200px;">
+   <div class="row">
       <div class="col-lg-9"  >     
         <div class="row">
         
@@ -175,15 +145,18 @@
           </c:forEach>
           </div> 
         </div>
-
-     
-    </div>           
+		</div>   
 		<c:if test="${listSP.size()>6}">
 		 <button id="loadMoreButton" class="btn btn-light btn-sm">Xem thêm</button>		
 		</c:if>
+    </div> 
+     </section>
+               
+		
+       
        
 	<!-- FOOTER -->
-	<div id="footer">
+	<div id="footer" class="">
 		<div id="footer-body" class="width-page">
 			<div>
 				<img src="assets/img/logo.jpg" alt="" /> <span

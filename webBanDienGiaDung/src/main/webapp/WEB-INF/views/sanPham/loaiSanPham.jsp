@@ -65,7 +65,7 @@
 
 					<button id="voucher" name="voucher">
 						<i class="ti-gift"></i><span> Khuyến mãi</span>
-
+					</button>
 						<button id="cart" name="cart">
 							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
 						</button>
@@ -102,7 +102,6 @@
 			</div>
 		</div>
 	</div>
-
 
 
 
@@ -207,10 +206,6 @@
 										</div>
 									</div>
 								</div>
-
-
-
-
 								<button name="btnApply" type="submit"
 									class="btn btn-danger w-100 border border-secondary btnApp">Áp
 									dụng</button>
@@ -219,10 +214,8 @@
 					</form>
 				</div>
 				<!-- sidebar -->
+				
 				<!-- content -->
-
-
-
 				<div class="col-lg-9">
 					<div class="row">
 						<div>

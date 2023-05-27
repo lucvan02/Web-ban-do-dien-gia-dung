@@ -237,6 +237,9 @@ body {
 	color:var(--header-color);
 }
 
+/* #content {
+	margin-top: 10px;
+} */
 
 .content-part {
 	position: relative;
@@ -365,11 +368,6 @@ body {
 	
 } 
 
-
-
-.display-none{
-	display:none; 
-} 
  
 #footer {
 	background-color: var(--header-color);
@@ -427,8 +425,6 @@ body {
 
 
 
-
-
 .icon-hover:hover {
   border-color: #3b71ca !important;
   background-color: white !important;
@@ -438,14 +434,12 @@ body {
   color: #3b71ca !important;
 }
 
-.container{
-	margin-left:15%;
-}
-
 .anhsp{
 	height:190px;
 	width:100%;
 }
+
+
 
 #message{
 	color:red;
@@ -454,16 +448,8 @@ body {
     
 }
 
-.pagination-wrapper {
-  
- margin-left:42%;
-}
-
-.hide {
-  display: none;
-}
 
 #loadMoreButton{
-    margin-left:45%;
+    margin-left:33%;
     background-color: #fff;
 }
