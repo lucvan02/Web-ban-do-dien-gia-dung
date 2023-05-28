@@ -47,7 +47,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Mã đơn.</th>
+                                    <th scope="col">Mã đơn</th>
                                     <!-- <th scope="col">Trạng thái</th> -->
                                     <th scope="col">Người nhận</th>
                                     <!-- <th scope="col">Địa chỉ</th> -->
@@ -101,7 +101,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Mã đơn.</th>
+                                    <th scope="col">Mã đơn</th>
                                     <!-- <th scope="col">Trạng thái</th> -->
                                     <th scope="col">Người nhận</th>
                                     <!-- <th scope="col">Địa chỉ</th> -->
@@ -149,7 +149,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Mã đơn.</th>
+                                    <th scope="col">Mã đơn</th>
                                     <!-- <th scope="col">Trạng thái</th> -->
                                     <th scope="col">Người nhận</th>
                                     <!-- <th scope="col">Địa chỉ</th> -->
@@ -191,7 +191,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Mã đơn.</th>
+                                    <th scope="col">Mã đơn</th>
                                     <!-- <th scope="col">Trạng thái</th> -->
                                     <th scope="col">Người nhận</th>
                                     <!-- <th scope="col">Địa chỉ</th> -->

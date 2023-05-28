@@ -1,5 +1,7 @@
 package ptithcm.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -73,7 +75,10 @@ public class nguoiDungDaoImpl implements nguoiDungDao {
 		query.setParameter("userName", userName);
 		query.setParameter("email", email);
 
-		NguoiDungEntity user = (NguoiDungEntity) query.uniqueResult();
-		return user;
+		List<NguoiDungEntity> user = query.list();
+		if(user.size()>0)
+		return user.get(0);
+		
+		return null;
 	}
 }

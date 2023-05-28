@@ -114,7 +114,7 @@
 
  <c:if test="${listSP.size()==0}">
    <div class="d-flex justify-content-center align-items-center">
-	   <img src="assets/img/not-found.png"  width="300" height="320" alt="..." />
+	   <img src="assets/img/not-found.png"   width="205" height="205" alt="..." />
    </div>
  </c:if>
 
