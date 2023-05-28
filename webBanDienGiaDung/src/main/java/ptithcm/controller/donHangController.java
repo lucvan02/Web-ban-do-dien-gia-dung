@@ -106,7 +106,8 @@ public class donHangController {
 		  
 		  sp=sanPhamService.laySanPham(gh.getSanPham().getMaSP());
 		  sp.setSoLuong(sp.getSoLuong()-gh.getSoLuong());
-		  sanPhamService.updateSanPham(sp);
+		  sanPhamService.updateSanPham(sp);  
+		  gioHangService.deleteGioHang(gh.getMaGh());
 		  
 		  }
 
