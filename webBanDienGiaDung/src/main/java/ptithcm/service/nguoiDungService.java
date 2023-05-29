@@ -1,5 +1,7 @@
 package ptithcm.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,4 +20,5 @@ public interface nguoiDungService{
 	public NguoiDungEntity findUserByNameAndEmail(String userName, String email);
 	public String maHoaMatKhau(String str) ;
 	public boolean kiemTraMatKhau(String password, String hashedPassword) ;
+	public List<NguoiDungEntity> layAllNguoiDung();
 }

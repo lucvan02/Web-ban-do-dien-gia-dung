@@ -1,5 +1,7 @@
 package ptithcm.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,11 @@ public class nguoiDungServiceImpl implements nguoiDungService{
 	@Override
 	public boolean kiemTraMatKhau(String password, String hashedPassword) {
 	    return BCrypt.checkpw(password, hashedPassword);
+	}
+
+	@Override
+	public List<NguoiDungEntity> layAllNguoiDung() {
+		return nguoiDungDao.layAllNguoiDung();
 	}
 
 	

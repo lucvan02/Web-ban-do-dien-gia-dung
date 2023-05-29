@@ -43,12 +43,12 @@
                             </a>
                         </li>
                         
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="admin/sale.htm">
                                 <i class="fas fa-file-alt"></i>
                                 Khuyến mãi
                             </a>
-                        </li>
+                        </li> -->
 
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="admin/account.htm">

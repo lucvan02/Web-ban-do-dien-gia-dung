@@ -20,6 +20,7 @@ import ptithcm.service.ChiTietKMService;
 import ptithcm.service.DonHangService;
 import ptithcm.service.KhuyenMaiService;
 import ptithcm.service.SanPhamService;
+import ptithcm.service.nguoiDungService;
 
 @Transactional
 @Controller
@@ -27,11 +28,11 @@ import ptithcm.service.SanPhamService;
 public class adminController {
 	
 	@Autowired
-	SanPhamService sanPhamService;
-	
+	SanPhamService sanPhamService;	
 	@Autowired
 	DonHangService donHangService;
-	
+	@Autowired
+	nguoiDungService nguoiDungService;
 	
 	@Autowired
 	private KhuyenMaiService khuyenMaiService;
@@ -49,10 +50,9 @@ public class adminController {
 		for (DonHangEntity donHang : donThanhCong) {
 		    tongDoanhThu += donHang.getTongTien();
 		}
-
-		
-		
+	
 		model.addAttribute("tongDoanhThu", tongDoanhThu);
+		
 		// Tính tổng doanh thu theo từng tháng
 	    List<Integer> monthlyRevenues = new ArrayList<>();
 	    for (int i = 1; i <= 12; i++) {
@@ -61,6 +61,12 @@ public class adminController {
 	    }
 
 	    model.addAttribute("monthlyRevenues", monthlyRevenues);
+		
+		//Thống kê số người dùng
+		
+		List<NguoiDungEntity> listNguoiDung = nguoiDungService.layAllNguoiDung();
+		int tongSoNguoiDung=listNguoiDung.size();
+		model.addAttribute("tongSoNguoiDung", tongSoNguoiDung);
 		
 	    // Thống kêsố đơn hàng
 		int tongDonChoXacNhan= donHangService.layDonHangTheoTrangThai(1).size();
