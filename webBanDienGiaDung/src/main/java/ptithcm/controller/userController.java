@@ -137,7 +137,7 @@ public class userController {
 		HttpSession session0 = request.getSession();
 		session0.setAttribute("USER", check);
 		
-		if (check.isQuyen()) { // Kiểm tra quyền người dùng là admin
+		if (check.getQuyen()!=0) { // Kiểm tra quyền người dùng là admin
 			return "redirect:/admin/index.htm"; // Trả về trang quản trị admin
 		}
 		
@@ -247,6 +247,7 @@ public class userController {
 		user.setNgaySinh(ns);
 		user.setHoTen(capitalizeString(user.getHoTen()));
 		user.setTrangThai(true);
+		user.setQuyen(0);
 		HttpSession session = request.getSession();
 		session.setAttribute("USERSIGNUP", user);
 		String otp = taoOTP();

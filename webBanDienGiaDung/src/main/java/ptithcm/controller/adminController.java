@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
+import org.hibernate.cfg.annotations.MapKeyColumnDelegator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ptithcm.Entity.ChiTietKMEntity;
@@ -20,6 +22,7 @@ import ptithcm.service.ChiTietKMService;
 import ptithcm.service.DonHangService;
 import ptithcm.service.KhuyenMaiService;
 import ptithcm.service.SanPhamService;
+import ptithcm.service.nguoiDungService;
 
 @Transactional
 @Controller
@@ -32,6 +35,8 @@ public class adminController {
 	@Autowired
 	DonHangService donHangService;
 	
+	@Autowired
+	nguoiDungService nguoiDungService;
 	
 	@Autowired
 	private KhuyenMaiService khuyenMaiService;
@@ -88,14 +93,32 @@ public class adminController {
 	
 	
 	@RequestMapping("account")
-	public String account(HttpServletRequest request) {
+	public String account(HttpServletRequest request,ModelMap model) {
 		HttpSession session0 = request.getSession();
-		NguoiDungEntity user = (NguoiDungEntity) session0.getAttribute("USER");
-		return "admin/account";
+	List<NguoiDungEntity> adminList= nguoiDungService.getAllUserByRole(1);
+	model.addAttribute("adminList",adminList);
+		return "admin/adminAccount";
 	}
 	
+	@RequestMapping("inforAcc/{maNd}")
+	public String inforAcc(@PathVariable("maNd") int maNd,HttpServletRequest request,ModelMap model) {
+	HttpSession session0 = request.getSession();
+	NguoiDungEntity user = nguoiDungService.findUserById(maNd);
+	model.addAttribute("user",user);
+	
+	return "admin/inforAcc";
+}
+	
+	@RequestMapping("createAcc")
+	public String createAcc(HttpServletRequest request,ModelMap model) {
+	NguoiDungEntity admin=new NguoiDungEntity();
+	model.addAttribute("admin",admin);
+	return "admin/createAcc";
+}
+
+	
 	@RequestMapping("me")
-		public String me(HttpServletRequest request) {
+		public String me(HttpServletRequest request,ModelMap model) {
 		HttpSession session0 = request.getSession();
 		NguoiDungEntity user = (NguoiDungEntity) session0.getAttribute("USER");
 		return "admin/me";

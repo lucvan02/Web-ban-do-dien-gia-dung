@@ -102,7 +102,7 @@
 	</div>
 
 	<h6 style="margin-left:80%;">
-		<c:if test="${USER.isQuyen()}">
+		<c:if test="${USER.getQuyen()!=0}">
 			<a href="admin/index.htm" >
 				Tới trang quản lý
 			</a>
