@@ -117,18 +117,13 @@ public class userController {
 
 			errors.rejectValue("userName", "user", "Tài khoản không tồn tại !!!");
 			loi = Boolean.FALSE;
-
-//		} else if ((user.getUserName().equals(check.getUserName()) || user.getUserName().equals(check.getEmail()))
-//				&& !userService.maHoaMatKhau(user.getPassWord()).equals(check.getPassWord())) {
-//			errors.rejectValue("passWord", "user", "Sai mật khẩu !!!");
-//			loi = Boolean.FALSE;
 			
 		} else if ((user.getUserName().equals(check.getUserName()) || user.getUserName().equals(check.getEmail()))
 				&& !userService.kiemTraMatKhau(user.getPassWord(), check.getPassWord())) {
 			errors.rejectValue("passWord", "user", "Sai mật khẩu !!!");
 			loi = Boolean.FALSE;
 
-		} 
+		}
 		
 		else if (check.isTrangThai()==false) {
 			errors.rejectValue("userName", "user", "Tài khoản của bạn đã bị khoá !!!");
@@ -466,8 +461,7 @@ public class userController {
 		userService.updateUser(userSave);
 
 		model.addAttribute("user", userSave);
-model.addAttribute("successMessage", "Cập nhật thông tin thành công");
-		
+
 		return "/user/user-info";
 	}
 

@@ -31,14 +31,14 @@
   <body id="reportsPage">
     <div class="" id="home">
         <%@ include file="include/menu.jsp" %> 
-      <%--   <%@ include file="include/footer.jsp" %> --%>
+      
         
       <div class="container mt-5">
         <div class="row tm-content-row">
           <div class="col-12 tm-block-col">
             <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-              <h2 class="tm-block-title">Danh sách tài khoản Admin đang hoạt động</h2>
-              <a href="admin/createAcc.htm"><button type="button" class="btn btn-primary">Tạo tài khoản Admin</button></a>
+              <h2 class="tm-block-title">Danh sách tài khoản Admin</h2>
+              <a href="admin/createAcc.htm"><button type="button" class="btn btn-primary">Thêm tài khoản Admin</button></a>
              <table class="table table-striped">
   <thead>
     <tr>
@@ -92,10 +92,7 @@
       </div>
 
 
- 
-    
-
-
+	  <%-- <%@ include file="include/footer.jsp" %> --%>
     </div>
 
     <script src="js/jquery-3.3.1.min.js"></script>

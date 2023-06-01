@@ -43,26 +43,29 @@
                             </a>
                         </li>
                         
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="admin/sale.htm">
                                 <i class="fas fa-file-alt"></i>
                                 Khuyến mãi
                             </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin/account.htm">
-                               <i class="fas fa-user-secret"></i>
-                               Quản lý tài khoản admin
-                            </a>
-                        </li>
+                        </li> -->
+                        
+						
                          <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="admin/customerAccount.htm">
                                <i class="fas fa-users"></i>
-                               Quản lý tài khoản khách
+                               Tài khoản khách
                             </a>
                         </li>
                         
+                        <c:if test="${USER.getQuyen()==2}">
+	                        <li class="nav-item">
+	                            <a class="nav-link" href="admin/adminAccount.htm">
+	                               <i class="fas fa-user-secret"></i>
+	                               Admin
+	                            </a>
+	                        </li>
+                        </c:if>
                     </ul>
                     
                     <ul class="navbar-nav">
