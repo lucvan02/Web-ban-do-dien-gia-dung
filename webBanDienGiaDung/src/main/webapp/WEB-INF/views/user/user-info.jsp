@@ -37,7 +37,19 @@
 	rel="stylesheet" />
 </head>
 <body>
- <a id="back" href=".htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
+
+<c:if test="${USER.getQuyen()!=0}">
+			
+			 <a id="back" href="admin/index.htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
+			
+		</c:if>
+<c:if test="${USER.getQuyen()==0}">
+		 <a id="back" href=".htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
+			
+			
+		</c:if>
+
+
 	<div class="container">
 		<div id="mucLuc">
 			<a id="info-click">Hồ Sơ</a> <a href="changePass.htm" id="changePass-click">Đổi
@@ -83,6 +95,9 @@
 
 				<button id="btn-save" name="save">Lưu</button>
 			</f:form>
+			<c:if test="${not empty successMessage}">
+					    <div class="alert alert-success">${successMessage}</div>
+					</c:if>
 		</div>
 	</div>
 	

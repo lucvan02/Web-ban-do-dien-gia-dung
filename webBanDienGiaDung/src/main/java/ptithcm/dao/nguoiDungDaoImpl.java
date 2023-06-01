@@ -10,6 +10,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
 import ptithcm.Entity.NguoiDungEntity;
 
 @Transactional
@@ -86,8 +88,8 @@ public class nguoiDungDaoImpl implements nguoiDungDao {
 		String hql = "FROM NguoiDungEntity nd WHERE nd.quyen = :maQuyen";
 		Query query = session.createQuery(hql);
 		query.setParameter("maQuyen", maQuyen);
+
 		List<NguoiDungEntity> listUser = query.list();
 		return listUser;
-
 	}
 }
