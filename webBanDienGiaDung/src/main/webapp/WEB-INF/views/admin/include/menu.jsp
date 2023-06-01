@@ -50,14 +50,7 @@
                             </a>
                         </li> -->
                         
-						<c:if test="${USER.getQuyen()==2}">
-	                        <li class="nav-item">
-	                            <a class="nav-link" href="admin/account.htm">
-	                               <i class="fas fa-user-secret"></i>
-	                               Admin
-	                            </a>
-	                        </li>
-                        </c:if>
+						
                          <li class="nav-item">
                             <a class="nav-link" href="#">
                                <i class="fas fa-users"></i>
@@ -65,6 +58,14 @@
                             </a>
                         </li>
                         
+                        <c:if test="${USER.getQuyen()==2}">
+	                        <li class="nav-item">
+	                            <a class="nav-link" href="admin/account.htm">
+	                               <i class="fas fa-user-secret"></i>
+	                               Admin
+	                            </a>
+	                        </li>
+                        </c:if>
                     </ul>
                     
                     <ul class="navbar-nav">
