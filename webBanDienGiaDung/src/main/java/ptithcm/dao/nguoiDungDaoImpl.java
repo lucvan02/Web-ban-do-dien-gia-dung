@@ -81,11 +81,13 @@ public class nguoiDungDaoImpl implements nguoiDungDao {
 	}
 
 	@Override
-	public List<NguoiDungEntity> layAllNguoiDung() {
+	public List<NguoiDungEntity> getAllUserByRole(Integer maQuyen) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM NguoiDungEntity where quyen=false";
-	    Query query = session.createQuery(hql);
-	    List<NguoiDungEntity> listNguoiDung = query.list();
-	    return listNguoiDung;
+		String hql = "FROM NguoiDungEntity nd WHERE nd.quyen = :maQuyen";
+		Query query = session.createQuery(hql);
+		query.setParameter("maQuyen", maQuyen);
+		List<NguoiDungEntity> listUser = query.list();
+		return listUser;
+
 	}
 }

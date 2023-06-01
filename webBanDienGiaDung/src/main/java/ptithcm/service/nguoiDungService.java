@@ -18,6 +18,7 @@ public interface nguoiDungService{
 	public void updateUser(NguoiDungEntity user);
 	public NguoiDungEntity findUserById(Integer maNd);
 	public NguoiDungEntity findUserByNameAndEmail(String userName, String email);
+	public List<NguoiDungEntity>  getAllUserByRole(Integer maQuyen);
 	public String maHoaMatKhau(String str) ;
 	public boolean kiemTraMatKhau(String password, String hashedPassword) ;
 	public List<NguoiDungEntity> layAllNguoiDung();

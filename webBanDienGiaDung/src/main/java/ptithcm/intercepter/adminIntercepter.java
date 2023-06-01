@@ -15,7 +15,7 @@ public class adminIntercepter extends HandlerInterceptorAdapter{
 			throws Exception {
 	NguoiDungEntity user=(NguoiDungEntity) request.getSession().getAttribute("USER");
 		
-	if(user==null|| !user.isQuyen())
+	if(user==null|| user.getQuyen()==0)
 	{
 		response.sendRedirect(request.getContextPath() + "/khongCoQuyen.htm");
 	}

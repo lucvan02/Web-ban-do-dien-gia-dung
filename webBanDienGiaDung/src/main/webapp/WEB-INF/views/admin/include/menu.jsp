@@ -50,12 +50,18 @@
                             </a>
                         </li> -->
 
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="admin/account.htm">
-                                <i class="far fa-user"></i>
-                                Tài khoản
+                               <i class="fas fa-user-secret"></i>
+                               Quản lý tài khoản admin
                             </a>
-                        </li> -->
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="#">
+                               <i class="fas fa-users"></i>
+                               Quản lý tài khoản khách
+                            </a>
+                        </li>
                         
                     </ul>
                     

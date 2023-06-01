@@ -53,8 +53,8 @@ public class nguoiDungServiceImpl implements nguoiDungService{
 	}
 
 	@Override
-	public List<NguoiDungEntity> layAllNguoiDung() {
-		return nguoiDungDao.layAllNguoiDung();
+	public List<NguoiDungEntity> getAllUserByRole(Integer maQuyen) {
+		return nguoiDungDao.getAllUserByRole(maQuyen);
 	}
 
 	
