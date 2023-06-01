@@ -31,13 +31,13 @@
   <body id="reportsPage">
     <div class="" id="home">
         <%@ include file="include/menu.jsp" %> 
-        
+      
         
       <div class="container mt-5">
         <div class="row tm-content-row">
           <div class="col-12 tm-block-col">
             <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-              <h2 class="tm-block-title">Danh sách tài khoản Admin</h2>
+              <h2 class="tm-block-title">Danh sách tài khoản Admin đang hoạt động</h2>
               <a href="admin/createAcc.htm"><button type="button" class="btn btn-primary">Tạo tài khoản Admin</button></a>
              <table class="table table-striped">
   <thead>
@@ -46,6 +46,7 @@
       <th scope="col">USERNAME</th>
       <th scope="col">HỌ TÊN</th>
         <th scope="col">TRẠNG THÁI</th>
+          <th scope="col">THAO TÁC</th>
         <th scope="col">    </th>
     </tr>
   </thead>
@@ -65,6 +66,17 @@
       
       </c:if>
       </td>
+      <td>
+      <c:if test="${admin.trangThai==false}">
+      <a href="admin/on/${admin.maNd}.htm" style="color: #80c2eb ; font-size: 20px" >  <i id="toggleIcon1" class="fas fa-toggle-off"></i></a> 
+      
+      </c:if>
+       <c:if test="${admin.trangThai==true}">
+      <a href="admin/off/${admin.maNd}.htm" style="color: #80c2eb;font-size: 20px">  <i id="toggleIcon1" class="fas fa-toggle-on"></i></a> 
+      
+      </c:if>
+      
+      </td>
       <td><a href="admin/inforAcc/${admin.maNd}.htm" style="color:aqua">Chi tiết</a> </td>
   </tr>
   </c:forEach>
@@ -78,6 +90,9 @@
         </div>
         
       </div>
+
+
+	  <%-- <%@ include file="include/footer.jsp" %> --%>
     </div>
 
     <script src="js/jquery-3.3.1.min.js"></script>

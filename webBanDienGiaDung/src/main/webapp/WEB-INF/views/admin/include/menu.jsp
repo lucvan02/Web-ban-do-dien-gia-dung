@@ -54,14 +54,14 @@
 	                        <li class="nav-item">
 	                            <a class="nav-link" href="admin/account.htm">
 	                               <i class="fas fa-user-secret"></i>
-	                               Tài khoản admin
+	                               Admin
 	                            </a>
 	                        </li>
                         </c:if>
                          <li class="nav-item">
                             <a class="nav-link" href="#">
                                <i class="fas fa-users"></i>
-                               Tài khoản khách hàng
+                               Tài khoản khách
                             </a>
                         </li>
                         
