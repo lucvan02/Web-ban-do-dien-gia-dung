@@ -49,17 +49,19 @@
                                 Khuyến mãi
                             </a>
                         </li> -->
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin/account.htm">
-                               <i class="fas fa-user-secret"></i>
-                               Quản lý tài khoản admin
-                            </a>
-                        </li>
+                        
+						<c:if test="${USER.getQuyen()==2}">
+	                        <li class="nav-item">
+	                            <a class="nav-link" href="admin/account.htm">
+	                               <i class="fas fa-user-secret"></i>
+	                               Tài khoản admin
+	                            </a>
+	                        </li>
+                        </c:if>
                          <li class="nav-item">
                             <a class="nav-link" href="#">
                                <i class="fas fa-users"></i>
-                               Quản lý tài khoản khách
+                               Tài khoản khách hàng
                             </a>
                         </li>
                         

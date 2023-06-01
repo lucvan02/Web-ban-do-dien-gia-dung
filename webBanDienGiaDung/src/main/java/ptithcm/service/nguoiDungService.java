@@ -21,5 +21,5 @@ public interface nguoiDungService{
 	public List<NguoiDungEntity>  getAllUserByRole(Integer maQuyen);
 	public String maHoaMatKhau(String str) ;
 	public boolean kiemTraMatKhau(String password, String hashedPassword) ;
-	public List<NguoiDungEntity> layAllNguoiDung();
+
 }

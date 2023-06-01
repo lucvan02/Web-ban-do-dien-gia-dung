@@ -67,7 +67,7 @@ public class adminController {
 		
 		//Thống kê số người dùng
 		
-		List<NguoiDungEntity> listNguoiDung = nguoiDungService.layAllNguoiDung();
+		List<NguoiDungEntity> listNguoiDung = nguoiDungService.getAllUserByRole(0);
 		int tongSoNguoiDung=listNguoiDung.size();
 		model.addAttribute("tongSoNguoiDung", tongSoNguoiDung);
 		

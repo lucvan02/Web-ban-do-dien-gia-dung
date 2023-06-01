@@ -31,7 +31,7 @@
   <body id="reportsPage">
     <div class="" id="home">
         <%@ include file="include/menu.jsp" %> 
-        <%@ include file="include/footer.jsp" %>
+        
         
       <div class="container mt-5">
         <div class="row tm-content-row">
@@ -78,7 +78,6 @@
         </div>
         
       </div>
-
     </div>
 
     <script src="js/jquery-3.3.1.min.js"></script>
