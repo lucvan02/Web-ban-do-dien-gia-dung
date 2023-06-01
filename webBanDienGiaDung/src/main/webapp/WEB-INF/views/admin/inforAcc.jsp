@@ -110,7 +110,7 @@
         </div>
       </div>
       
-      <%-- <%@ include file="include/footer.jsp" %> --%>
+      <%@ include file="include/footer.jsp" %>
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->

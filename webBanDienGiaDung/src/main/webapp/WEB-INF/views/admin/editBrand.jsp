@@ -31,7 +31,6 @@
 <body id="reportsPage">
     <div class="" id="home">
         <%@ include file="include/menu.jsp" %> 
-        
     
     <div class="container tm-mt-big tm-mb-big">
       <div class="row">

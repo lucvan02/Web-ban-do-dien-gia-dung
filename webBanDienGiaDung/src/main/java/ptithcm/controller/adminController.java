@@ -106,7 +106,7 @@ public class adminController {
 	}
 	
 	
-	@RequestMapping("account")
+	@RequestMapping("adminAccount")
 	public String account(HttpServletRequest request,ModelMap model) {
 		HttpSession session0 = request.getSession();
 	List<NguoiDungEntity> adminList= nguoiDungService.getAllUserByRole(1);
@@ -257,7 +257,10 @@ public class adminController {
 	user.setTrangThai(true);
 	nguoiDungService.updateUser(user);
 	
-	return "redirect:/admin/account.htm";
+	if(user.getQuyen()==0)
+		return "redirect:/admin/customerAccount.htm";
+	
+	return "redirect:/admin/adminAccount.htm";
 }
 	@RequestMapping("off/{maNd}")
 	public String off(@PathVariable("maNd") int maNd,HttpServletRequest request,ModelMap model) {
@@ -265,9 +268,33 @@ public class adminController {
 	NguoiDungEntity user = nguoiDungService.findUserById(maNd);
 	user.setTrangThai(false);
 	nguoiDungService.updateUser(user);
+	if(user.getQuyen()==0)
+		return "redirect:/admin/customerAccount.htm";
 	
-	return "redirect:/admin/account.htm";
+	return "redirect:/admin/adminAccount.htm";
 }
+	
+	
+	@RequestMapping("customerAccount")
+	public String cusAccount(HttpServletRequest request,ModelMap model) {
+		HttpSession session0 = request.getSession();
+	List<NguoiDungEntity> cusList= nguoiDungService.getAllUserByRole(0);
+	
+	Collections.sort(cusList, new Comparator<NguoiDungEntity>() {
+	    @Override
+	    public int compare(NguoiDungEntity nguoi1, NguoiDungEntity nguoi2) {
+	        boolean trangThai1 = nguoi1.isTrangThai();
+	        boolean trangThai2 = nguoi2.isTrangThai();
+
+	        // Sắp xếp theo thứ tự giảm dần (true trước, false sau)
+	        return Boolean.compare(trangThai2, trangThai1);
+	    }
+	});
+	
+	
+	model.addAttribute("userList",cusList);
+		return "admin/customerAccount";
+	}
 	
 	@RequestMapping("me")
 		public String me(HttpServletRequest request,ModelMap model) {

@@ -147,7 +147,6 @@
 
     drawdoanhThuChart();
 
-
     function drawdonHangChart() {
         var ctx = document.getElementById('donHangChart').getContext('2d');
 
@@ -207,7 +206,6 @@
     }
 
     drawdonHangChart();
-
 	
 	function drawOrderStatusChart() {
 		  var ctx = document.getElementById('orderStatusChart').getContext('2d');

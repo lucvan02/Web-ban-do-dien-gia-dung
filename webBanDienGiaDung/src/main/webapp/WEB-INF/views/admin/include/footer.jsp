@@ -3,7 +3,7 @@
 	
 <style>
 	.tm-footer {
-	  /* position: fixed; */
+	 /*  position: fixed; */
 	  bottom: 0;
 	  width: 100%;
 	}
@@ -16,4 +16,3 @@
           </p>
         </div>
       </footer>
-      
