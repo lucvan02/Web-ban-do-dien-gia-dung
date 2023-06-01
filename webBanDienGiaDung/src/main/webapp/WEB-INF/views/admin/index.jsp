@@ -35,19 +35,20 @@
 <body id="reportsPage">
     <div class="" id="home">
         <%@ include file="include/menu.jsp" %> 
-        <%-- <%@ include file="include/footer.jsp" %> --%>
         
         <div class="container">
-        <h3 class="text-warning mt-3">Tổng doanh thu: <fmt:formatNumber value="${tongDoanhThu}" pattern="#,##0" />đ</h3>
-        
-        
-            <%-- <div class="row">
+        	<%-- <div class="row">
                 <div class="col">
-                    <p class="text-white mt-5 mb-5">Chào mừng quay lại, <b>${USER.hoTen}</b></p>
+                    <p class="text-white mt-3 mb-5">Chào mừng quay lại, <b>${USER.hoTen}</b></p>
                 </div>
             </div> --%>
-            <!-- row -->
-            
+        <h2 class="tm-block-title mt-3">Thống kê doanh thu</h2>
+        <h5 class="text-warning">Tổng doanh thu đã bán : <fmt:formatNumber value="${tongDoanhThu}" pattern="#,##0" />đ</h5>
+        <br>
+        <h2 class="tm-block-title">Thống kê số người dùng</h2>
+        <h5 class="text-warning">Số người dùng trên web : <fmt:formatNumber value="${tongSoNguoiDung}" pattern="#,##0" /></h5>
+        
+                    
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block">
@@ -74,7 +75,8 @@
                 
             </div>
         </div>
-
+        
+		<%@ include file="include/footer.jsp" %>
     </div>
 
     <script src="<c:url value='js/jquery-3.3.1.min.js'/>"></script>

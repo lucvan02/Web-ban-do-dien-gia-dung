@@ -30,11 +30,10 @@ import ptithcm.service.nguoiDungService;
 public class adminController {
 	
 	@Autowired
-	SanPhamService sanPhamService;
-	
+	SanPhamService sanPhamService;	
 	@Autowired
 	DonHangService donHangService;
-	
+  
 	@Autowired
 	nguoiDungService nguoiDungService;
 	
@@ -54,10 +53,9 @@ public class adminController {
 		for (DonHangEntity donHang : donThanhCong) {
 		    tongDoanhThu += donHang.getTongTien();
 		}
-
-		
-		
+	
 		model.addAttribute("tongDoanhThu", tongDoanhThu);
+		
 		// Tính tổng doanh thu theo từng tháng
 	    List<Integer> monthlyRevenues = new ArrayList<>();
 	    for (int i = 1; i <= 12; i++) {
@@ -66,6 +64,12 @@ public class adminController {
 	    }
 
 	    model.addAttribute("monthlyRevenues", monthlyRevenues);
+		
+		//Thống kê số người dùng
+		
+		List<NguoiDungEntity> listNguoiDung = nguoiDungService.layAllNguoiDung();
+		int tongSoNguoiDung=listNguoiDung.size();
+		model.addAttribute("tongSoNguoiDung", tongSoNguoiDung);
 		
 	    // Thống kêsố đơn hàng
 		int tongDonChoXacNhan= donHangService.layDonHangTheoTrangThai(1).size();

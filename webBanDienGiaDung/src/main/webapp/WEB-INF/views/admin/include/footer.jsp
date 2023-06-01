@@ -2,11 +2,11 @@
 	pageEncoding="UTF-8"%>
 	
 <style>
-	.tm-footer {
+	/* .tm-footer {
 	  position: fixed;
 	  bottom: 0;
 	  width: 100%;
-	}
+	} */
 </style>
 	
 	<footer class="tm-footer row tm-mt-small">
@@ -16,3 +16,11 @@
           </p>
         </div>
       </footer>
+      
+     <!--  <footer class="footer">
+           <div class="col-12 font-weight-light">
+	          <p class="text-center text-white mb-0 px-4 small">
+	            &copy; <b>2023</b> PTITHCM 
+	          </p>
+           </div>
+       </footer> -->
