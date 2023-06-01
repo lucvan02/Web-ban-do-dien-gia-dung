@@ -18,10 +18,15 @@
 	<context:annotation-config />
 	<mvc:annotation-driven />
 	<mvc:interceptors>
+	<mvc:interceptor>
+			<mvc:mapping path="/admin/adminAccount.htm" />
+			<bean class="ptithcm.intercepter.ownerIntercepter" />
+		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**" />
 			<bean class="ptithcm.intercepter.adminIntercepter" />
 		</mvc:interceptor>
+
 
 
 	</mvc:interceptors>

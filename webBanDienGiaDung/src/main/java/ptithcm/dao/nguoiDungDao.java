@@ -12,4 +12,5 @@ public interface nguoiDungDao{
 	public NguoiDungEntity findUserById(Integer maNd);
 	public NguoiDungEntity findUserByNameAndEmail(String userName, String email);
 	
+	
 }

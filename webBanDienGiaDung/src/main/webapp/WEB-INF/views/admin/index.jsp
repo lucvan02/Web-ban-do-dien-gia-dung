@@ -155,11 +155,11 @@
 	    var completedOrders = ${completedOrders};
 	    var cancelledOrders = ${cancelledOrders};
 	
-	    var orderStatusData = [pendingOrders, deliveringOrders, completedOrders, cancelledOrders]; // Số lượng đơn hàng theo từng trạng thái
+	    var orderStatusData = [cancelledOrders,pendingOrders, deliveringOrders, completedOrders]; // Số lượng đơn hàng theo từng trạng thái
 	    var config = {
 	        type: 'line',
 	        data: {
-	            labels: ['Chờ xác nhận', 'Đang giao', 'Thành công', 'Đã hủy'], // Các nhãn trục x (các trạng thái)
+	            labels: ['Đã hủy','Chờ xác nhận', 'Đang giao', 'Thành công'], // Các nhãn trục x (các trạng thái)
 	            datasets: [{
 	                label: 'Số đơn hàng',
 	                data: orderStatusData, // Số đơn hàng theo từng trạng thái

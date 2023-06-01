@@ -52,7 +52,7 @@
                         
 						
                          <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="admin/customerAccount.htm">
                                <i class="fas fa-users"></i>
                                Tài khoản khách
                             </a>
@@ -60,7 +60,7 @@
                         
                         <c:if test="${USER.getQuyen()==2}">
 	                        <li class="nav-item">
-	                            <a class="nav-link" href="admin/account.htm">
+	                            <a class="nav-link" href="admin/adminAccount.htm">
 	                               <i class="fas fa-user-secret"></i>
 	                               Admin
 	                            </a>
