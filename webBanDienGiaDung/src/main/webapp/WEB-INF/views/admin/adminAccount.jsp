@@ -37,8 +37,8 @@
         <div class="row tm-content-row">
           <div class="col-12 tm-block-col">
             <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-              <h2 class="tm-block-title">Danh sách tài khoản Admin đang hoạt động</h2>
-              <a href="admin/createAcc.htm"><button type="button" class="btn btn-primary">Tạo tài khoản Admin</button></a>
+              <h2 class="tm-block-title">Danh sách tài khoản Admin</h2>
+              <a href="admin/createAcc.htm"><button type="button" class="btn btn-primary">Thêm tài khoản Admin</button></a>
              <table class="table table-striped">
   <thead>
     <tr>

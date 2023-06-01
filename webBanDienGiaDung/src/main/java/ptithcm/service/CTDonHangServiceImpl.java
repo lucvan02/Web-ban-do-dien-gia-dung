@@ -38,4 +38,11 @@ public class CTDonHangServiceImpl implements CTDonHangService{
 	@Override
 	public CTDonHangEntity timCtdhTheoMaCtdh(int maCTDH) {
 		return ctDonHangDAO.timCtdhTheoMaCtdh(maCTDH);
-	}}
+	}
+
+	@Override
+	public List<CTDonHangEntity> layAllCTDonHang() {
+		return ctDonHangDAO.layAllCTDonHang();
+	}
+	
+}

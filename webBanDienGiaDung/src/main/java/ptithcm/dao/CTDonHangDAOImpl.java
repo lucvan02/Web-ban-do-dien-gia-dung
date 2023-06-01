@@ -75,4 +75,13 @@ public class CTDonHangDAOImpl implements CTDonHangDAO {
 		return ctdh;
 	}
 
+	@Override
+	public List<CTDonHangEntity> layAllCTDonHang() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM CTDonHangEntity";
+		Query query = session.createQuery(hql);
+		List<CTDonHangEntity> ListAllctDonHang = query.list();
+		return ListAllctDonHang;
+	}
+
 }

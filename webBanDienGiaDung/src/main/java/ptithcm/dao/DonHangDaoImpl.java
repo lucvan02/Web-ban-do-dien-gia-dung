@@ -1,8 +1,10 @@
 package ptithcm.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -102,15 +104,14 @@ public class DonHangDaoImpl implements DonHangDAO {
 	}
 
 	@Override
-	public int tinhTongDoanhThuTheoThang(int thang) {
+	public long tinhTongDoanhThuTheoThang(int thang) {
 	    Session session = factory.getCurrentSession();
 	    String hql = "SELECT SUM(dh.tongTien) FROM DonHangEntity dh WHERE dh.trangThai = 3 AND MONTH(dh.ngayTao) = :thang";
 	    Query query = session.createQuery(hql);
 	    query.setParameter("thang", thang);
-	    Integer totalRevenue = (Integer) query.uniqueResult();
-	    return (totalRevenue != null) ? totalRevenue : 0;
+	    Long totalRevenue = (Long) query.uniqueResult();
+	    return (totalRevenue != null) ? totalRevenue : 0L;
 	}
-
 
 
 

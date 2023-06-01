@@ -28,6 +28,7 @@ import ptithcm.Entity.LoaiSanPhamEntity;
 import ptithcm.Entity.NguoiDungEntity;
 import ptithcm.Entity.SanPhamEntity;
 import ptithcm.Entity.ThuongHieuEntity;
+import ptithcm.service.CTDonHangService;
 import ptithcm.service.SanPhamService;
 import ptithcm.service.ThuongHieuService;
 import ptithcm.service.loaiSanPhamService;
@@ -283,11 +284,17 @@ public class quanLiSanPhamController {
 	    SanPhamEntity sanPham = sanPhamService.laySanPham(maSp);
 	    
 	    boolean coGioHangLienKet = sanPhamService.kiemTraSanPhamCoNamTrongGioHang(maSp);
+	    boolean coDonHangLienKet = sanPhamService.kiemTraSanPhamCoNamTrongDonHang(maSp);
 	    
 	    if (coGioHangLienKet) {
 	        model.addAttribute("errorMessageXoaSP", "Không thể xóa sản phẩm vì đang nằm trong giỏ hàng!");
 	        return "admin/product";
-	    } else {
+	    }	    
+	    else if (coDonHangLienKet) {
+	        model.addAttribute("errorMessageXoaSP", "Không thể xóa sản phẩm vì đang nằm đơn hàng!");
+	        return "admin/product";
+	    }
+	    else {
 	        // Xóa sản phẩm trong cơ sở dữ liệu
 	        sanPhamService.xoaSanPham(sanPham);
 	        

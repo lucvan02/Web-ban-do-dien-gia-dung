@@ -31,6 +31,7 @@
 <body id="reportsPage">
     <div class="" id="home">
         <%@ include file="include/menu.jsp" %> 
+        
     
     <div class="container tm-mt-big tm-mb-big">
       <div class="row">
@@ -46,12 +47,12 @@
               <div class="col-xl-12 col-lg-12 col-md-12">                
                 
                 	<div class="form-group mb-3">
-    				    <label for="name">Mã thương hiệu</label>
-    				    <input id="mathuonghieu" type="text" value="${thuongHieu.maTh}" class="form-control validate" required="true" />
+    				    <label for="ma">Mã thương hiệu</label>
+    				    <input name="mathuonghieu" type="text" value="${thuongHieu.maTh}" class="form-control validate" required="true" />
     				</div>
     				<div class="form-group mb-3">
     				    <label for="name">Tên thương hiệu</label>
-    				    <input id="nameth" type="text" value="${thuongHieu.tenThuongHieu}" class="form-control validate" required="true" />
+    				    <input name="tenth" type="text" value="${thuongHieu.tenThuongHieu}" class="form-control validate" required="true" />
     				</div>				
 				
 					<c:if test="${not empty successMessage}">
@@ -71,6 +72,7 @@
       </div>
     </div>
     </div>
+    <%-- <%@ include file="include/footer.jsp" %> --%>
     </div>
 
 

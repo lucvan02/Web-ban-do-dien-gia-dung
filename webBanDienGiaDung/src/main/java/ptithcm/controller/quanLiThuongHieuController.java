@@ -55,20 +55,7 @@ public class quanLiThuongHieuController {
 		 return "admin/editBrand";
 	}
 	
-//	@RequestMapping(value = "/edit/{math}", params = "update", method = RequestMethod.POST)
-//	public String editBrand(@PathVariable("math") String math, @ModelAttribute("brand") ThuongHieuEntity brand, ModelMap model) throws IOException {
-//		
-//		try {
-//	        thuongHieuService.updateThuongHieu(brand);
-//	        model.addAttribute("successMessage", "Cập nhật thành công.");
-//	    } catch (Exception e) {
-//	        model.addAttribute("errorMessage", "Có lỗi xảy ra khi cập nhật." + e.getMessage());
-//	        return "admin/editBrand";
-//	    }
-//		
-//		return "admin/editBrand";
-//	}
-	
+
 	@RequestMapping(value = "admin/brands/edit/{math}", params = "update", method = RequestMethod.POST)
 	public String editBrand(@PathVariable("math") String math, ModelMap model, HttpServletRequest request) throws IOException {
 		
