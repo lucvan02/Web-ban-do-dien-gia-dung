@@ -1,6 +1,3 @@
 # Web bán thiết bị điện gia dụng
-<!--<img src="https://media.tenor.com/5Beb0m1Ip9wAAAAC/waifu-anime.gif" alt="">
 
-<img src="https://media.tenor.com/MXXbuo2owJIAAAAC/one-piece-boa-hancock.gif" alt="boa hancock">-->
-
-<img src="https://media.tenor.com/TZKt6DfFjnEAAAAC/nami-swimsuit.gif" alt="nami bikjnj">
+https://pa1.narvii.com/6542/0af180da4997d6a476c18066ae07849ef331510b_00.gif
