@@ -418,9 +418,6 @@ public class userController {
 
 		String NGAYSINH = request.getParameter("ngaySinh");
 		java.sql.Date ns = java.sql.Date.valueOf(NGAYSINH);
-
-		System.out.print(user.getNgaySinh());
-
 		if (user.getHoTen().isEmpty()) {
 			model.addAttribute("loiHoTen", "Họ tên không được để trống !!!");
 
@@ -461,6 +458,7 @@ public class userController {
 		userService.updateUser(userSave);
 
 		model.addAttribute("user", userSave);
+		model.addAttribute("successMessage","Cập nhật thông tin thành công");
 
 		return "/user/user-info";
 	}
@@ -478,7 +476,7 @@ public class userController {
 			model.addAttribute("loiPassword", "Hãy nhập mật khẩu cũ !!!");
 			loi = Boolean.FALSE;
 
-		} else if (!userService.maHoaMatKhau(pass).equals(user.getPassWord())) {
+		} else if (!userService.kiemTraMatKhau(pass,user.getPassWord())) {
 			model.addAttribute("loiPassword", "Mật khẩu cũ không đúng !!!");
 			return "/user/changePass";
 		}

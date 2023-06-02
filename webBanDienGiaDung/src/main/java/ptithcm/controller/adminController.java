@@ -137,6 +137,137 @@ public class adminController {
 	return "admin/inforAcc";
 }
 	
+	@RequestMapping(value = "changeInfo", params = "save", method = RequestMethod.POST)
+	public String infoUpdate(HttpServletRequest request, ModelMap model, @ModelAttribute("admin") NguoiDungEntity admin,
+			BindingResult errors) {
+		Boolean loi = Boolean.TRUE;
+		HttpSession session = request.getSession();
+		NguoiDungEntity adminSave = (NguoiDungEntity) session.getAttribute("USER");
+		admin.setUserName(adminSave.getUserName());
+		
+
+		String NGAYSINH = request.getParameter("ngaySinh");
+		java.sql.Date ns = java.sql.Date.valueOf(NGAYSINH);
+		if (admin.getHoTen().isEmpty()) {
+			model.addAttribute("loiHoTen", "Họ tên không được để trống !!!");
+
+			loi = Boolean.FALSE;
+
+		} else if (admin.getHoTen().length() > 50)
+
+		{
+			model.addAttribute("loiHoTen", "Họ tên quá dài !!!");
+			loi = Boolean.FALSE;
+		} else if (!admin.getHoTen().matches("[\\p{L} ]+")) {
+			model.addAttribute("loiHoTen", "Họ tên không được chứa số !!!");
+			loi = Boolean.FALSE;
+		}
+
+		if (admin.getNgaySinh() == null) {
+			model.addAttribute("loiNgaySinh", "Hãy nhập ngày sinh !!!");
+			loi = Boolean.FALSE;
+		} else if (!isValidAndOver18(admin.getNgaySinh())) {
+			model.addAttribute("loiNgaySinh", "Bạn cần lớn hơn 18 tuổi để tạo tài khoản !!!");
+			loi = Boolean.FALSE;
+		}
+		if (admin.getDiaChi().isEmpty()) {
+			model.addAttribute("loiDiaChi", "Địa chỉ không được trống!!!");
+			loi = Boolean.FALSE;
+		}
+		
+		if (admin.getSdt().isEmpty()) {
+			model.addAttribute("loiSdt", "Hãy nhập sdt !!!");
+			loi = Boolean.FALSE;
+		} else if (!admin.getSdt().matches("[0-9]+")) {
+			model.addAttribute("loiSdt", "SDT không hợp lệ !!!");
+			loi = Boolean.FALSE;
+		} else if (admin.getSdt().length() != 10 && admin.getSdt().length() != 11) {
+			model.addAttribute("loiSdt", "SDT không hợp lệ !!!");
+			loi = Boolean.FALSE;
+		}
+		if (admin.getEmail().isEmpty()) {
+			model.addAttribute("loiEmail", "Hãy nhập email !!!");
+			loi = Boolean.FALSE;
+		} else if (!admin.getEmail().endsWith("@gmail.com")) {
+			model.addAttribute("loiEmail", "Hãy nhập email đúng định dạng !!!");
+			loi = Boolean.FALSE;
+		}
+		
+
+		if (loi == Boolean.FALSE) {
+			model.addAttribute("admin", adminSave);
+			return "/admin/me";
+		}
+		adminSave.setHoTen(admin.getHoTen());
+		adminSave.setGioiTinh(admin.isGioiTinh());
+		adminSave.setNgaySinh(ns);
+		adminSave.setDiaChi(admin.getDiaChi());
+		admin.setEmail(admin.getEmail());
+		admin.setSdt(admin.getSdt());
+		session.setAttribute("USER", adminSave);
+
+		nguoiDungService.updateUser(adminSave);
+
+		model.addAttribute("admin", adminSave);
+		model.addAttribute("successMessage","Cập nhật thông tin thành công");
+
+		return "/admin/me";
+	}
+	
+	@RequestMapping("changePass")
+	public String changPass() {
+		return "/admin/changePass";
+		
+	}
+	
+	@RequestMapping(value = "changePass.htm", params = "save", method = RequestMethod.POST)
+	public String changePass(HttpServletRequest request, ModelMap model) {
+		Boolean loi = Boolean.TRUE;
+		HttpSession session = request.getSession();
+		NguoiDungEntity user = (NguoiDungEntity) session.getAttribute("USER");
+		String pass = request.getParameter("pass");
+		String newPass = request.getParameter("newPass");
+		String reNewPass = request.getParameter("renewPass");
+
+		if (pass.isEmpty()) {
+			model.addAttribute("loiPass", "Hãy nhập mật khẩu cũ !!!");
+			loi = Boolean.FALSE;
+
+		} else if (!nguoiDungService.kiemTraMatKhau(pass,user.getPassWord())) {
+			model.addAttribute("loiPass", "Mật khẩu cũ không đúng !!!");
+			return "/admin/changePass";
+		}
+
+		if (newPass.isEmpty()) {
+			model.addAttribute("loiNewPass", "Hãy nhập mật khẩu mới !!!");
+			loi = Boolean.FALSE;
+		} else if (newPass.length() < 8) {
+			model.addAttribute("loiNewPass", "Mật khẩu tối thiểu 8 kí tự !!!");
+			loi = Boolean.FALSE;
+		} else if (newPass.contains(" ")) {
+			model.addAttribute("loiNewPass", "Mật khẩu không được chứa khoảng trắng !!!");
+			loi = Boolean.FALSE;
+		} else if (reNewPass.isEmpty()) {
+			model.addAttribute("loiRePass", "Hãy nhập lại mật khẩu !!!");
+			loi = Boolean.FALSE;
+		} else if (!reNewPass.equals(newPass)) {
+			model.addAttribute("loiRePass", "Xác nhận mật khẩu không đúng !!!");
+			loi = Boolean.FALSE;
+		}
+
+		if (loi == Boolean.TRUE) {
+			user.setPassWord(nguoiDungService.maHoaMatKhau(newPass));
+
+			nguoiDungService.updateUser(user);
+			model.addAttribute("successMessage", "Đổi mật khẩu thành công !!!");
+
+		}
+
+		return "/admin/changePass";
+	}
+	
+	
+	
 	@RequestMapping("createAcc")
 	public String createAcc(HttpServletRequest request,ModelMap model) {
 	NguoiDungEntity admin=new NguoiDungEntity();
@@ -300,7 +431,8 @@ public class adminController {
 	@RequestMapping("me")
 		public String me(HttpServletRequest request,ModelMap model) {
 		HttpSession session0 = request.getSession();
-		NguoiDungEntity user = (NguoiDungEntity) session0.getAttribute("USER");
+		NguoiDungEntity admin = (NguoiDungEntity) session0.getAttribute("USER");
+		model.addAttribute("admin",admin);
 		return "admin/me";
 	}
 	
