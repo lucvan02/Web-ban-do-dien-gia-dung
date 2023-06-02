@@ -68,9 +68,9 @@ public class adminController {
 		model.addAttribute("tongDoanhThu", tongDoanhThu);
 		
 		// Tính tổng doanh thu theo từng tháng
-	    List<Integer> monthlyRevenues = new ArrayList<>();
+	    List<Long> monthlyRevenues = new ArrayList<>();
 	    for (int i = 1; i <= 12; i++) {
-	        int totalRevenue = donHangService.tinhTongDoanhThuTheoThang(i);
+	        long totalRevenue = donHangService.tinhTongDoanhThuTheoThang(i);
 	        monthlyRevenues.add(totalRevenue);
 	    }
 
