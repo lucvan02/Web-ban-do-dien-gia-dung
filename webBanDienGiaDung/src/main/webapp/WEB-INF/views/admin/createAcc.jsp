@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,15 +10,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Quản lý tài khoản</title>
+    <title>Thêm sản phẩm</title>
     <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <!-- https://fonts.google.com/specimen/Roboto -->
     <link rel="stylesheet" href='<c:url value="/assets/css/admin/css/fontawesome.min.css"/>' />   
     <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href='<c:url value="/assets/css/admin/jquery-ui-datepicker/jquery-ui.min.css" />' type="text/css"  /> 
+    <!-- http://api.jqueryui.com/datepicker/ -->
     <link rel="stylesheet" href='<c:url value="/assets/css/admin/css/bootstrap.min.css"/>' />
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href='<c:url value="/assets/css/admin/css/templatemo-style.css"/>' />
@@ -28,29 +26,26 @@
 	https://templatemo.com/tm-524-product-admin
 	-->
 	
+	
 	<style type="text/css">
 	
-	.loi{
-	    color: orange;
-    font-size: 13px;
-    font-style: italic;}
+	
+	*[id$=errors]{
+color:#ffc107;
+font-style: italic;
+font-size: 15px;
+}
 	
 	</style>
 	
-  </head>
+	
+ </head>
 
-  <body id="reportsPage">
-    <div class="" id="home">    
-      <%@ include file="include/menu.jsp" %>  
-      
-      
-      
-      
-      
-      <!-- TEST -->
-      
-      
-      <div class="container tm-mt-big tm-mb-big">
+<body id="reportsPage">
+    <div class="" id="home">
+        <%@ include file="include/menu.jsp" %>
+    
+    <div class="container tm-mt-big tm-mb-big">
       <div class="row">
         <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
@@ -62,27 +57,24 @@
 					<c:if test="${not empty errorMessage}">
 					    <div class="alert alert-danger">${errorMessage}</div>
 					</c:if>
-                <h2 class="tm-block-title d-inline-block">THÔNG TIN</h2>
+                <h2 class="tm-block-title d-inline-block">Thêm Admin mới</h2>
               </div>
             </div>
-            <f:form action="admin/changeInfo.htm" class="tm-edit-product-form" modelAttribute="admin" method="POST" >
+            <f:form action="admin/form/addAcc.htm" class="tm-edit-product-form" modelAttribute="admin" method="POST" >
             
            <div class="row">
 	    				<div class="form-group mb-3 col-xs-12 col-sm-6">
-	    		 <label class="form-label">Họ Tên</label>
-					
-					<f:input type="text" class="form-control"
-						path="hoTen" name="hoTen"  autocomplete="off" />
-						<span class="loi">${loiHoTen}</span></div>
+	    				     <label class="form-label">Họ Tên</label>
+					<f:input type="text" class="form-control" path="hoTen" />
+					<f:errors path="hoTen" /> 	
+	    				</div>
 	    				
 	    				<div class="form-group mb-3 col-xs-12 col-sm-6">   				    
 	    				   <label class="form-label">Ngày Sinh</label>
-					
-					
-			 <input class="form-control"
-						type="date" name="ngaySinh" value="${admin.ngaySinh}"/>
-						<span class="loi">${loiNgaySinh}</span></div>
-	    		
+					<input type="date" class="form-control" id="ngaySinh"
+						 name="ngaySinh" value="${user.ngaySinh}" />
+					<f:errors path="ngaySinh" />
+	    			</div>
 	    			<div class="form-group mb-3 col-xs-12 col-sm-6">
 					<label class="form-label">Giới Tính:</label> <br>
 					 <label><f:radiobutton
@@ -90,60 +82,65 @@
 							<label><f:radiobutton
 							path="gioiTinh" value="0" /> Nữ</label>
 							
-					
+					<f:errors path="gioiTinh" />
 
 				</div>
 				<div class="form-group mb-3 col-xs-12 col-sm-6">
 					<label class="form-label">SĐT</label>
-					<f:input class="form-control" type="text"
-						path="sdt" name="sdt"  autocomplete="off"/>
-						<span class="loi">${loiSdt}</span>
-					
+					<f:input type="text" class="form-control" path="sdt"  autocomplete="off"/>
+					<f:errors path="sdt" />
 				</div>
                     <div class="form-group col-12">
     				  <label class="form-label">Địa Chỉ</label>
-					
-					<f:input class="form-control" type="text"
-						path="diaChi" name="diaChi"  autocomplete="off"/>
-						<span class="loi">${loiDiaChi}</span>
+					<f:input type="text" class="form-control" path="diaChi"  autocomplete="off"/>
+					<f:errors path="diaChi" />
     				  
     				</div>  
     				
-    				  <div class="form-group col-12">
+    				<div class="form-group mb-3 col-xs-12 col-sm-6">
 					<label class="form-label">Email</label>
 					<f:input type="text" placeholder="xxx@gmail.com"
 						class="form-control" path="email" name="email"  autocomplete="off" />
-						<span class="loi">${loiEmail}</span>
+					<f:errors path="email" />
 				</div>
-			
+				<div class="form-group mb-3 col-xs-12 col-sm-6">
+					<label class="form-label">Username</label>
+					<f:input type="text" class="form-control" path="userName"  autocomplete="off" />
+					<f:errors path="userName" />
+				</div>
+				<div class="form-group mb-3 col-xs-12 col-sm-6">
+					<label class="form-label">Password (tối thiểu 8 kí tự)</label>
+					<f:input type="password" class="form-control" path="passWord" />
+					<f:errors path="passWord" />
+				</div>
+				<div class="form-group mb-3 col-xs-12 col-sm-6">
+				<label class="form-label">Nhập lại mật khẩu </label> <input
+						type="password" class="form-control" name="re-passWord">
+				</div>
     				
     				    
           <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase" name="save">Cập nhật thông tin</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase" name="add">Thêm admin</button>
           </div>  
           </div>
           
           </f:form>
-           
         </div>
       </div>
     </div>
     </div>
-      
-      
-      
-      
+    </div>
 
-      
-      
-    
-      </div>
-       
-      <%@ include file="include/footer.jsp" %>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="<c:url value='js/jquery-3.3.1.min.js'/>"></script>
     <!-- https://jquery.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="<c:url value='jquery-ui-datepicker/jquery-ui.min.js'/>"></script>
+    <!-- https://jqueryui.com/download/ -->
+    <script src="<c:url value='js/bootstrap.min.js'/>"></script>
     <!-- https://getbootstrap.com/ -->
+    
+    
+    
   </body>
 </html>
+

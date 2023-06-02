@@ -58,14 +58,11 @@
 					<!-- link -->
 					<a href=".htm"> <img src="assets/img/logo.jpg" alt="" id="logo" /></a>
 					<div id="seacrh-box">
-						<input type="text" name="" id="search" placeholder="Bạn tìm gì..." />
-						<button id="search-icon">
-							<i class="ti-search"></i>
+						<input type="text" name="key" id="search" placeholder="Bạn tìm gì..." />
+						<button id="search-icon" type="submit" name="btnSearch">
+							<i class="ti-search "></i>
 						</button>
 					</div>
-
-					<button id="voucher" name="voucher">
-						<i class="ti-gift"></i><span> Khuyến mãi</span>
 
 						<button id="cart" name="cart">
 							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>

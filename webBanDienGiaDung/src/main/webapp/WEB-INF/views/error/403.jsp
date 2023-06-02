@@ -78,7 +78,7 @@ svg {
 	            </g>
 	          </svg>
 	<h1>Bạn không có quyền vào trang này!!!</h1>
-	<h2><a href="${pageContext.servletContext.contextPath}">Về trang chủ</a></h2>
+	
 	
 	<script>
 		var root = document.documentElement;

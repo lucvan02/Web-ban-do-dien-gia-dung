@@ -54,10 +54,6 @@ public class SanPhamEntity {
 	private ThuongHieuEntity thuongHieu;
 	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private List<HinhAnhEntity> hinhAnhs;
-
-	
-	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
-	private List<ChiTietKMEntity> SP_KM;
 	
 	@OneToMany(mappedBy = "sanPham",fetch = FetchType.LAZY)
 	private List<GioHangEntity> gioHangs;
@@ -138,14 +134,6 @@ public class SanPhamEntity {
 
 	public void setDonGia(int donGia) {
 		this.donGia = donGia;
-	}
-
-	public List<ChiTietKMEntity> getSP_KM() {
-		return SP_KM;
-	}
-
-	public void setSP_KM(List<ChiTietKMEntity> sP_KM) {
-		SP_KM = sP_KM;
 	}
 
 	public boolean isTrangThai() {

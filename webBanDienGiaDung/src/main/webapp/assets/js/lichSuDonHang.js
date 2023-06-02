@@ -56,3 +56,18 @@ btnDaHuy.addEventListener("click",function(){
 	btnDaHuy.classList.add("focus");
 	
 })
+
+function topFunction() {
+  document.body.scrollTop = 0; // cho Safari
+  document.documentElement.scrollTop = 0; // cho Chrome, Firefox, IE và Opera
+}
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("back-top").style.display = "block";
+  } else {
+    document.getElementById("back-top").style.display = "none";
+  }
+}

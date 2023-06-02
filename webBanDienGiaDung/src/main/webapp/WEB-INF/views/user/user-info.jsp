@@ -37,14 +37,38 @@
 	rel="stylesheet" />
 </head>
 <body>
- <a id="back" href=".htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
+
+<c:if test="${USER.getQuyen()!=0}">
+			
+			 <a id="back" href="admin/index.htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
+			
+		</c:if>
+<c:if test="${USER.getQuyen()==0}">
+		 <a id="back" href=".htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
+			
+			
+		</c:if>
+
+
+
+
+
+
+
 	<div class="container">
+	
+
+	
 		<div id="mucLuc">
 			<a id="info-click">Hồ Sơ</a> <a href="changePass.htm" id="changePass-click">Đổi
 				Mật Khẩu</a>
 		</div>
 
 		<div id="info">
+		
+		
+
+		
 			<span id="info-tittle">Hồ Sơ Của Tôi</span>
 			<f:form action="form/info.htm" id="info-form" modelAttribute="user"
 				method="post">
@@ -67,7 +91,8 @@
 				</div>
 				<div class="part-info">
 					<label class="tittle">Giới Tính</label> <label><f:radiobutton
-							path="gioiTinh" value="1" /> Nam</label> <label><f:radiobutton
+							path="gioiTinh" value="1" /> Nam</label> 
+							<label><f:radiobutton
 							path="gioiTinh" value="0" /> Nữ</label>
 				</div>
 				<div class="part-info">
@@ -83,6 +108,9 @@
 
 				<button id="btn-save" name="save">Lưu</button>
 			</f:form>
+			<c:if test="${not empty successMessage}">
+					    <div class="alert alert-success">${successMessage}</div>
+					</c:if>
 		</div>
 	</div>
 	

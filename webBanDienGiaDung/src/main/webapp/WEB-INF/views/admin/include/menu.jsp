@@ -43,30 +43,52 @@
                             </a>
                         </li>
                         
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="admin/sale.htm">
                                 <i class="fas fa-file-alt"></i>
                                 Khuyến mãi
                             </a>
-                        </li>
-
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="admin/account.htm">
-                                <i class="far fa-user"></i>
-                                Tài khoản
-                            </a>
                         </li> -->
                         
+						
+                         <li class="nav-item ">
+                            <a class="nav-link" href="admin/customerAccount.htm">
+                               <i class="fas fa-users"></i>
+                               Tài khoản khách
+                            </a>
+                        </li>
+                        
+                        <c:if test="${USER.getQuyen()==2}">
+	                        <li class="nav-item">
+	                            <a class="nav-link" href="admin/adminAccount.htm">
+	                               <i class="fas fa-user-secret"></i>
+	                               Tài khoản Admin
+	                            </a>
+	                        </li>
+                        </c:if>
                     </ul>
                     
-                    <ul class="navbar-nav">
-                    	<li>
-                    	<a class="nav-link d-block" href="admin/me.htm">
-                    		<b><span class="text-warning">${USER.hoTen}</span></b>
-                    	</a>                        	
+                    <ul class="navbar-nav h-100">
+                    	
+                    	  <li class="nav-item">
+                    	<a class="nav-link" href="admin/me.htm">
+                    	  <i class="fas fa-user"></i>
+                    		<b>Thông tin cá nhân</b>
+                    	</a>                                      	
+                      </li>
+                        
+                         <li class="nav-item">
+                    	<a class="nav-link" href="admin/changePass.htm">
+                    	  <i class="fas fa-lock"></i>
+                    		<b>Đổi mật khẩu</b>
+                    	</a> <br>
+                                         	
                         </li>
+                             
+                             
                         <li class="nav-item">
-                            <a class="nav-link d-block" href="user/logout.htm">
+                            <a class="nav-link" href="user/logout.htm">
+                             <i class="fas fa-sign-out-alt"></i>
                                  <b>Đăng xuất</b>
                             </a>
                         </li>                        

@@ -53,15 +53,12 @@
 					<!-- link -->
 					<a href=".htm"> <img src="assets/img/logo.jpg" alt="" id="logo" /></a>
 					<div id="seacrh-box">
-						<input type="text" name="" id="search" placeholder="Bạn tìm gì..." />
-						<button id="search-icon">
-							<i class="ti-search"></i>
+						<input type="text" name="key" id="search" placeholder="Bạn tìm gì..." />
+						<button id="search-icon" type="submit" name="btnSearch">
+							<i class="ti-search "></i>
 						</button>
 					</div>
-
-					<button id="voucher" name="voucher">
-						<i class="ti-gift"></i><span> Khuyến mãi</span>
-
+					
 						<button id="cart" name="cart">
 							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
 						</button>
@@ -82,9 +79,10 @@
 							<div class="logout">
 								<a href="user/logout.htm">Đăng Xuất</a>
 							</div>
+
 						</c:if>
 				</div>
-			</form>	
+			</form>
 
 
 			<div id="header-bottom">
@@ -99,15 +97,14 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<h6 style="margin-left:80%;">
-		<c:if test="${USER.isQuyen()}">
+		<c:if test="${USER.getQuyen()==1 || USER.getQuyen()==2}">
 			<a href="admin/index.htm" >
 				Tới trang quản lý
 			</a>
 		</c:if>
 	</h6>
-
 	<!-- SLIDER -->
 	<div id="slider">
 		<!-- link -->

@@ -368,11 +368,6 @@ body {
 	
 } 
 
-
-
-.display-none{
-	display:none; 
-} 
  
 #footer {
 	background-color: var(--header-color);
@@ -430,8 +425,6 @@ body {
 
 
 
-
-
 .icon-hover:hover {
   border-color: #3b71ca !important;
   background-color: white !important;
@@ -441,44 +434,23 @@ body {
   color: #3b71ca !important;
 }
 
-
-
-.btnApp{
-	background-color: #ff2100ba;
-	color: white;
-	
-}
-.text-in-filter{
-	font-weight:bold;
-}
-.btn-view-all-pro{
-	 margin-top:20px;
-     margin-left:39%;
-     background-color: white;
-   
-}
-
-
 .anhsp{
 	height:190px;
 	width:100%;
 }
 
-#no-product-mess{
-	color:red;
-	white-space: nowrap;
-    padding-left: 30%;
-    
-}
 
-.pagination-wrapper {
-  
- margin-left:55%;
+
+#message{
+	color: red;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    
 }
 
 
 #loadMoreButton{
-    margin-top: -9px;
-    margin-left: 58%;
-    background-color: white;
+    margin-left:33%;
+    background-color: #fff;
 }

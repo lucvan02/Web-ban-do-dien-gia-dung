@@ -52,9 +52,8 @@ public class DonHangServiceImpl implements DonHangService{
 	}
 
 	@Override
-	public int tinhTongDoanhThuTheoThang(int thang) {
-		// TODO Auto-generated method stub
-		return 0;
+	public long tinhTongDoanhThuTheoThang(int thang) {
+		return DonHang.tinhTongDoanhThuTheoThang(thang);
 	}
 	
 }

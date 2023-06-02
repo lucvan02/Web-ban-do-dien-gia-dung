@@ -60,11 +60,7 @@
 						<button id="search-icon">
 							<i class="ti-search"></i>
 						</button>
-					</div>
-
-					<button id="voucher" name="voucher">
-						<i class="ti-gift"></i><span> Khuyến mãi</span>
-
+					</div>					
 						<button id="cart" name="cart">
 							<i class="ti-shopping-cart"></i> <span> Giỏ hàng</span>
 						</button>

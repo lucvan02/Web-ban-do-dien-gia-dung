@@ -9,13 +9,13 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import ptithcm.Entity.NguoiDungEntity;
 import ptithcm.controller.userController;
 
-public class adminIntercepter extends HandlerInterceptorAdapter{
+public class ownerIntercepter extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 	NguoiDungEntity user=(NguoiDungEntity) request.getSession().getAttribute("USER");
 		
-	if(user==null|| user.getQuyen()==0)
+	if(user==null|| user.getQuyen()!=2)
 	{
 		response.sendRedirect(request.getContextPath() + "/khongCoQuyen.htm");
 	}

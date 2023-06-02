@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +22,11 @@
 	rel="stylesheet"
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
-<link rel="stylesheet" href='<c:url value="/assets/css/gioHang.css"/>' />
+<link rel="stylesheet" href='<c:url value="/assets/css/search.css"/>' />
 <link rel="stylesheet"
 	href="<c:url value="/assets/font/themify-icons/themify-icons.css"/>" />
 
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -86,6 +87,7 @@
 			</form>
 
 
+
 			<div id="header-bottom">
 				<ul id="category">
 					<li><a href="loaisanpham/TULANH.htm">Tủ Lạnh</a></li>
@@ -99,141 +101,59 @@
 		</div>
 	</div>
 
+<!-- CONTENT -->
+
+ <div>
+        <h2  id="message">${message }</h2>
+ </div>
+ <hr>			
 
 
-
-	<h3 id="cart-tittle" class="width-page">GIỎ HÀNG CỦA BẠN</h3>
-
-	<div class="container padding-bottom-3x mb-1 width-page">
-
-
-		<!-- Shopping Cart-->
-		<c:set var="check" value="0" />
-		<c:set var="tongTien" value="0" />
-		<div class="table-responsive shopping-cart">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Tên Sản Phẩm</th>
-						<th class="text-center">Đơn giá</th>
-						<th class="text-center">Số Lượng</th>
-						<th class="text-center">Số Tiền</th>
-						<th class="text-center">Thao Tác</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<c:forEach var="gioHang" items="${gioHangList}">
-						<f:form action="gioHang/${gioHang.maGh}.htm" method="post">
-							<tr>
-								<td>
-									<div class="product-item">
-										<a class="product-thumb"><img
-											src="${gioHang.sanPham.hinhAnhDaiDien }" alt="Product"></a>
-										<div class="product-info">
-											<h4 class="product-title max-width">
-												<a href="sanpham/${gioHang.sanPham.maSP}.htm">${gioHang.sanPham.tenSanPham}</a>
-												<c:if test="${gioHang.sanPham.trangThai==false }">
-
-													<span
-														style="color: red; font-style: italic; font-weight: bold; text-decoration: underline;">Sản
-														phẩm này đã ngừng kinh doanh, vui lòng xoá khỏi giỏ hàng !
-													</span>
-													<c:set var="check" value="${check+1}" />
-
-												</c:if>
-											</h4>
-
-										</div>
-									</div>
-								</td>
-
-								<td class="text-center text-lg text-medium"><span
-									style="color: #ee4d2d;"><fmt:formatNumber
-											value="${gioHang.sanPham.donGia}" pattern="#,##0" />đ</span></td>
-								<td class="text-center">
-									<div class="count-input">
-
-										<input id="inputSoLuong" name="soLuong" type="number" min="1"
-											max="${gioHang.sanPham.soLuong}" value="${gioHang.soLuong}">
-										<button id="btn-update" name="update">Cập Nhật</button>
-
-									</div>
-								</td>
+ <c:if test="${listSP.size()==0}">
+   <div class="d-flex justify-content-center align-items-center">
+	   <img src="assets/img/not-found.png"   width="205" height="205" alt="..." />
+   </div>
+ </c:if>
 
 
-
-								<td class="text-center"><c:set var="soTien"
-										value="${gioHang.sanPham.donGia * gioHang.soLuong}" /> <span
-									style="color: #009432; font-weight: bold"> <fmt:formatNumber
-											value="${soTien}" pattern="#,##0" />đ
-								</span></td>
-
-
-
-								<c:set var="tongTien" value="${tongTien+soTien}" />
-								
-								<td class="text-center"><button class="remove-from-cart"
-										id="btn-xoa" name="xoa" data-toggle="tooltip"
-										title="xoá sản phẩm" data-original-title="Remove item" onclick="return confirmAction(event)"> 
-										<i class="ti-trash"></i>
-									</button></td>
-							</tr>
-
-						</f:form>
-
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-		<div class="shopping-cart-footer">
-
-			<div class="column text-lg" style="font-weight: bold; color: red">
-				Tổng cộng: <span class="text-medium" style="color: black;"><fmt:formatNumber
-						value="${tongTien}" pattern="#,##0" />đ</span>
-			</div>
-		</div>
-		<div class="shopping-cart-footer">
-
-			<div class="column">
-				<c:if test="${gioHangList.size() > 0 && check==0}">
-					<a class="btn btn-success" href="donHang.htm">Mua Hàng</a>
-				</c:if>
-				<c:if test="${gioHangList.size() <= 0 || check!=0}">
-					<a class="btn btn-success disable" href="donHang.htm">Mua Hàng</a>
-				</c:if>
-			</div>
-		</div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ <section>
+ <div class="container " style="padding-left:200px;">
+   <div class="row">
+      <div class="col-lg-9"  >     
+        <div class="row">
+        
+        <c:forEach var="sanPham" items="${listSP}" varStatus="loop">
+ 		<div class="col-lg-4 col-md-6 col-sm-8 d-flex sp ${loop.index >= 6 ? 'd-none' : ''}">
+            <div class="card border-3 mb-4 mx-auto pr">
+            <div class="item">
+            <a class="item" href="sanpham/${sanPham.maSP}.htm"> 
+            <img
+              class=" anhSanPham " src="${sanPham.hinhAnhDaiDien}" />
+              </a>
+             </div>
+                <div class="card-body d-flex flex-column">
+                <div class= "pb-0 text-center " >
+					<h6 class=" tenSanPham text-primary">${sanPham.tenSanPham}</h6>
+						<span class="giaSanPham" ><fmt:formatNumber value="${sanPham.donGia}" pattern="#,##0" />đ</span>							
+                </div>
+              </div>
+            </div>
+          </div>     
+          </c:forEach>
+          </div> 
+        </div>
+		</div>   
+		<c:if test="${listSP.size()>6}">
+		 <button id="loadMoreButton" class="btn btn-light btn-sm">Xem thêm</button>		
+		</c:if>
+    </div> 
+     </section>
+               
+		
+       
+       
 	<!-- FOOTER -->
-	<div id="footer">
+	<div id="footer" class="">
 		<div id="footer-body" class="width-page">
 			<div>
 				<img src="assets/img/logo.jpg" alt="" /> <span
@@ -259,10 +179,9 @@
 		<hr />
 		<div id="copy-right">© 2023 PTIT.HCM</div>
 	</div>
-	<button onclick="topFunction()" id="back-top">
-		<i class="ti-angle-double-up"></i>
-	</button>
+<button onclick="topFunction()" id="back-top"><i class="ti-angle-double-up"></i></button>
 
+					
 
 
 
@@ -275,19 +194,8 @@
 		integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 		crossorigin="anonymous"></script>
 
-	<script src="<c:url value='assets/js/main.js'/>"></script>
-	
-	
-	<script>
-  function confirmAction(event) {
-    var result = confirm("Xoá mặt hàng này khỏi giỏ hàng ?");
-    if (result) {
-      return true;  // Tiếp tục chuyển hướng theo liên kết
-    } else {
-      event.preventDefault();  // Ngăn chặn chuyển hướng mặc định
-      return false;
-    }
-  }
-</script>
+
+	<script src="<c:url value='assets/js/search.js'/>"></script>
+		<script src="<c:url value='assets/js/main.js'/>"></script>
 </body>
 </html>

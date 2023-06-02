@@ -85,7 +85,7 @@ public class DonHangDaoImpl implements DonHangDAO {
 	@Override
 	public List<DonHangEntity> layAllDonHang(){
 		Session session = factory.getCurrentSession();
-		String hql = "FROM DonHangEntity";
+		String hql = "FROM DonHangEntity ORDER BY ngayTao DESC";
 	    Query query = session.createQuery(hql);
 	    List<DonHangEntity> listDonHang = query.list();
 	    return listDonHang;
@@ -102,14 +102,13 @@ public class DonHangDaoImpl implements DonHangDAO {
 	}
 
 	@Override
-	public int tinhTongDoanhThuTheoThang(int thang) {
+	public long tinhTongDoanhThuTheoThang(int thang) {
 	    Session session = factory.getCurrentSession();
 	    String hql = "SELECT SUM(dh.tongTien) FROM DonHangEntity dh WHERE MONTH(dh.ngayTao) = :thang AND dh.trangThai = 3";
 	    Query query = session.createQuery(hql);
 	    query.setParameter("thang", thang);
-	    Integer totalRevenue = (Integer) query.uniqueResult();
-//	    return (totalRevenue != null) ? totalRevenue : 0;
-	    return totalRevenue;
+	    Long totalRevenue = (Long) query.uniqueResult();
+	    return (totalRevenue != null) ? totalRevenue : 0L;
 	}
 
 

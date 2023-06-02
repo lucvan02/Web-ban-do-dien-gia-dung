@@ -117,15 +117,16 @@ public class userController {
 
 			errors.rejectValue("userName", "user", "Tài khoản không tồn tại !!!");
 			loi = Boolean.FALSE;
-
-//		} else if ((user.getUserName().equals(check.getUserName()) || user.getUserName().equals(check.getEmail()))
-//				&& !userService.maHoaMatKhau(user.getPassWord()).equals(check.getPassWord())) {
-//			errors.rejectValue("passWord", "user", "Sai mật khẩu !!!");
-//			loi = Boolean.FALSE;
 			
 		} else if ((user.getUserName().equals(check.getUserName()) || user.getUserName().equals(check.getEmail()))
 				&& !userService.kiemTraMatKhau(user.getPassWord(), check.getPassWord())) {
 			errors.rejectValue("passWord", "user", "Sai mật khẩu !!!");
+			loi = Boolean.FALSE;
+
+		}
+		
+		else if (check.isTrangThai()==false) {
+			errors.rejectValue("userName", "user", "Tài khoản của bạn đã bị khoá !!!");
 			loi = Boolean.FALSE;
 
 		}
@@ -137,7 +138,7 @@ public class userController {
 		HttpSession session0 = request.getSession();
 		session0.setAttribute("USER", check);
 		
-		if (check.isQuyen()) { // Kiểm tra quyền người dùng là admin
+		if (check.getQuyen()!=0) { // Kiểm tra quyền người dùng là admin
 			return "redirect:/admin/index.htm"; // Trả về trang quản trị admin
 		}
 		
@@ -247,6 +248,7 @@ public class userController {
 		user.setNgaySinh(ns);
 		user.setHoTen(capitalizeString(user.getHoTen()));
 		user.setTrangThai(true);
+		user.setQuyen(0);
 		HttpSession session = request.getSession();
 		session.setAttribute("USERSIGNUP", user);
 		String otp = taoOTP();
@@ -416,9 +418,6 @@ public class userController {
 
 		String NGAYSINH = request.getParameter("ngaySinh");
 		java.sql.Date ns = java.sql.Date.valueOf(NGAYSINH);
-
-		System.out.print(user.getNgaySinh());
-
 		if (user.getHoTen().isEmpty()) {
 			model.addAttribute("loiHoTen", "Họ tên không được để trống !!!");
 
@@ -459,6 +458,7 @@ public class userController {
 		userService.updateUser(userSave);
 
 		model.addAttribute("user", userSave);
+		model.addAttribute("successMessage","Cập nhật thông tin thành công");
 
 		return "/user/user-info";
 	}
@@ -476,7 +476,7 @@ public class userController {
 			model.addAttribute("loiPassword", "Hãy nhập mật khẩu cũ !!!");
 			loi = Boolean.FALSE;
 
-		} else if (!userService.maHoaMatKhau(pass).equals(user.getPassWord())) {
+		} else if (!userService.kiemTraMatKhau(pass,user.getPassWord())) {
 			model.addAttribute("loiPassword", "Mật khẩu cũ không đúng !!!");
 			return "/user/changePass";
 		}

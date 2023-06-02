@@ -41,7 +41,7 @@ public class NguoiDungEntity {
 	@Column(name = "DIACHI")
 	private String diaChi;
 	@Column(name = "QUYEN")
-	private boolean quyen;
+	private int quyen;
 	@Column(name = "TRANGTHAI")
 	private boolean trangThai;
 	@OneToMany(mappedBy = "nguoiDung", fetch = FetchType.LAZY)
@@ -149,11 +149,11 @@ public class NguoiDungEntity {
 		this.diaChi = diaChi;
 	}
 
-	public boolean isQuyen() {
+	public int getQuyen() {
 		return quyen;
 	}
 
-	public void setQuyen(boolean quyen) {
+	public void setQuyen(int quyen) {
 		this.quyen = quyen;
 	}
 
