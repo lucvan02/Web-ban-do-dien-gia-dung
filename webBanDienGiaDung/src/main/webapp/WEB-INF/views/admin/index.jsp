@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
 <html>
@@ -44,6 +45,7 @@
             </div> --%>
         <h2 class="tm-block-title mt-3">Thống kê doanh thu</h2>
         <h5 class="text-warning">Tổng doanh thu đã bán : <fmt:formatNumber value="${tongDoanhThu}" pattern="#,##0" />đ</h5>
+        
         <br>
         <h2 class="tm-block-title">Thống kê số người dùng</h2>
         <h5 class="text-warning">Số người dùng trên web : <fmt:formatNumber value="${tongSoNguoiDung}" pattern="#,##0" /></h5>
@@ -52,7 +54,7 @@
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block">
-                        <h2 class="tm-block-title">Thống kê doanh thu trong năm</h2>
+                        <h2 class="tm-block-title">Thống kê doanh thu theo từng tháng</h2>
                         <canvas id="doanhThuChart" class="chart-container""></canvas>
                     </div>
                 </div>
@@ -104,7 +106,7 @@
         var ctx = document.getElementById('doanhThuChart').getContext('2d');
 
         var config = {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
                 datasets: [{
@@ -146,60 +148,66 @@
     drawdoanhThuChart();
 
 
-	function drawdonHangChart() {
-	    var ctx = document.getElementById('donHangChart').getContext('2d');
-	    var orderStatusData = [10, 5, 8, 3]; // Số lượng đơn hàng theo từng trạng thái
-	  
-	    var pendingOrders = ${pendingOrders};
-	    var deliveringOrders = ${deliveringOrders};
-	    var completedOrders = ${completedOrders};
-	    var cancelledOrders = ${cancelledOrders};
-	
-	    var orderStatusData = [cancelledOrders,pendingOrders, deliveringOrders, completedOrders]; // Số lượng đơn hàng theo từng trạng thái
-	    var config = {
-	        type: 'line',
-	        data: {
-	            labels: ['Đã hủy','Chờ xác nhận', 'Đang giao', 'Thành công'], // Các nhãn trục x (các trạng thái)
-	            datasets: [{
-	                label: 'Số đơn hàng',
-	                data: orderStatusData, // Số đơn hàng theo từng trạng thái
-	                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Màu nền cho dòng
-	                borderColor: 'rgb(54, 162, 235)', // Màu viền cho dòng
-	                borderWidth: 2, // Độ dày viền cho dòng
-	                pointBackgroundColor: 'rgb(54, 162, 235)', // Màu nền cho điểm dữ liệu
-	                pointRadius: 4, // Đường kính điểm dữ liệu
-	                pointHoverRadius: 6 // Đường kính điểm dữ liệu khi di chuột qua
-	            }]
-	        },
-	        options: {
-	            responsive: true,
-	            maintainAspectRatio: false,
-	            scales: {
-	                x: {
-	                    display: true,
-	                    scaleLabel: {
-	                        display: true,
-	                        labelString: 'Trạng thái'
-	                    }
-	                },
-	                y: {
-	                    display: true,
-	                    scaleLabel: {
-	                        display: true,
-	                        labelString: 'Số đơn hàng'
-	                    },
-	                    ticks: {
-	                        beginAtZero: true
-	                    }
-	                }
-	            }
-	        }
-	    };
-	  
-	    var lineChart = new Chart(ctx, config);
-	}
-	
-	drawdonHangChart();
+    function drawdonHangChart() {
+        var ctx = document.getElementById('donHangChart').getContext('2d');
+
+        var pendingOrders = ${pendingOrders};
+        var deliveringOrders = ${deliveringOrders};
+        var completedOrders = ${completedOrders};
+        var cancelledOrders = ${cancelledOrders};
+
+        var orderStatusData = [pendingOrders, deliveringOrders, completedOrders, cancelledOrders]; // Số lượng đơn hàng theo từng trạng thái
+
+        var config = {
+            type: 'bar',
+            data: {
+                labels: ['Chờ xác nhận', 'Đang giao', 'Thành công', 'Đã hủy'], // Các nhãn trục x (các trạng thái)
+                datasets: [{
+                    label: 'Số đơn hàng',
+                    data: orderStatusData, // Số đơn hàng theo từng trạng thái
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)', // Xanh dương (chờ xác nhận)
+                        'rgba(255, 255, 0, 0.2)', // Vàng (đang giao)
+                        'rgba(0, 255, 0, 0.2)', // Xanh lá (thành công)
+                        'rgba(255, 0, 0, 0.2)' // Đỏ (đã hủy)
+                    ],
+                    borderColor: 'rgb(54, 162, 235)', // Màu viền cho dòng
+                    borderWidth: 2, // Độ dày viền cho dòng
+                    pointBackgroundColor: 'rgb(54, 162, 235)', // Màu nền cho điểm dữ liệu
+                    pointRadius: 4, // Đường kính điểm dữ liệu
+                    pointHoverRadius: 6 // Đường kính điểm dữ liệu khi di chuột qua
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Trạng thái'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Số đơn hàng'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }
+        };
+
+        var barChart = new Chart(ctx, config);
+    }
+
+    drawdonHangChart();
+
 	
 	function drawOrderStatusChart() {
 		  var ctx = document.getElementById('orderStatusChart').getContext('2d');

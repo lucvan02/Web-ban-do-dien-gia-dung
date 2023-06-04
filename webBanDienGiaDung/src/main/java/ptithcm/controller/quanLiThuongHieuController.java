@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ptithcm.Entity.NguoiDungEntity;
-import ptithcm.Entity.SanPhamEntity;
 import ptithcm.Entity.ThuongHieuEntity;
 import ptithcm.service.SanPhamService;
 import ptithcm.service.ThuongHieuService;
@@ -55,20 +53,7 @@ public class quanLiThuongHieuController {
 		 return "admin/editBrand";
 	}
 	
-//	@RequestMapping(value = "/edit/{math}", params = "update", method = RequestMethod.POST)
-//	public String editBrand(@PathVariable("math") String math, @ModelAttribute("brand") ThuongHieuEntity brand, ModelMap model) throws IOException {
-//		
-//		try {
-//	        thuongHieuService.updateThuongHieu(brand);
-//	        model.addAttribute("successMessage", "Cập nhật thành công.");
-//	    } catch (Exception e) {
-//	        model.addAttribute("errorMessage", "Có lỗi xảy ra khi cập nhật." + e.getMessage());
-//	        return "admin/editBrand";
-//	    }
-//		
-//		return "admin/editBrand";
-//	}
-	
+
 	@RequestMapping(value = "admin/brands/edit/{math}", params = "update", method = RequestMethod.POST)
 	public String editBrand(@PathVariable("math") String math, ModelMap model, HttpServletRequest request) throws IOException {
 		

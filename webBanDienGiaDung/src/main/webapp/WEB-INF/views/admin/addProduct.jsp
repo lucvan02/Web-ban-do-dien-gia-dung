@@ -148,7 +148,7 @@
     				<div class="row">
     				    <div class="form-group mb-3 col-xs-12 col-sm-6">
     				        <label for="expire_date">Giá</label>
-    				        <f:input id="expire_date" path="donGia" type="number" min="0" class="form-control validate" data-large-mode="true" />
+    				        <f:input id="expire_date" path="donGia" type="number" value="1000" min="0" class="form-control validate" data-large-mode="true" />
     				    </div>
     				    <div class="form-group mb-3 col-xs-12 col-sm-6">
     				        <label for="stock">Số lượng</label>

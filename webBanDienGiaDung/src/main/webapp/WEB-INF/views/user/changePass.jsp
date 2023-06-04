@@ -37,16 +37,8 @@
 	rel="stylesheet" />
 </head>
 <body>
-<c:if test="${USER.getQuyen()!=0}">
 			
-			 <a id="back" href="admin/index.htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
-			
-		</c:if>
-<c:if test="${USER.getQuyen()==0}">
-		 <a id="back" href=".htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
-			
-			
-		</c:if>
+	<a id="back" href=".htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
 	<div class="container">
 		<div id="mucLuc">
 			<a href="userInfo.htm" id="info-click">Hồ Sơ</a> <a id="changePass-click">Đổi

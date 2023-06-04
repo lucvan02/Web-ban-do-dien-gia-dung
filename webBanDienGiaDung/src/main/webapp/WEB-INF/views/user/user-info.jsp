@@ -38,22 +38,7 @@
 </head>
 <body>
 
-<c:if test="${USER.getQuyen()!=0}">
-			
-			 <a id="back" href="admin/index.htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
-			
-		</c:if>
-<c:if test="${USER.getQuyen()==0}">
-		 <a id="back" href=".htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
-			
-			
-		</c:if>
-
-
-
-
-
-
+	<a id="back" href=".htm"><i class="ti-arrow-left"></i> Về Trang Chủ</a>
 
 	<div class="container">
 	

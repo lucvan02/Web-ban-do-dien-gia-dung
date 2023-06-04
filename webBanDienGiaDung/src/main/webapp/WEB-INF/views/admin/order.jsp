@@ -55,6 +55,7 @@
                                     <th scope="col">Tổng tiền</th>
                                     <th scope="col">Xem chi tiết</th>
                                     <th scope="col">Xác nhận duyệt</th>
+                                    <th scope="col">Hủy đơn này</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,9 +80,18 @@
                                     <td>
 										<f:form method="post">
 										  <input type="hidden" name="maDonHangDuyet" value="${dh.maDh}">
-										  <input type="hidden" name="trangThaiDon" value="${dh.trangThai}">
+										  <input type="hidden" name="trangThaiDonDuyet" value="${dh.trangThai}">
 										  <button class="btn-primary" title="Chuyển sang đang giao" type="submit"
-										  name="changeStatus">Duyệt</button>
+										  name="changeStatus2">Duyệt</button>
+										</f:form>					
+				                    </td>
+				                    
+				                    <td>
+										<f:form method="post">
+										  <input type="hidden" name="maDonHangHuy" value="${dh.maDh}">
+										  <input type="hidden" name="trangThaiDonHuy" value="${dh.trangThai}">
+										  <button class="btn-danger" title="Hủy đơn này" type="submit"
+										  name="changeStatus0">Hủy</button>
 										</f:form>					
 				                    </td>
                                     
@@ -230,6 +240,8 @@
             </div>
             
         </div>
+        
+        <%@ include file="include/footer.jsp" %>
     </div>
 
 

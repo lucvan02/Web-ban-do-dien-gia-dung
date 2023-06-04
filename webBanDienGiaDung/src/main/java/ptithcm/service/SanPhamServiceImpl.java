@@ -7,9 +7,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ptithcm.Entity.CTDonHangEntity;
 import ptithcm.Entity.GioHangEntity;
 import ptithcm.Entity.HinhAnhEntity;
 import ptithcm.Entity.SanPhamEntity;
+import ptithcm.dao.CTDonHangDAO;
 import ptithcm.dao.HinhAnhDAO;
 import ptithcm.dao.SanPhamDAO;
 
@@ -22,6 +24,8 @@ public class SanPhamServiceImpl implements SanPhamService {
 	HinhAnhDAO hinhAnhDAO;
 	@Autowired
 	gioHangService giohagService;
+	@Autowired
+	CTDonHangDAO ctdonHangDao;
 
 	public void setSanPhamDAO(SanPhamDAO sanPhamDAO) {
 		this.sanPhamDAO = sanPhamDAO;
@@ -83,6 +87,19 @@ public class SanPhamServiceImpl implements SanPhamService {
 	    }
 	    
 	    return false; // Không có nằm trong giỏ hàng
+	}
+	
+	@Override
+	public boolean kiemTraSanPhamCoNamTrongDonHang(String maSP) {
+		List<CTDonHangEntity> danhSachCTDonHang = ctdonHangDao.layAllCTDonHang();
+	    
+	    for (CTDonHangEntity ctdonHang : danhSachCTDonHang) {
+	        if (ctdonHang.getSanPham().getMaSP().equals(maSP)) {
+	            return true; // có nằm trong đơn hàng
+	        }
+	    }
+	    
+	    return false; // Không có nằm trong đơn hàng
 	}
 
 	@Override
