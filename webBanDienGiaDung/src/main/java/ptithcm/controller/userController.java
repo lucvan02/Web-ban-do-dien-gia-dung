@@ -312,6 +312,8 @@ public class userController {
 			model.addAttribute("user", new NguoiDungEntity());
 			return "/user/login";
 		}
+		NguoiDungEntity user = (NguoiDungEntity) session.getAttribute("USERSIGNUP");
+		model.addAttribute("email","****"+user.getEmail().substring(user.getEmail().length()-13));
 
 		model.addAttribute("messenger", "OTP bạn nhập không đúng !!!");
 		return "/user/verify";
@@ -334,7 +336,8 @@ public class userController {
 			
 			return "/user/newpass";
 		}
-
+		NguoiDungEntity user = (NguoiDungEntity) session.getAttribute("USERFORGOT");
+		model.addAttribute("email","****"+user.getEmail().substring(user.getEmail().length()-13));
 		model.addAttribute("messenger", "OTP bạn nhập không đúng !!!");
 		return "/user/verify2";
 	}
@@ -347,6 +350,7 @@ public class userController {
 		NguoiDungEntity user = (NguoiDungEntity) session.getAttribute("USERSIGNUP");
 //		sendMail("THEGIOIDIENMAY", user.getEmail(), "OTP", "Mã OTP của bạn là: " + otp);
 		mailer.sendMailAsync("THEGIOIDIENMAY", user.getEmail(), "OTP", "Mã OTP của bạn là: " + otp);
+		model.addAttribute("email","****"+user.getEmail().substring(user.getEmail().length()-13));
 		model.addAttribute("again", "OTP đã được gửi lại !!!");
 		return "/user/verify";
 	}
@@ -359,6 +363,7 @@ public class userController {
 		NguoiDungEntity user = (NguoiDungEntity) session.getAttribute("USERFORGOT");
 //		sendMail("THEGIOIDIENMAY", user.getEmail(), "OTP", "Mã OTP của bạn là: " + otp);
 		mailer.sendMailAsync("THEGIOIDIENMAY", user.getEmail(), "OTP", "Mã OTP của bạn là: " + otp);
+		model.addAttribute("email","****"+user.getEmail().substring(user.getEmail().length()-13));
 		model.addAttribute("again", "OTP đã được gửi lại !!!");
 		return "/user/verify2";
 	}
