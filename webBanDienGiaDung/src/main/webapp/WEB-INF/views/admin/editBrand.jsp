@@ -47,7 +47,7 @@
                 
                 	<div class="form-group mb-3">
     				    <label for="ma">Mã thương hiệu</label>
-    				    <input name="mathuonghieu" type="text" value="${thuongHieu.maTh}" class="form-control validate" required="true" />
+    				    <input name="mathuonghieu" type="text" value="${thuongHieu.maTh}" class="form-control validate" readonly required="true" />
     				</div>
     				<div class="form-group mb-3">
     				    <label for="name">Tên thương hiệu</label>

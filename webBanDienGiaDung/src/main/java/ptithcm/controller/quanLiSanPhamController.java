@@ -255,7 +255,7 @@ public class quanLiSanPhamController {
 	        product.setThongSoKt(sp.getThongSoKt());
 	    }
 	    
-	    product.setNgayThem(sp.getNgayThem());
+//	    product.setNgayThem(sp.getNgayThem());
 
 	    try {
 	        sanPhamService.updateSanPham(product);

@@ -40,14 +40,28 @@ public class quanLiDonHangController {
 		return "admin/order";
 	}
 	
-	@RequestMapping(value = "admin/order", params = "changeStatus", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/order", params = "changeStatus2", method = RequestMethod.POST)
 	public String chuyenDonHangSangDangGiao(HttpServletRequest request) {
 	    int maDonHang = Integer.parseInt(request.getParameter("maDonHangDuyet"));
-	    int trangThai = Integer.parseInt(request.getParameter("trangThaiDon"));
+	    int trangThai = Integer.parseInt(request.getParameter("trangThaiDonDuyet"));
 
 	    if (trangThai == 1) { // Nếu trạng thái là "Chờ xác nhận"
 	        DonHangEntity donHang = donHangService.timDonHangTheoMa(maDonHang);
 	        donHang.setTrangThai(2); // Chuyển trạng thái đơn hàng sang "Đang giao"
+	        donHangService.updateDonHang(donHang);
+	    }
+
+	    return "redirect:/admin/order.htm";
+	}
+	
+	@RequestMapping(value = "admin/order", params = "changeStatus0", method = RequestMethod.POST)
+	public String chuyenDonHangSangHuy(HttpServletRequest request) {
+	    int maDonHang = Integer.parseInt(request.getParameter("maDonHangHuy"));
+	    int trangThai = Integer.parseInt(request.getParameter("trangThaiDonHuy"));
+
+	    if (trangThai == 1) { // Nếu trạng thái là "Chờ xác nhận"
+	        DonHangEntity donHang = donHangService.timDonHangTheoMa(maDonHang);
+	        donHang.setTrangThai(0); // Chuyển trạng thái đơn hàng sang "Đang giao"
 	        donHangService.updateDonHang(donHang);
 	    }
 

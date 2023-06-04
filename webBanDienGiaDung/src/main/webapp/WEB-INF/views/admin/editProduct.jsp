@@ -47,7 +47,7 @@
                 
                 	<div class="form-group mb-3">
     				    <label for="name">Mã sản phẩm</label>
-    				    <f:input id="masp" path="maSP" type="text" value="${sanPham.maSP}" class="form-control validate" required="true"/>    				    
+    				    <f:input id="masp" path="maSP" type="text" value="${sanPham.maSP}" class="form-control validate" required="true" readonly="true"/>    				    
     				</div>
     				<div class="form-group mb-3">
     				    <label for="name">Tên sản phẩm</label>
@@ -73,20 +73,21 @@
     				</div>
     				
     				<div class="form-group my-3">
-    				    <label for="category" class="pt-4 mb-0">Loại sản phẩm: ${sanPham.loaiSanPham.tenLoai}</label>
-    				    <f:select class="custom-select tm-select-accounts" id="category" path="loaiSanPham.maLoai">
-    				        <c:forEach items="${listLoai}" var="l">
-    							<option value="${l.maLoai}">${l.tenLoai}</option>
-  					  		</c:forEach>
-    				    </f:select>
-    				    <label for="th" class="pt-4 mb-0">Thương hiệu: ${sanPham.thuongHieu.tenThuongHieu}</label>
-    				    <f:select class="custom-select tm-select-accounts mt-3" id="thuongHieu" path="thuongHieu.maTh">
-    				        <c:forEach items="${listThuongHieu}" var="th">
-    							<option value="${th.maTh}">${th.tenThuongHieu}</option>
-  					  		</c:forEach>
-    				    </f:select>   				    
-    				    
-    				</div>
+					    <label for="category" class="pt-4 mb-0">Loại sản phẩm: ${sanPham.loaiSanPham.tenLoai}</label>
+					    <f:select class="custom-select tm-select-accounts" id="category" path="loaiSanPham.maLoai">
+					        <c:forEach items="${listLoai}" var="l">
+					            <option value="${l.maLoai}" ${l.maLoai == sanPham.loaiSanPham.maLoai ? 'selected' : ''}>${l.tenLoai}</option>
+					        </c:forEach>
+					    </f:select>
+					    
+					    <label for="th" class="pt-4 mb-0">Thương hiệu: ${sanPham.thuongHieu.tenThuongHieu}</label>
+					    <f:select class="custom-select tm-select-accounts mt-3" id="thuongHieu" path="thuongHieu.maTh">
+					        <c:forEach items="${listThuongHieu}" var="th">
+					            <option value="${th.maTh}" ${th.maTh == sanPham.thuongHieu.maTh ? 'selected' : ''}>${th.tenThuongHieu}</option>
+					        </c:forEach>
+					    </f:select>
+					</div>
+
     				<div class="row">
     				    <div class="form-group mb-3 col-xs-12 col-sm-6">
     				        <label for="expire_date">Giá</label>
@@ -119,12 +120,12 @@
 					  </div>
 					  
 					  <div class="form-group my-3">
-					    <label for="avatar">Hình ảnh đại diện</label>
-					    <input type="file" name="avatar" id="avatar" class="form-control-file" style="display:none;" onchange="previewAvatar(event);">
-					    <input type="button" class="btn btn-primary btn-block mx-auto" value="Đổi ảnh" onclick="document.getElementById('avatar').click();" required="true">
+					    <label for="avatar">Đổi hình ảnh đại diện</label>
+					    <input type="file" name="avatar" id="avatar" class="form-control-file"  onchange="previewAvatar(event);">
+					    <!-- <input type="button" class="btn btn-primary btn-block mx-auto" value="Đổi ảnh" onclick="document.getElementById('avatar').click();" required="true"> -->
 					  </div>
 					  
-					 <script>
+					 <!-- <script>
 					  function previewAvatar(event) {
 					    var reader = new FileReader();
 					    reader.onload = function(){
@@ -134,7 +135,7 @@
 					    };
 					    reader.readAsDataURL(event.target.files[0]);
 					  }
-					</script> 
+					</script> --> 
 			  		
 			  		
 			  		
@@ -166,13 +167,14 @@
 			  	
 				<div class="form-group mt-2">
 			    <label for="dateAdd">Ngày thêm</label>
-			    <input
+			    <f:input
 			        id="dateAdd"
 			        name="dateAdd"
+			        path="ngayThem"
 			        type="date"
 			        class="form-control validate"
 			        value="${sanPham.ngayThem}"
-			        readonly
+			        
 			    />
 
 			</div>

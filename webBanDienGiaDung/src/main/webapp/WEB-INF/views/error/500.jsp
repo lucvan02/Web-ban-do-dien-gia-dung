@@ -159,7 +159,7 @@ body {
 <body class="loading">
   <h1>500</h1>
   <h2>Đã có lỗi xảy ra. Chúng tôi sẽ cố gắng khắc phục. <b>:(</b></h2>
-  <a href='' class="link_403">Quay lại</a>
+  <!-- <a href='' class="link_403">Quay lại</a> -->
   <div class="gears">
     <div class="gear one">
       <div class="bar"></div>
