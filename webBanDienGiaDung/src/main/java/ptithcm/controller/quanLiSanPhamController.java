@@ -126,7 +126,6 @@ public class quanLiSanPhamController {
 	        hinhAnhKhac.setLink("assets/img/sanPham/"+fileName);
 	        hinhAnhKhac.setSanPham(product);
 	        hinhAnhKhacs.add(hinhAnhKhac);
-//	        sanPhamService.themHinhAnhSanPham(hinhAnhKhac);
 	    }
 	    model.addAttribute("count", count);
 	    	    
@@ -255,7 +254,7 @@ public class quanLiSanPhamController {
 	        product.setThongSoKt(sp.getThongSoKt());
 	    }
 	    
-//	    product.setNgayThem(sp.getNgayThem());
+	    product.setNgayThem(sp.getNgayThem());
 
 	    try {
 	        sanPhamService.updateSanPham(product);

@@ -64,7 +64,6 @@ public class loaiSanPhamController {
 			@RequestParam(value = "minPrice", defaultValue = "0") int minPrice,
 			@RequestParam(value = "maxPrice", defaultValue = "999999999") int maxPrice,
 			@RequestParam(defaultValue = "0") int page)
-	// @RequestParam(value="rating", required=false) Integer rating)
 	{
 		List<SanPhamEntity> categoryList = sanPhamService.locSanPhamTheoThuongHieuVaGia(loaiSp, brandsList, minPrice,
 				maxPrice);
@@ -74,21 +73,11 @@ public class loaiSanPhamController {
 		model.addAttribute("selectedBrands", brandsList);
 		model.addAttribute("minPrice", minPrice);
 		model.addAttribute("maxPrice", maxPrice);
-		// model.addAttribute("selectedRating", rating);
 		if (categoryList.isEmpty()) {
 			model.addAttribute("message", "Hiện không có sản phẩm cần tìm");
 			return "sanPham/locSanPham";
 		}
 		return "sanPham/locSanPham";
 	}
-
-//	@RequestMapping(value = "/{loaiSp}", params = "btn-view-all", method = RequestMethod.POST)
-//	public String xemToanBoSP(@PathVariable("loaiSp") String loaiSp, ModelMap model, HttpServletRequest request) {
-//		List<ThuongHieuEntity> thuongHieulist = thuongHieuService.layThuongHieu();
-//		model.addAttribute("thuongHieuList", thuongHieulist);
-//		List<SanPhamEntity> categoryList = sanPhamService.layAllSanPhamTheoLoai(loaiSp);
-//		model.addAttribute("categoryList", categoryList);
-//		return "sanPham/locSanPham";
-//	}
 
 }

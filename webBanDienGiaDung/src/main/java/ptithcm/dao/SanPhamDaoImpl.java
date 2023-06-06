@@ -30,12 +30,10 @@ public class SanPhamDaoImpl implements SanPhamDAO {
 	@Override
 	public List<SanPhamEntity> laySanPhamTheoMa(String key) {
 	    Session session = sessionFactory.getCurrentSession();
-//	    String hql = "FROM SanPhamEntity sp WHERE sp.tenSanPham LIKE :key OR sp.loaiSanPham.tenLoai LIKE :key";
 
 	    String hql = "FROM SanPhamEntity sp WHERE sp.maSP LIKE :key " +
 	                 "OR sp.tenSanPham LIKE :key " +
 	                 "OR sp.thuongHieu.tenThuongHieu LIKE :key " +
-//	                 "OR sp.loaiSanPham.tenLoai LIKE :key"+
 	                 "OR sp.loaiSanPham.maLoai LIKE :key";
 	    Query query = session.createQuery(hql);
 	    query.setParameter("key", "%" + key + "%");

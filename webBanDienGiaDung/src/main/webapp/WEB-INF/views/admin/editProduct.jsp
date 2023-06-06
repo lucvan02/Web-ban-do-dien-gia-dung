@@ -167,12 +167,12 @@
 			  	
 				<div class="form-group mt-2">
 			    <label for="dateAdd">Ngày thêm</label>
-			    <f:input
+			    <input
 			        id="dateAdd"
 			        name="dateAdd"
-			        path="ngayThem"
 			        type="date"
 			        class="form-control validate"
+			        readonly
 			        value="${sanPham.ngayThem}"
 			        
 			    />

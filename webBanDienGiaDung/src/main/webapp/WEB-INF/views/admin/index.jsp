@@ -54,7 +54,7 @@
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block">
-                        <h2 class="tm-block-title">Thống kê doanh thu theo từng tháng</h2>
+                        <h2 class="tm-block-title">Thống kê doanh các tháng năm nay</h2>
                         <canvas id="doanhThuChart" class="chart-container""></canvas>
                     </div>
                 </div>
